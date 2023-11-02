@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import io.micronaut.serde.annotation.Serdeable;
+
 @Entity
+@Serdeable
 public class Video {
 
 	@Id
@@ -19,13 +22,13 @@ public class Video {
 	String[] tags;
 
 	@Column(nullable = false)
-	Integer likes;
+	Integer likes = 0;
 
 	@Column(nullable = false)
-	Integer dislikes;
+	Integer dislikes = 0;
 
 	@Column(nullable = false)
-	Integer views;
+	Integer views = 0;
 
 	@Column(nullable = false)
 	String userId;
