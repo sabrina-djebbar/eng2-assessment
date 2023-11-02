@@ -6,7 +6,7 @@ services:
       MARIADB_USER: &dbuser todo
       MARIADB_PASSWORD: &dbpass todosecret
       MARIADB_ROOT_PASSWORD: iamroot
-      MARIADB_DATABASE: &dbname videos
+      MARIADB_DATABASE: &dbname video
     volumes:
       - mariadb_data:/var/lib/mysql
     ports:
