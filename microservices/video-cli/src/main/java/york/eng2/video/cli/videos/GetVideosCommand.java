@@ -6,6 +6,7 @@ import york.eng2.video.cli.domain.Video;
 
 @Command(name = "get-videos", description = "list next videos to watch", mixinStandardHelpOptions = true)
 public class GetVideosCommand implements Runnable {
+
 	@Inject
 	VideosClient client;
 

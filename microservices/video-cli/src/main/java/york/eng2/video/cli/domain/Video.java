@@ -74,4 +74,17 @@ public class Video {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
+	public String displayTags() {
+		String formatTags = "";
+		for (String tag : tags) {
+			formatTags += (tag + ",");
+		}
+		return formatTags;
+	}
+
+	@Override
+	public String toString() {
+		return "Video=" + id + ", title=" + title + ", tags=" + displayTags() + "]";
+	}
 }

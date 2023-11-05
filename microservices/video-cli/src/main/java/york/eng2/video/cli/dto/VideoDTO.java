@@ -4,6 +4,7 @@ import io.micronaut.serde.annotation.Serdeable;
 
 @Serdeable
 public class VideoDTO {
+
 	private String title;
 	private String[] tags;
 	private String userId;
