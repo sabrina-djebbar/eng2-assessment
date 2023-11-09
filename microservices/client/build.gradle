@@ -23,7 +23,7 @@ dependencies {
 
 
 application {
-    mainClass.set("york.eng2.video.cli.VideoCliCommand")
+    mainClass.set("york.eng2.video.cli.ClientCommand")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("11")

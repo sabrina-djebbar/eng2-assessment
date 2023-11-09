@@ -4,6 +4,7 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Put;
 import io.micronaut.http.client.annotation.Client;
 import york.eng2.video.cli.domain.Video;
 import york.eng2.video.cli.dto.VideoDTO;
@@ -15,5 +16,17 @@ public interface VideosClient {
 	Iterable<Video> list();
 
 	@Post("/")
-	HttpResponse<Void> add(@Body VideoDTO videoDetails);
+	HttpResponse<Void> post(@Body VideoDTO videoDetails);
+
+	@Get("/{id}")
+	public VideoDTO getVideoById(long id);
+
+	@Put("/{id}")
+	public HttpResponse<Void> likeVideo(long id);
+
+	@Put("/{id}")
+	public HttpResponse<Void> dislikeVideo(long id);
+
+	@Put("/{videoId}/watch")
+	public HttpResponse<Void> watchVideo(long videoId);
 }

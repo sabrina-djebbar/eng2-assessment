@@ -43,7 +43,7 @@ public class VideosController {
 	}
 
 	@Transactional
-	@Put("/{id}/like")
+	@Put("/{id}")
 	public HttpResponse<Void> likeVideo(long id) {
 		Optional<Video> video = repo.findById(id);
 		if (video.isEmpty()) {
@@ -57,7 +57,7 @@ public class VideosController {
 	}
 
 	@Transactional
-	@Put("/{id}/dislike")
+	@Put("/{id}")
 	public HttpResponse<Void> dislikeVideo(long id) {
 		Optional<Video> video = repo.findById(id);
 		if (video.isEmpty()) {
@@ -73,6 +73,7 @@ public class VideosController {
 	@Transactional
 	@Put("/{videoId}/watch")
 	public HttpResponse<Void> watchVideo(long videoId) {
+		// Add userId to this to send event
 		Optional<Video> video = repo.findById(videoId);
 		if (video.isEmpty()) {
 			return HttpResponse.notFound();

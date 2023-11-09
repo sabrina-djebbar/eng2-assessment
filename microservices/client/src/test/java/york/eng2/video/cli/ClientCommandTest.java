@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class VideoCliCommandTest {
+public class ClientCommandTest {
 
     @Test
     public void testWithCommandLineOption() throws Exception {
@@ -19,9 +19,9 @@ public class VideoCliCommandTest {
 
         try (ApplicationContext ctx = ApplicationContext.run(Environment.CLI, Environment.TEST)) {
             String[] args = new String[] { "-v" };
-            PicocliRunner.run(VideoCliCommand.class, ctx, args);
+            PicocliRunner.run(ClientCommand.class, ctx, args);
 
-            // video-cli
+            // client
             assertTrue(baos.toString().contains("Hi!"));
         }
     }

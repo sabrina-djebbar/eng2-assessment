@@ -47,7 +47,7 @@ public class Video {
 		return likes;
 	}
 
-	public void setLikes() {
+	public void likeVideo() {
 		this.likes++;
 	}
 
@@ -55,7 +55,7 @@ public class Video {
 		return dislikes;
 	}
 
-	public void setDislikes() {
+	public void dislikeVideo() {
 		this.dislikes++;
 	}
 
@@ -63,7 +63,7 @@ public class Video {
 		return views;
 	}
 
-	public void setViews() {
+	public void watchVideos() {
 		this.views++;
 	}
 
@@ -75,16 +75,9 @@ public class Video {
 		this.userId = userId;
 	}
 
-	public String displayTags() {
-		String formatTags = "";
-		for (String tag : tags) {
-			formatTags += (tag + ",");
-		}
-		return formatTags;
-	}
-
 	@Override
 	public String toString() {
-		return "Video=" + id + ", title=" + title + ", tags=" + displayTags() + "]";
+		return "Video=" + id + ", title=" + title + ", tags= [" + String.join(",", tags) + "], likes = " + likes
+				+ ", dislikes = " + dislikes + ", views = " + views + ", user=" + userId;
 	}
 }
