@@ -19,12 +19,12 @@ public interface VideosClient {
 	HttpResponse<Void> post(@Body VideoDTO videoDetails);
 
 	@Get("/{id}")
-	public VideoDTO getVideoById(long id);
+	public Video getVideoById(long id);
 
-	@Put("/{id}")
+	@Put("/{id}/like")
 	public HttpResponse<Void> likeVideo(long id);
 
-	@Put("/{id}")
+	@Put("/{id}/dislike")
 	public HttpResponse<Void> dislikeVideo(long id);
 
 	@Put("/{videoId}/watch")

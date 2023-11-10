@@ -27,6 +27,11 @@ public class VideosController {
 		return repo.findAll();
 	}
 
+	@Get("/{id}")
+	public Video getVideoById(long id) {
+		return repo.findById(id).orElse(null);
+	}
+
 	@Post("/")
 	public HttpResponse<Void> post(@Body VideoDTO videoDetails) {
 		Video video = new Video();
@@ -37,13 +42,8 @@ public class VideosController {
 		return HttpResponse.created(URI.create("/videos/" + video.getId()));
 	}
 
-	@Get("/{id}")
-	public VideoDTO getVideoById(long id) {
-		return repo.findOne(id).orElse(null);
-	}
-
 	@Transactional
-	@Put("/{id}")
+	@Put("/{id}/like")
 	public HttpResponse<Void> likeVideo(long id) {
 		Optional<Video> video = repo.findById(id);
 		if (video.isEmpty()) {
@@ -57,7 +57,7 @@ public class VideosController {
 	}
 
 	@Transactional
-	@Put("/{id}")
+	@Put("/{id}/dislike")
 	public HttpResponse<Void> dislikeVideo(long id) {
 		Optional<Video> video = repo.findById(id);
 		if (video.isEmpty()) {

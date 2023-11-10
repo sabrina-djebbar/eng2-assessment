@@ -5,19 +5,17 @@ import jakarta.inject.Inject;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-@Command(name = "watch-video", description = "watch a video", mixinStandardHelpOptions = true)
-public class WatchVideoCommand implements Runnable {
+@Command(name = "dislike-video", description = "dislike a video", mixinStandardHelpOptions = true)
+public class DislikeVideoCommand implements Runnable {
 	@Inject
 	VideosClient client;
 
 	@Parameters(index = "0")
-	private Long videoId;
+	Long id;
 
 	@Override
 	public void run() {
-		// Add userId to this to send event
-		HttpResponse<Void> response = client.watchVideo(videoId);
+		HttpResponse<Void> response = client.dislikeVideo(id);
 		System.out.println("Server responded with: " + response.getStatus());
-
 	}
 }

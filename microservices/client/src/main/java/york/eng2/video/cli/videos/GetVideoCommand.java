@@ -3,7 +3,7 @@ package york.eng2.video.cli.videos;
 import jakarta.inject.Inject;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
-import york.eng2.video.cli.dto.VideoDTO;
+import york.eng2.video.cli.domain.Video;
 
 @Command(name = "get-video", description = "gets a video", mixinStandardHelpOptions = true)
 public class GetVideoCommand implements Runnable {
@@ -15,7 +15,7 @@ public class GetVideoCommand implements Runnable {
 
 	@Override
 	public void run() {
-		VideoDTO video = client.getVideoById(id);
+		Video video = client.getVideoById(id);
 		if (video == null) {
 			System.err.println("Video not found!");
 			System.exit(1);

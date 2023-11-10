@@ -48,7 +48,7 @@ public class Video {
 	}
 
 	public void likeVideo() {
-		this.likes++;
+		likes++;
 	}
 
 	public Integer getDislikes() {
@@ -56,7 +56,7 @@ public class Video {
 	}
 
 	public void dislikeVideo() {
-		this.dislikes++;
+		dislikes++;
 	}
 
 	public Integer getViews() {
@@ -64,7 +64,7 @@ public class Video {
 	}
 
 	public void watchVideos() {
-		this.views++;
+		views++;
 	}
 
 	public String getUserId() {
