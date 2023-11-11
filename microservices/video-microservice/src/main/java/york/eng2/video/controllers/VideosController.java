@@ -28,7 +28,7 @@ public class VideosController {
 	}
 
 	@Get("/{id}")
-	public Video getVideoById(long id) {
+	public Video getVideo(long id) {
 		return repo.findById(id).orElse(null);
 	}
 
@@ -39,6 +39,7 @@ public class VideosController {
 		video.setTags(videoDetails.getTags());
 		video.setUserId(videoDetails.getUserId());
 		repo.save(video);
+
 		return HttpResponse.created(URI.create("/videos/" + video.getId()));
 	}
 

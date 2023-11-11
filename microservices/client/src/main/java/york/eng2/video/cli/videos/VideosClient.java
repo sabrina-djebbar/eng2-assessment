@@ -19,7 +19,7 @@ public interface VideosClient {
 	HttpResponse<Void> post(@Body VideoDTO videoDetails);
 
 	@Get("/{id}")
-	public Video getVideoById(long id);
+	public Video getVideo(long id);
 
 	@Put("/{id}/like")
 	public HttpResponse<Void> likeVideo(long id);

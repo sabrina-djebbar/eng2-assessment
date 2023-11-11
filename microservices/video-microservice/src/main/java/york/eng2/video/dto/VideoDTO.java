@@ -39,7 +39,7 @@ public class VideoDTO {
 		return likes;
 	}
 
-	public void likeVideo() {
+	public void setLikes() {
 		likes++;
 	}
 
@@ -47,7 +47,7 @@ public class VideoDTO {
 		return dislikes;
 	}
 
-	public void dislikeVideo() {
+	public void setDislikes() {
 		dislikes++;
 	}
 
@@ -55,7 +55,7 @@ public class VideoDTO {
 		return views;
 	}
 
-	public void watchVideo() {
+	public void setViews() {
 		views++;
 	}
 }

@@ -8,9 +8,9 @@ public class VideoDTO {
 	private String title;
 	private String[] tags;
 	private String userId;
-	private Integer likes = 0;
-	private Integer dislikes = 0;
-	private Integer views = 0;
+	private Integer likes;
+	private Integer dislikes;
+	private Integer views;
 
 	public String getTitle() {
 		return title;
@@ -40,7 +40,7 @@ public class VideoDTO {
 		return likes;
 	}
 
-	public void likeVideo() {
+	public void setLikes() {
 		likes++;
 	}
 
@@ -48,7 +48,7 @@ public class VideoDTO {
 		return dislikes;
 	}
 
-	public void dislikeVideo() {
+	public void setDislikes() {
 		dislikes++;
 	}
 
@@ -56,7 +56,7 @@ public class VideoDTO {
 		return views;
 	}
 
-	public void watchVideo() {
+	public void setViews() {
 		views++;
 	}
 

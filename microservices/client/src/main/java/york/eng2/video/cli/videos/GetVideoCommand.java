@@ -15,7 +15,7 @@ public class GetVideoCommand implements Runnable {
 
 	@Override
 	public void run() {
-		Video video = client.getVideoById(id);
+		Video video = client.getVideo(id);
 		if (video == null) {
 			System.err.println("Video not found!");
 			System.exit(1);

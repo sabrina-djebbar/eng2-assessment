@@ -47,7 +47,7 @@ public class Video {
 		return likes;
 	}
 
-	public void likeVideo() {
+	public void setLikes() {
 		likes++;
 	}
 
@@ -55,7 +55,7 @@ public class Video {
 		return dislikes;
 	}
 
-	public void dislikeVideo() {
+	public void setDislikes() {
 		dislikes++;
 	}
 
@@ -63,7 +63,7 @@ public class Video {
 		return views;
 	}
 
-	public void watchVideos() {
+	public void setViews() {
 		views++;
 	}
 
