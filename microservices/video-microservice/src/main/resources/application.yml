@@ -18,9 +18,11 @@ jpa:
       hibernate:
         hbm2ddl:
           auto: update
-kafka: 
-    enabled:false
 netty:
   default:
     allocator:
       max-order: 3
+kafka:
+  bootstrap:
+    servers: ${KAFKA_BOOTSTRAP_SERVERS:`localhost:9094`}
+

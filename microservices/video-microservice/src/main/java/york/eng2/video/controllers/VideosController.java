@@ -14,6 +14,7 @@ import io.micronaut.http.annotation.Put;
 import jakarta.inject.Inject;
 import york.eng2.video.domain.Video;
 import york.eng2.video.dto.VideoDTO;
+import york.eng2.video.events.VideosProducer;
 import york.eng2.video.repositories.VideosRepository;
 
 @Controller("/videos")
@@ -21,6 +22,9 @@ public class VideosController {
 
 	@Inject
 	VideosRepository repo;
+
+	@Inject
+	VideosProducer producer;
 
 	@Get("/")
 	public Iterable<Video> list() {
@@ -39,7 +43,7 @@ public class VideosController {
 		video.setTags(videoDetails.getTags());
 		video.setUserId(videoDetails.getUserId());
 		repo.save(video);
-
+		producer.postVideo(video.getId(), video);
 		return HttpResponse.created(URI.create("/videos/" + video.getId()));
 	}
 
@@ -54,6 +58,7 @@ public class VideosController {
 		Video v = video.get();
 		v.setLikes();
 		repo.update(v);
+		producer.likeVideo(id, v);
 		return HttpResponse.ok();
 	}
 
@@ -68,12 +73,13 @@ public class VideosController {
 		Video v = video.get();
 		v.setDislikes();
 		repo.update(v);
+		producer.dislikeVideo(id, v);
 		return HttpResponse.ok();
 	}
 
 	@Transactional
-	@Put("/{videoId}/watch")
-	public HttpResponse<Void> watchVideo(long videoId) {
+	@Put("/{videoId}/watch/{userId}")
+	public HttpResponse<Void> watchVideo(long videoId, String userId) {
 		// Add userId to this to send event
 		Optional<Video> video = repo.findById(videoId);
 		if (video.isEmpty()) {
@@ -83,6 +89,7 @@ public class VideosController {
 		Video v = video.get();
 		v.setViews();
 		repo.update(v);
+		producer.watchVideo(videoId, userId);
 		return HttpResponse.ok();
 	}
 
