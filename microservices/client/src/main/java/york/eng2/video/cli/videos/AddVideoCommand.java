@@ -26,6 +26,9 @@ public class AddVideoCommand implements Runnable {
 		dto.setTitle(title);
 		dto.setTags(tags);
 		dto.setUserId(userId);
+		dto.setDislikes(0);
+		dto.setLikes(0);
+		dto.setViews(0);
 		HttpResponse<Void> response = client.post(dto);
 		System.out.println("Server responded with: " + response.getStatus());
 	}

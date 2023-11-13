@@ -9,9 +9,9 @@ import york.eng2.video.domain.Video;
 public interface VideosProducer {
 
 	String TOPIC_POST = "video-post";
-	String TOPIC_WATCH = "video-post";
-	String TOPIC_LIKE = "video-post";
-	String TOPIC_DISLIKE = "video-post";
+	String TOPIC_WATCH = "video-watch";
+	String TOPIC_LIKE = "video-like";
+	String TOPIC_DISLIKE = "video-dislike";
 
 	@Topic(TOPIC_POST)
 	void postVideo(@KafkaKey Long id, Video video);

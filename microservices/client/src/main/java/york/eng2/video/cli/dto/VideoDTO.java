@@ -44,6 +44,10 @@ public class VideoDTO {
 		likes++;
 	}
 
+	public void setLikes(Integer likes) {
+		this.likes = likes;
+	}
+
 	public Integer getDislikes() {
 		return dislikes;
 	}
@@ -52,12 +56,20 @@ public class VideoDTO {
 		dislikes++;
 	}
 
+	public void setDislikes(Integer dislikes) {
+		this.dislikes = dislikes;
+	}
+
 	public Integer getViews() {
 		return views;
 	}
 
 	public void setViews() {
 		views++;
+	}
+
+	public void setViews(Integer views) {
+		this.views = views;
 	}
 
 	@Override

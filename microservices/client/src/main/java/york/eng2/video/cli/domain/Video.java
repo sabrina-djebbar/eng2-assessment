@@ -11,11 +11,11 @@ public class Video {
 
 	String[] tags;
 
-	Integer likes = 0;
+	Integer likes;
 
-	Integer dislikes = 0;
+	Integer dislikes;
 
-	Integer views = 0;
+	Integer views;
 
 	String userId;
 
@@ -51,6 +51,10 @@ public class Video {
 		likes++;
 	}
 
+	public void setLikes(Integer likes) {
+		this.likes = likes;
+	}
+
 	public Integer getDislikes() {
 		return dislikes;
 	}
@@ -59,12 +63,20 @@ public class Video {
 		dislikes++;
 	}
 
+	public void setDislikes(Integer dislikes) {
+		this.dislikes = dislikes;
+	}
+
 	public Integer getViews() {
 		return views;
 	}
 
 	public void setViews() {
 		views++;
+	}
+
+	public void setViews(Integer views) {
+		this.views = views;
 	}
 
 	public String getUserId() {
