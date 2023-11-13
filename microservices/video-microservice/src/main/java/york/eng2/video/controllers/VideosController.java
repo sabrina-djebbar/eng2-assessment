@@ -83,7 +83,6 @@ public class VideosController {
 	@Transactional
 	@Put("/{videoId}/watch/{userId}")
 	public HttpResponse<Void> watchVideo(long videoId, String userId) {
-		// Add userId to this to send event
 		Optional<Video> video = repo.findById(videoId);
 		if (video.isEmpty()) {
 			return HttpResponse.notFound();

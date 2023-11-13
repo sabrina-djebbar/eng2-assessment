@@ -6,7 +6,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 import york.eng2.video.cli.dto.VideoDTO;
 
-@Command(name = "add-video", description = "post a new video", mixinStandardHelpOptions = true)
+@Command(name = "post-video", description = "post a new video", mixinStandardHelpOptions = true)
 public class AddVideoCommand implements Runnable {
 	@Inject
 	VideosClient client;

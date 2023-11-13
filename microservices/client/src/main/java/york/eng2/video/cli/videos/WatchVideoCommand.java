@@ -18,7 +18,6 @@ public class WatchVideoCommand implements Runnable {
 
 	@Override
 	public void run() {
-		// Add userId to this to send event
 		HttpResponse<Void> response = client.watchVideo(videoId, userId);
 		System.out.println("Server responded with: " + response.getStatus());
 
