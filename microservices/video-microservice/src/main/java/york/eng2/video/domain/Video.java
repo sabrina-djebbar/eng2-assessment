@@ -22,13 +22,13 @@ public class Video {
 	String[] tags;
 
 	@Column(nullable = false)
-	Integer likes = 0;
+	Integer likes;
 
 	@Column(nullable = false)
-	Integer dislikes = 0;
+	Integer dislikes;
 
 	@Column(nullable = false)
-	Integer views = 0;
+	Integer views;
 
 	@Column(nullable = false)
 	String userId;
@@ -62,7 +62,11 @@ public class Video {
 	}
 
 	public void setLikes() {
-		this.likes++;
+		likes++;
+	}
+
+	public void setLikes(Integer likes) {
+		this.likes = likes;
 	}
 
 	public Integer getDislikes() {
@@ -70,7 +74,11 @@ public class Video {
 	}
 
 	public void setDislikes() {
-		this.dislikes++;
+		dislikes++;
+	}
+
+	public void setDislikes(Integer dislikes) {
+		this.dislikes = dislikes;
 	}
 
 	public Integer getViews() {
@@ -78,7 +86,11 @@ public class Video {
 	}
 
 	public void setViews() {
-		this.views++;
+		views++;
+	}
+
+	public void setViews(Integer views) {
+		this.views = views;
 	}
 
 	public String getUserId() {
