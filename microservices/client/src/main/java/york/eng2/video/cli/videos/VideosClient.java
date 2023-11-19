@@ -9,7 +9,7 @@ import io.micronaut.http.client.annotation.Client;
 import york.eng2.video.cli.domain.Video;
 import york.eng2.video.cli.dto.VideoDTO;
 
-@Client("/videos")
+@Client("${video.url:`http://localhost:8080/videos`}")
 public interface VideosClient {
 
 	@Get("/")
