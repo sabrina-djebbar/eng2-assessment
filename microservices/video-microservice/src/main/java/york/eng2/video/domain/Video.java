@@ -1,9 +1,14 @@
 package york.eng2.video.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -32,6 +37,10 @@ public class Video {
 
 	@Column(nullable = false)
 	String userId;
+
+	@JsonIgnore
+	@ManyToMany
+	private Set<User> viewers;
 
 	public Long getId() {
 		return id;
@@ -99,5 +108,13 @@ public class Video {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public Set<User> getViewers() {
+		return viewers;
+	}
+
+	public void setReaders(Set<User> readers) {
+		this.viewers = readers;
 	}
 }

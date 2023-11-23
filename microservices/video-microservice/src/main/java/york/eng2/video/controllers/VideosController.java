@@ -15,6 +15,7 @@ import jakarta.inject.Inject;
 import york.eng2.video.domain.Video;
 import york.eng2.video.dto.VideoDTO;
 import york.eng2.video.events.VideosProducer;
+import york.eng2.video.repositories.UsersRepository;
 import york.eng2.video.repositories.VideosRepository;
 
 @Controller("/videos")
@@ -22,6 +23,9 @@ public class VideosController {
 
 	@Inject
 	VideosRepository repo;
+
+	@Inject
+	UsersRepository userRepo;
 
 	@Inject
 	VideosProducer producer;
@@ -91,6 +95,7 @@ public class VideosController {
 		Video v = video.get();
 		v.setViews();
 		repo.update(v);
+
 		producer.watchVideo(videoId, userId);
 		return HttpResponse.ok();
 	}
