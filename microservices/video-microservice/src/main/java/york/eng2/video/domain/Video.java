@@ -36,7 +36,7 @@ public class Video {
 	Integer views;
 
 	@Column(nullable = false)
-	String userId;
+	Long userId;
 
 	@JsonIgnore
 	@ManyToMany
@@ -102,11 +102,11 @@ public class Video {
 		this.views = views;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -114,7 +114,7 @@ public class Video {
 		return viewers;
 	}
 
-	public void setReaders(Set<User> readers) {
-		this.viewers = readers;
+	public void setViewers(Set<User> viewers) {
+		this.viewers = viewers;
 	}
 }

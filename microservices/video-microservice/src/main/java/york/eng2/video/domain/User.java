@@ -1,9 +1,14 @@
 package york.eng2.video.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -18,14 +23,15 @@ public class User {
 	@Column(nullable = false)
 	private String username;
 
+	@JsonIgnore
+	@ManyToMany(mappedBy = "likes")
+	private Set<Video> likedVideos;
 	/*
-	 * @JsonIgnore
 	 * 
-	 * @ManyToMany(mappedBy = "viewers") private Set<Video> likedVideos;
 	 * 
 	 * @JsonIgnore
 	 * 
-	 * @ManyToMany(mappedBy = "viewers") private Set<Video> dislikedVideos;
+	 * @ManyToMany(mappedBy = "dislikes") private Set<Video> dislikedVideos;
 	 */
 
 	public Long getId() {

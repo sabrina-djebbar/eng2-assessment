@@ -27,6 +27,6 @@ public interface VideosClient {
 	@Put("/{id}/dislike")
 	public HttpResponse<Void> dislikeVideo(long id);
 
-	@Put("/{videoId}/watch/{userId}")
-	public HttpResponse<Void> watchVideo(long videoId, String userId);
+	@Put("/{videoId}/watch/{username}")
+	public HttpResponse<Void> watchVideo(long videoId, String username);
 }
