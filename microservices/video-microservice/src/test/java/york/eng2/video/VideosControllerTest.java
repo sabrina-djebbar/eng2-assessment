@@ -45,7 +45,7 @@ public class VideosControllerTest {
 		VideoDTO video = new VideoDTO();
 		video.setTitle(title);
 		video.setTags(tags);
-		video.setUserId(user);
+		video.setUsername(user);
 		HttpResponse<Void> response = client.post(video);
 		assertEquals(HttpStatus.CREATED, response.getStatus(), "Update should be successful");
 
@@ -61,7 +61,7 @@ public class VideosControllerTest {
 		VideoDTO video = new VideoDTO();
 		video.setTitle(title);
 		video.setTags(tags);
-		video.setUserId(user);
+		video.setUsername(user);
 		HttpResponse<Void> response = client.post(video);
 		assertEquals(HttpStatus.CREATED, response.getStatus(), "Update should be successful");
 
