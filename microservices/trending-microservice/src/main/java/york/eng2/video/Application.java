@@ -1,4 +1,4 @@
-package york.eng2.trending;
+package york.eng2.video;
 
 import io.micronaut.runtime.Micronaut;
 

@@ -33,10 +33,6 @@ public class Video {
 	@Column(nullable = false)
 	Long userId;
 
-//	@JsonIgnore
-//	@ManyToMany
-//	private Set<User> viewers;
-
 	public Long getId() {
 		return id;
 	}
@@ -105,9 +101,4 @@ public class Video {
 		this.userId = userId;
 	}
 
-	/*
-	 * public Set<User> getViewers() { return viewers; }
-	 * 
-	 * public void setViewers(Set<User> viewers) { this.viewers = viewers; }
-	 */
 }

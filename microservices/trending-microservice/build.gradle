@@ -5,7 +5,7 @@ plugins {
 }
 
 version = "0.1"
-group = "york.eng2.trending"
+group = "york.eng2.video"
 
 repositories {
     mavenCentral()
@@ -28,7 +28,7 @@ dependencies {
 
 
 application {
-    mainClass.set("york.eng2.trending.Application")
+    mainClass.set("york.eng2.video.Application")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("11")
@@ -41,7 +41,7 @@ micronaut {
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("york.eng2.trending.*")
+        annotations("york.eng2.video.*")
     }
     testResources {
         sharedServer = true

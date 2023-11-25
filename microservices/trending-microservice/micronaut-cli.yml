@@ -1,5 +1,5 @@
 applicationType: default
-defaultPackage: york.eng2.trending
+defaultPackage: york.eng2.video
 testFramework: junit
 sourceLanguage: java
 buildTool: gradle

@@ -9,14 +9,14 @@ import io.micronaut.serde.annotation.Serdeable;
 
 @Entity
 @Serdeable
-public class User {
+public class Hashtag {
 
 	@Id
 	@GeneratedValue
 	private Long id;
 
 	@Column(nullable = false)
-	private String username;
+	private String name;
 
 	public Long getId() {
 		return id;
@@ -27,11 +27,11 @@ public class User {
 	}
 
 	public String getUsername() {
-		return username;
+		return name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
