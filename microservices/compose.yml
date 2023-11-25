@@ -12,15 +12,12 @@ services:
     ports:
       - 3306:3306
     healthcheck:
+      # https://github.com/docker-library/healthcheck/blob/master/mysql/Dockerfile.mariadb
       test: ['CMD', 'healthcheck.sh', '--su=mysql', '--connect', '--innodb_initialized']
       timeout: 10s
       retries: 3
 
-  adminer:
-    image: adminer:4-standalone
-    ports:
-      - 9000:8080
-
+  #built with './gradlew dockerBuild'
   video:
     image: video-microservice:latest
     ports:
@@ -38,6 +35,7 @@ services:
       kafka-0:
         condition: service_healthy
 
+  # Web-based UI for Kafka (this time on http://localhost:9001)
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
     ports:
@@ -52,6 +50,7 @@ services:
       KAFKA_CLUSTERS_0_METRICS_PORT: 9997
       DYNAMIC_CONFIG_ENABLED: 'true'
 
+  # 3-node Kafka cluster
   kafka-0:
     image: docker.io/bitnami/kafka:3.5
     ports:
@@ -105,7 +104,6 @@ services:
       - KAFKA_JMX_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka-1 -Dcom.sun.management.jmxremote.rmi.port=9997
     volumes:
       - kafka_1_data:/bitnami/kafka
-  
   kafka-2:
     image: docker.io/bitnami/kafka:3.5
     ports:
@@ -131,10 +129,11 @@ services:
     volumes:
       - kafka_2_data:/bitnami/kafka
 
+  # Web-based viewer of C4 models using the Structurizr DSL
   structurizr:
     image: structurizr/lite:latest
     ports:
-      - 8079socke:8080
+      - 8081:8080
     volumes:
       - ./structurizr:/usr/local/structurizr
 
