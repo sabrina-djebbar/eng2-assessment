@@ -17,7 +17,7 @@ public interface VideosProducer {
 	void postVideo(@KafkaKey Long id, Video video);
 
 	@Topic(TOPIC_WATCH)
-	void watchVideo(@KafkaKey Long id, String userId);
+	void watchVideo(@KafkaKey Long id, Long userId);
 
 	@Topic(TOPIC_LIKE)
 	void likeVideo(@KafkaKey Long id, Video video);

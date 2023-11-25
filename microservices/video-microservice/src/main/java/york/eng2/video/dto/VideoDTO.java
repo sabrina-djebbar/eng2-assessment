@@ -6,7 +6,7 @@ import io.micronaut.serde.annotation.Serdeable;
 public class VideoDTO {
 	private String title;
 	private String[] tags;
-	private String userId;
+	private String username;
 	private Integer likes;
 	private Integer dislikes;
 	private Integer views;
@@ -27,12 +27,12 @@ public class VideoDTO {
 		this.tags = tags;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public Integer getLikes() {

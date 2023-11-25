@@ -17,7 +17,7 @@ public class Video {
 
 	Integer views;
 
-	String userId;
+	Long userId;
 
 	public Long getId() {
 		return id;
@@ -79,17 +79,17 @@ public class Video {
 		this.views = views;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
 	@Override
 	public String toString() {
-		return "Video=" + id + ", title=" + title + ", tags= [" + String.join(",", tags) + "], likes = " + likes
+		return "Video = " + id + ", title=" + title + ", tags= [" + String.join(",", tags) + "], likes = " + likes
 				+ ", dislikes = " + dislikes + ", views = " + views + ", user=" + userId;
 	}
 }

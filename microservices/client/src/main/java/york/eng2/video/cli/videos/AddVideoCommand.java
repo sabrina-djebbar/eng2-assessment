@@ -18,14 +18,14 @@ public class AddVideoCommand implements Runnable {
 	String[] tags;
 
 	@Parameters(index = "2")
-	String userId;
+	String username;
 
 	@Override
 	public void run() {
 		VideoDTO dto = new VideoDTO();
 		dto.setTitle(title);
 		dto.setTags(tags);
-		dto.setUserId(userId);
+		dto.setUsername(username);
 		dto.setDislikes(0);
 		dto.setLikes(0);
 		dto.setViews(0);
