@@ -21,6 +21,9 @@ public interface VideosClient {
 	@Get("/{id}")
 	public Video getVideo(long id);
 
+	@Get("/{userId}")
+	public Iterable<Video> listByUserId(long id);
+
 	@Put("/{id}/like")
 	public HttpResponse<Void> likeVideo(long id);
 

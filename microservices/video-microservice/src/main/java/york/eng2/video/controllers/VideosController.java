@@ -55,6 +55,11 @@ public class VideosController {
 		return repo.findById(id).orElse(null);
 	}
 
+	@Get("/users/{userId}")
+	public Iterable<Video> listByUserId(long userId) {
+		return repo.findAllByUserId(userId);
+	}
+
 	@Post("/")
 	public HttpResponse<Void> post(@Body VideoDTO videoDetails) {
 		Video video = new Video();
@@ -67,7 +72,7 @@ public class VideosController {
 		video.setViews(0);
 
 		repo.save(video);
-		producer.postVideo(video.getId(), video);
+		// producer.postVideo(video.getId(), video);
 		return HttpResponse.created(URI.create("/videos/" + video.getId()));
 	}
 

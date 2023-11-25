@@ -11,14 +11,15 @@ import york.eng2.video.cli.users.UpdateUserCommand;
 import york.eng2.video.cli.videos.AddVideoCommand;
 import york.eng2.video.cli.videos.DislikeVideoCommand;
 import york.eng2.video.cli.videos.GetVideoCommand;
+import york.eng2.video.cli.videos.GetVideosByUserId;
 import york.eng2.video.cli.videos.GetVideosCommand;
 import york.eng2.video.cli.videos.LikeVideoCommand;
 import york.eng2.video.cli.videos.WatchVideoCommand;
 
 @Command(name = "client", description = "...", mixinStandardHelpOptions = true, subcommands = { GetVideosCommand.class,
-		AddVideoCommand.class, GetVideoCommand.class, WatchVideoCommand.class, LikeVideoCommand.class,
-		DislikeVideoCommand.class, AddUserCommand.class, GetUserCommand.class, GetUsersCommand.class,
-		DeleteUserCommand.class, UpdateUserCommand.class })
+		AddVideoCommand.class, GetVideoCommand.class, GetVideosByUserId.class, WatchVideoCommand.class,
+		LikeVideoCommand.class, DislikeVideoCommand.class, AddUserCommand.class, GetUserCommand.class,
+		GetUsersCommand.class, DeleteUserCommand.class, UpdateUserCommand.class })
 public class ClientCommand implements Runnable {
 
 	@Option(names = { "-v", "--verbose" }, description = "...")
