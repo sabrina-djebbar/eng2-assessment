@@ -12,9 +12,11 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
 import jakarta.inject.Inject;
+import york.eng2.video.domain.User;
 import york.eng2.video.domain.Video;
 import york.eng2.video.dto.VideoDTO;
 import york.eng2.video.events.VideosProducer;
+import york.eng2.video.repositories.UsersRepository;
 import york.eng2.video.repositories.VideosRepository;
 
 @Controller("/videos")
@@ -24,7 +26,24 @@ public class VideosController {
 	VideosRepository repo;
 
 	@Inject
+	UsersRepository userRepo;
+
+	@Inject
 	VideosProducer producer;
+
+	private long getUserId(String username) {
+		long userId;
+		Optional<User> user = userRepo.findByUsername(username);
+		if (user.isEmpty()) {
+			User newUser = new User();
+			newUser.setUsername(username);
+			userRepo.save(newUser);
+			userId = newUser.getId();
+		} else {
+			userId = user.get().getId();
+		}
+		return userId;
+	}
 
 	@Get("/")
 	public Iterable<Video> list() {
@@ -41,10 +60,12 @@ public class VideosController {
 		Video video = new Video();
 		video.setTitle(videoDetails.getTitle());
 		video.setTags(videoDetails.getTags());
-		video.setUserId(videoDetails.getUserId());
+		Long userId = getUserId(videoDetails.getUsername());
+		video.setUserId(userId);
 		video.setLikes(0);
 		video.setDislikes(0);
 		video.setViews(0);
+
 		repo.save(video);
 		producer.postVideo(video.getId(), video);
 		return HttpResponse.created(URI.create("/videos/" + video.getId()));
@@ -81,8 +102,8 @@ public class VideosController {
 	}
 
 	@Transactional
-	@Put("/{videoId}/watch/{userId}")
-	public HttpResponse<Void> watchVideo(long videoId, String userId) {
+	@Put("/{videoId}/watch/{username}")
+	public HttpResponse<Void> watchVideo(long videoId, String username) {
 		Optional<Video> video = repo.findById(videoId);
 		if (video.isEmpty()) {
 			return HttpResponse.notFound();
@@ -91,6 +112,8 @@ public class VideosController {
 		Video v = video.get();
 		v.setViews();
 		repo.update(v);
+
+		Long userId = getUserId(username);
 		producer.watchVideo(videoId, userId);
 		return HttpResponse.ok();
 	}

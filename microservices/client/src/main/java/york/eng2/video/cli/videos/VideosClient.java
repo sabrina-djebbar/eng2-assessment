@@ -9,7 +9,7 @@ import io.micronaut.http.client.annotation.Client;
 import york.eng2.video.cli.domain.Video;
 import york.eng2.video.cli.dto.VideoDTO;
 
-@Client("/videos")
+@Client("${videos.url:`http://localhost:8080/videos`}")
 public interface VideosClient {
 
 	@Get("/")
@@ -27,6 +27,6 @@ public interface VideosClient {
 	@Put("/{id}/dislike")
 	public HttpResponse<Void> dislikeVideo(long id);
 
-	@Put("/{videoId}/watch/{userId}")
-	public HttpResponse<Void> watchVideo(long videoId, String userId);
+	@Put("/{videoId}/watch/{username}")
+	public HttpResponse<Void> watchVideo(long videoId, String username);
 }
