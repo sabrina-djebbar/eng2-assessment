@@ -1,4 +1,4 @@
-package york.eng2.video.controllers;
+package york.eng2.trending.controllers;
 
 import java.net.URI;
 import java.util.Optional;
@@ -12,9 +12,9 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
 import jakarta.inject.Inject;
-import york.eng2.video.domain.Hashtag;
-import york.eng2.video.dto.HashtagDTO;
-import york.eng2.video.repositories.HashtagsRepository;
+import york.eng2.trending.domain.Hashtag;
+import york.eng2.trending.dto.HashtagDTO;
+import york.eng2.trending.repositories.HashtagsRepository;
 
 @Controller("/hashtags")
 public class HashtagsController {

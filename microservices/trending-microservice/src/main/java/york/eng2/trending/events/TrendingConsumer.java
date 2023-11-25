@@ -1,4 +1,4 @@
-package york.eng2.video.events;
+package york.eng2.trending.events;
 
 import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.KafkaListener;

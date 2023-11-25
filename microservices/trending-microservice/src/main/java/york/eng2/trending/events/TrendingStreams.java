@@ -1,4 +1,4 @@
-package york.eng2.video.events;
+package york.eng2.trending.events;
 
 import java.time.Duration;
 import java.util.Properties;

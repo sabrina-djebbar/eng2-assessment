@@ -1,4 +1,4 @@
-package york.eng2.video.domain;
+package york.eng2.trending.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
