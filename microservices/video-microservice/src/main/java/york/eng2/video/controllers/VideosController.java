@@ -67,8 +67,9 @@ public class VideosController {
 		video.setViews(0);
 
 		repo.save(video);
-		// producer.postVideo(video.getId(), video);
-		return HttpResponse.created(URI.create("/videos/" + video.getId()));
+		Long videoId = video.getId();
+		producer.postVideo(videoId, video);
+		return HttpResponse.created(URI.create("/videos/" + videoId));
 	}
 
 	@Transactional
