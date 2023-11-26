@@ -1,16 +1,25 @@
 package york.eng2.trending.events;
 
+import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.KafkaListener;
+import io.micronaut.configuration.kafka.annotation.Topic;
+import jakarta.inject.Inject;
+import york.eng2.trending.domain.Video;
+import york.eng2.trending.repositories.HashtagsRepository;
 
-@KafkaListener
+@KafkaListener(groupId = "video-debug")
 public class TrendingConsumer {
-	/*
-	 * @Topic(BooksStreams.TOPIC_READ_BY_DAY) public void bookReadMetric(@KafkaKey
-	 * WindowedIdentifier window, Long count) {
-	 * System.out.printf("New value for key %s: %d%n", window, count); }
-	 * 
-	 * 
-	 * @Topic(VideosProducer.TOPIC_POST) public void postedVideo(@KafkaKey Long id,
-	 * Video video) { System.out.printf("video posted: %d%n", id); }
-	 */
+	@Inject
+	HashtagsRepository repo;
+
+	@Topic("video-post")
+	public void postVideo(@KafkaKey Long id, Video video) {
+		/*
+		 * String[] tags = video.getTags(); for (String tag : tags) { Optional<Hashtag>
+		 * hashtag = repo.findByName(tag); if (hashtag.isEmpty()) { Hashtag newTag = new
+		 * Hashtag(); newTag.setName(tag); System.out.printf("tags ", tags);
+		 * repo.save(newTag); } }
+		 */
+		System.out.printf("video posted: %d%n", id);
+	}
 }
