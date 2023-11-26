@@ -55,6 +55,16 @@ public class VideosController {
 		return repo.findById(id).orElse(null);
 	}
 
+	@Get("/user/{userId}")
+	public Iterable<Video> listVideoByUser(long userId) {
+		return repo.findAllByUserId(userId);
+	}
+
+	@Get("/tag/{tag}")
+	public Iterable<Video> listVideoByTag(String tag) {
+		return repo.findAllByTag(tag);
+	}
+
 	@Post("/")
 	public HttpResponse<Void> post(@Body VideoDTO videoDetails) {
 		Video video = new Video();
