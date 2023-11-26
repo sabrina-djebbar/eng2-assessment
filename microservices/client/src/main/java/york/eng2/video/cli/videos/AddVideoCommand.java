@@ -15,7 +15,7 @@ public class AddVideoCommand implements Runnable {
 	String title;
 
 	@Parameters(index = "1")
-	String[] tags;
+	String tags;
 
 	@Parameters(index = "2")
 	String username;
@@ -24,7 +24,7 @@ public class AddVideoCommand implements Runnable {
 	public void run() {
 		VideoDTO dto = new VideoDTO();
 		dto.setTitle(title);
-		dto.setTags(tags);
+		dto.setTags(tags.split(","));
 		dto.setUsername(username);
 		dto.setDislikes(0);
 		dto.setLikes(0);

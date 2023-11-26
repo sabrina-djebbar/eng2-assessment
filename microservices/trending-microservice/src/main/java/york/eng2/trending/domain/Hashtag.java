@@ -26,7 +26,7 @@ public class Hashtag {
 		this.id = id;
 	}
 
-	public String getUsername() {
+	public String getName() {
 		return name;
 	}
 

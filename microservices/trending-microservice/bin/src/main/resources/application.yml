@@ -6,14 +6,8 @@ datasources:
     driver-class-name: org.mariadb.jdbc.Driver
     db-type: mariadb
     dialect: MYSQL
-    url: jdbc:mariadb://localhost:3306/video
-    username: todo
-    password: todosecret   
 jpa:
   default:
-    entity-scan:
-        packages:
-            - york.eng2.trending.domain
     properties:
       hibernate:
         hbm2ddl:
@@ -22,6 +16,3 @@ netty:
   default:
     allocator:
       max-order: 3
-kafka:
-  bootstrap:
-    servers: ${KAFKA_BOOTSTRAP_SERVERS:`localhost:9094`}

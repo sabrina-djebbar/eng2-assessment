@@ -1,6 +1,7 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.micronaut.application") version "3.7.10"
+    id("io.micronaut.test-resources") version "3.7.10"
 }
 
 version = "0.1"
@@ -41,6 +42,9 @@ micronaut {
     processing {
         incremental(true)
         annotations("york.eng2.trending.*")
+    }
+    testResources {
+        sharedServer = true
     }
 }
 

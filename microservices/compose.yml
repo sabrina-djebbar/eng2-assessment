@@ -73,7 +73,7 @@ services:
     ports:
       - 9094:9094
     environment:
-      # KRaft settings
+      # Kraft settings
       - KAFKA_CFG_NODE_ID=0
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093,2@kafka-2:9093
@@ -104,7 +104,7 @@ services:
     ports:
       - 9095:9094
     environment:
-      # KRaft settings
+      # Kraft settings
       - KAFKA_CFG_NODE_ID=1
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093,2@kafka-2:9093
@@ -131,7 +131,7 @@ services:
     ports:
       - 9096:9094
     environment:
-      # KRaft settings
+      # Kraft settings
       - KAFKA_CFG_NODE_ID=2
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093,2@kafka-2:9093
