@@ -57,12 +57,12 @@ public class VideosController {
 
 	@Get("/user/{userId}")
 	public Iterable<Video> listVideoByUser(long userId) {
-		return repo.findAllByUserId(userId);
+		return repo.findByUserId(userId);
 	}
 
 	@Get("/tag/{tag}")
 	public Iterable<Video> listVideoByTag(String tag) {
-		return repo.findAllByTag(tag);
+		return repo.findByTagsArrayContains(tag);
 	}
 
 	@Post("/")
