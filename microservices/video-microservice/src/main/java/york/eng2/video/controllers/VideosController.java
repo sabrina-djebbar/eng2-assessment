@@ -62,7 +62,7 @@ public class VideosController {
 
 	@Get("/tag/{tag}")
 	public Iterable<Video> listVideoByTag(String tag) {
-		return repo.findByTagsArrayContains(tag);
+		return repo.findByTag(tag);
 	}
 
 	@Post("/")

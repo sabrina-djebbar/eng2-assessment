@@ -1,5 +1,6 @@
 package york.eng2.video.repositories;
 
+import io.micronaut.data.annotation.Query;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 import york.eng2.video.domain.Video;
@@ -9,5 +10,7 @@ public interface VideosRepository extends CrudRepository<Video, Long> {
 
 	Iterable<Video> findByUserId(Long userId);
 
-	Iterable<Video> findByTagsArrayContains(String tag);
+	@Query("from Video v where :tag in v.tags")
+	Iterable<Video> findByTag(String tag);
+
 }
