@@ -28,13 +28,7 @@ public class TrendingStreams {
 	@Singleton
 	public KStream<WindowedIdentifier, Long> likedByDay(ConfiguredStreamBuilder builder) {
 		Properties props = builder.getConfiguration();
-		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "videos-metrics");
-
-		/*
-		 * This makes the stream more predictable, and also has the side effect of
-		 * reducing Kafka Streams' commit interval to 100ms (rather than the default of
-		 * 30s, which would significantly slow down our tests).
-		 */
+		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "videos");
 
 		props.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.EXACTLY_ONCE);
 
@@ -43,7 +37,7 @@ public class TrendingStreams {
 
 		KStream<WindowedIdentifier, Long> stream = videosStream.groupByKey()
 				.windowedBy(TimeWindows.of(Duration.ofHours(1)).advanceBy(Duration.ofHours(1)))
-				.count(Materialized.as(TOPIC_MOST_LIKED_BY_HOUR)).toStream()
+				.count(Materialized.as("liked-by-hour")).toStream()
 				.selectKey((k, v) -> new WindowedIdentifier(k.key(), k.window().start(), k.window().end()));
 
 		stream.to(TOPIC_MOST_LIKED_BY_HOUR,
