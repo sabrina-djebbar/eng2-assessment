@@ -7,7 +7,7 @@ class Video {
     hashtags: string[]
     likes
     dislikes
-    user_id    
+    user_id
     views
 }
 
@@ -18,3 +18,8 @@ class HashTag {
 }
 
 ```
+
+to run the code, open a git bash terminal in the microservice folder
+run
+`chmod +x docker-compose.sh`
+`./docker-compose.sh`
