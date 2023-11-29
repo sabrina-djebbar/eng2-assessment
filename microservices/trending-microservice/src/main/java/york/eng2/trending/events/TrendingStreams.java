@@ -28,7 +28,7 @@ public class TrendingStreams {
 	@Singleton
 	public KStream<WindowedIdentifier, Long> likedByDay(ConfiguredStreamBuilder builder) {
 		Properties props = builder.getConfiguration();
-		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "videos");
+		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "videos-metrics");
 
 		props.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.EXACTLY_ONCE);
 
