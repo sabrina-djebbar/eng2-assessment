@@ -31,8 +31,8 @@ public class VideosController {
 	@Inject
 	VideosProducer producer;
 
-	private long getUserId(String username) {
-		long userId;
+	private Integer getUserId(String username) {
+		Integer userId;
 		Optional<User> user = userRepo.findByUsername(username);
 		if (user.isEmpty()) {
 			User newUser = new User();
@@ -69,14 +69,16 @@ public class VideosController {
 	public HttpResponse<Void> post(@Body VideoDTO videoDetails) {
 		Video video = new Video();
 		video.setTitle(videoDetails.getTitle());
-		video.setTags(videoDetails.getTags());
-		Long userId = getUserId(videoDetails.getUsername());
+		Integer userId = getUserId(videoDetails.getUsername());
 		video.setUserId(userId);
 		video.setLikes(0);
 		video.setDislikes(0);
 		video.setViews(0);
-
-		repo.save(video);
+		for (String tag : videoDetails.getTags()) {
+			video.setTag(tag);
+			System.out.println("this is a singluar tag" + tag);
+			repo.save(video);
+		}
 		Long videoId = video.getId();
 		producer.postVideo(videoId, video);
 		return HttpResponse.created(URI.create("/videos/" + videoId));
@@ -124,7 +126,7 @@ public class VideosController {
 		v.setViews();
 		repo.update(v);
 
-		Long userId = getUserId(username);
+		Integer userId = getUserId(username);
 		producer.watchVideo(videoId, userId);
 		return HttpResponse.ok();
 	}

@@ -6,10 +6,10 @@ CREATE TABLE user (
    username VARCHAR(20) NOT NULL UNIQUE
    );
 
-create table video(
+CREATE TABLE video(
     id INT AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL ,
-    tag VARCHAR(255) not null,
+    tag VARCHAR(255) NOT NULL,
     likes INT NOT NULL,
     dislikes INT NOT NULL,
     views INT NOT NULL,

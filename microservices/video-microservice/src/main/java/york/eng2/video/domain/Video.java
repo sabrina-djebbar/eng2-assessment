@@ -19,7 +19,7 @@ public class Video {
 	String title;
 
 	@Column(nullable = false)
-	String[] tags;
+	String tag;
 
 	@Column(nullable = false)
 	Integer likes;
@@ -31,7 +31,7 @@ public class Video {
 	Integer views;
 
 	@Column(nullable = false)
-	Long userId;
+	Integer userId;
 
 	public Long getId() {
 		return id;
@@ -49,12 +49,12 @@ public class Video {
 		this.title = title;
 	}
 
-	public String[] getTags() {
-		return tags;
+	public String getTag() {
+		return tag;
 	}
 
-	public void setTags(String[] tags) {
-		this.tags = tags;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public Integer getLikes() {
@@ -93,11 +93,11 @@ public class Video {
 		this.views = views;
 	}
 
-	public Long getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Long userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
