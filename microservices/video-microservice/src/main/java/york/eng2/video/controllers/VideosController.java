@@ -74,11 +74,11 @@ public class VideosController {
 		video.setLikes(0);
 		video.setDislikes(0);
 		video.setViews(0);
-		for (String tag : videoDetails.getTags()) {
-			video.setTag(tag);
-			System.out.println("this is a singluar tag" + tag);
-			repo.save(video);
-		}
+
+		video.setTags(videoDetails.getTags());
+
+		repo.save(video);
+
 		Long videoId = video.getId();
 		producer.postVideo(videoId, video);
 		return HttpResponse.created(URI.create("/videos/" + videoId));

@@ -19,7 +19,7 @@ public class Video {
 	String title;
 
 	@Column(nullable = false)
-	String[] tags;
+	String tags;
 
 	@Column(nullable = false)
 	Integer likes;
@@ -49,11 +49,11 @@ public class Video {
 		this.title = title;
 	}
 
-	public String[] getTags() {
+	public String getTags() {
 		return tags;
 	}
 
-	public void setTags(String[] tags) {
+	public void setTags(String tags) {
 		this.tags = tags;
 	}
 

@@ -1,6 +1,5 @@
 package york.eng2.video;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -30,7 +29,7 @@ public class VideosControllerTest {
 	}
 
 	final String title = "Python in 30 seconds";
-	final String[] tags = { "fun", "educational" };
+	final String tags = "fun, educational";
 	final String user = "test_user";
 
 	@Test
@@ -51,7 +50,7 @@ public class VideosControllerTest {
 
 		Video createdVideo = client.getVideo(1);
 		assertEquals(title, createdVideo.getTitle(), "Insert test message");
-		assertArrayEquals(tags, createdVideo.getTags());
+		assertEquals(tags, createdVideo.getTags());
 		assertEquals(user, createdVideo.getUserId());
 	}
 

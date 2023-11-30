@@ -34,3 +34,4 @@
 - [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
 
 
+`curl -s -v -X POST http://localhost:8080/videos -H "Content-Type: application/json" -d '{"title": "Container Security", "tags": ["foo","bar"], "username": "sdjebbar"}'`

@@ -24,7 +24,7 @@ public class AddVideoCommand implements Runnable {
 	public void run() {
 		VideoDTO dto = new VideoDTO();
 		dto.setTitle(title);
-		dto.setTags(tags.split(","));
+		dto.setTags(tags);
 		dto.setUsername(username);
 		dto.setDislikes(0);
 		dto.setLikes(0);

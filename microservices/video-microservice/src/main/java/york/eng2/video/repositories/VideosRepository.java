@@ -10,7 +10,7 @@ public interface VideosRepository extends CrudRepository<Video, Long> {
 
 	Iterable<Video> findByUserId(Long userId);
 
-	@Query("from Video v where :tag in v.tags")
+	@Query("from Video v where v.tags like '%:tag%'")
 	Iterable<Video> findByTag(String tag);
 
 }

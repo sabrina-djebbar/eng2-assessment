@@ -9,7 +9,7 @@ CREATE TABLE user (
 CREATE TABLE video(
     id INT AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL ,
-    tag VARCHAR(255) NOT NULL,
+    tags VARCHAR(255) NOT NULL,
     likes INT NOT NULL,
     dislikes INT NOT NULL,
     views INT NOT NULL,
