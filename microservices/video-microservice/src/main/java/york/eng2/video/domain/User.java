@@ -17,17 +17,6 @@ public class User {
 
 	@Column(nullable = false)
 	private String username;
-	/*
-	 * @JsonIgnore
-	 * 
-	 * @ManyToMany(mappedBy = "likes") private Set<Video> likedVideos;
-	 * 
-	 * 
-	 * 
-	 * @JsonIgnore
-	 * 
-	 * @ManyToMany(mappedBy = "dislikes") private Set<Video> dislikedVideos;
-	 */
 
 	public Long getId() {
 		return id;
@@ -45,11 +34,4 @@ public class User {
 		this.username = username;
 	}
 
-	// getLike videos and setLikedVideos
-	/*
-	 * public Set<Video> getLikedVideos() { return likedVideos; }
-	 * 
-	 * public void setReadBooks(Set<Video> likedVideos) { this.likedVideos =
-	 * likedVideos; }
-	 */
 }

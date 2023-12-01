@@ -31,18 +31,15 @@ public class VideosController {
 	@Inject
 	VideosProducer producer;
 
-	private long getUserId(String username) {
-		long userId;
+	private User getUser(String username) {
 		Optional<User> user = userRepo.findByUsername(username);
 		if (user.isEmpty()) {
 			User newUser = new User();
 			newUser.setUsername(username);
 			userRepo.save(newUser);
-			userId = newUser.getId();
-		} else {
-			userId = user.get().getId();
+			return newUser;
 		}
-		return userId;
+		return user.get();
 	}
 
 	@Get("/")
@@ -59,9 +56,10 @@ public class VideosController {
 	public HttpResponse<Void> post(@Body VideoDTO videoDetails) {
 		Video video = new Video();
 		video.setTitle(videoDetails.getTitle());
-		video.setTags(videoDetails.getTags());
-		Long userId = getUserId(videoDetails.getUsername());
-		video.setUserId(userId);
+		String tags = videoDetails.getTags();
+		video.setTags(tags.split(","));
+		User user = getUser(videoDetails.getUsername());
+		video.setUser(user);
 		video.setLikes(0);
 		video.setDislikes(0);
 		video.setViews(0);
@@ -113,7 +111,7 @@ public class VideosController {
 		v.setViews();
 		repo.update(v);
 
-		Long userId = getUserId(username);
+		Long userId = getUser(username).getId();
 		producer.watchVideo(videoId, userId);
 		return HttpResponse.ok();
 	}

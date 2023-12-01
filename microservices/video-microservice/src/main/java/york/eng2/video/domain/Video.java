@@ -2,8 +2,11 @@ package york.eng2.video.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -13,29 +16,26 @@ public class Video {
 
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	@Column(nullable = false)
-	String title;
+	private String title;
 
 	@Column(nullable = false)
-	String[] tags;
+	private String[] tags;
 
 	@Column(nullable = false)
-	Integer likes;
+	private Integer likes;
 
 	@Column(nullable = false)
-	Integer dislikes;
+	private Integer dislikes;
 
 	@Column(nullable = false)
-	Integer views;
+	private Integer views;
 
-	@Column(nullable = false)
-	Long userId;
-
-//	@JsonIgnore
-//	@ManyToMany
-//	private Set<User> viewers;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(nullable = false)
+	private User user;
 
 	public Long getId() {
 		return id;
@@ -97,17 +97,12 @@ public class Video {
 		this.views = views;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	/*
-	 * public Set<User> getViewers() { return viewers; }
-	 * 
-	 * public void setViewers(Set<User> viewers) { this.viewers = viewers; }
-	 */
 }
