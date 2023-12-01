@@ -1,9 +1,13 @@
 package york.eng2.video.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -17,17 +21,9 @@ public class User {
 
 	@Column(nullable = false)
 	private String username;
-	/*
-	 * @JsonIgnore
-	 * 
-	 * @ManyToMany(mappedBy = "likes") private Set<Video> likedVideos;
-	 * 
-	 * 
-	 * 
-	 * @JsonIgnore
-	 * 
-	 * @ManyToMany(mappedBy = "dislikes") private Set<Video> dislikedVideos;
-	 */
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "video")
+	private Set<Video> videos;
 
 	public Long getId() {
 		return id;
@@ -45,11 +41,11 @@ public class User {
 		this.username = username;
 	}
 
-	// getLike videos and setLikedVideos
-	/*
-	 * public Set<Video> getLikedVideos() { return likedVideos; }
-	 * 
-	 * public void setReadBooks(Set<Video> likedVideos) { this.likedVideos =
-	 * likedVideos; }
-	 */
+	public Set<Video> getVideos() {
+		return videos;
+	}
+
+	public void setVideos(Set<Video> videos) {
+		this.videos = videos;
+	}
 }

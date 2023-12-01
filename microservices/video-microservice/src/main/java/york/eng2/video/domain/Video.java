@@ -2,8 +2,11 @@ package york.eng2.video.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -30,8 +33,9 @@ public class Video {
 	@Column(nullable = false)
 	Integer views;
 
-	@Column(nullable = false)
-	Long userId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User user;
 
 //	@JsonIgnore
 //	@ManyToMany
@@ -97,17 +101,12 @@ public class Video {
 		this.views = views;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	/*
-	 * public Set<User> getViewers() { return viewers; }
-	 * 
-	 * public void setViewers(Set<User> viewers) { this.viewers = viewers; }
-	 */
 }
