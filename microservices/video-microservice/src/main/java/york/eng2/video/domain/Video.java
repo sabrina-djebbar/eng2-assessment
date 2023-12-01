@@ -16,30 +16,26 @@ public class Video {
 
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	@Column(nullable = false)
-	String title;
+	private String title;
 
 	@Column(nullable = false)
-	String[] tags;
+	private String[] tags;
 
 	@Column(nullable = false)
-	Integer likes;
+	private Integer likes;
 
 	@Column(nullable = false)
-	Integer dislikes;
+	private Integer dislikes;
 
 	@Column(nullable = false)
-	Integer views;
+	private Integer views;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(nullable = false)
 	private User user;
-
-//	@JsonIgnore
-//	@ManyToMany
-//	private Set<User> viewers;
 
 	public Long getId() {
 		return id;
