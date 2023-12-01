@@ -5,19 +5,19 @@ import io.micronaut.serde.annotation.Serdeable;
 @Serdeable
 public class Video {
 
-	Long id;
+	private Long id;
 
-	String title;
+	private String title;
 
-	String[] tags;
+	private String[] tags;
 
-	Integer likes;
+	private Integer likes;
 
-	Integer dislikes;
+	private Integer dislikes;
 
-	Integer views;
+	private Integer views;
 
-	Long userId;
+	private User user;
 
 	public Long getId() {
 		return id;
@@ -79,17 +79,17 @@ public class Video {
 		this.views = views;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
 	public String toString() {
-		return "Video = " + id + ", title=" + title + ", tags= [" + String.join(",", tags) + "], likes = " + likes
-				+ ", dislikes = " + dislikes + ", views = " + views + ", user=" + userId;
+		return "Video = " + id + ", title=" + title + ", tags= [" + String.join(", ", tags) + "], likes = " + likes
+				+ ", dislikes = " + dislikes + ", views = " + views + ", user = " + user.toString();
 	}
 }

@@ -56,7 +56,8 @@ public class VideosController {
 	public HttpResponse<Void> post(@Body VideoDTO videoDetails) {
 		Video video = new Video();
 		video.setTitle(videoDetails.getTitle());
-		video.setTags(videoDetails.getTags());
+		String tags = videoDetails.getTags();
+		video.setTags(tags.split(","));
 		User user = getUser(videoDetails.getUsername());
 		video.setUser(user);
 		video.setLikes(0);

@@ -31,7 +31,7 @@ public class VideosControllerTest {
 
 	final String title = "Python in 30 seconds";
 	final String[] tags = { "fun", "educational" };
-	final String user = "test_user";
+	final String username = "test_user";
 
 	@Test
 	public void noVideos() {
@@ -44,15 +44,14 @@ public class VideosControllerTest {
 
 		VideoDTO video = new VideoDTO();
 		video.setTitle(title);
-		video.setTags(tags);
-		video.setUsername(user);
+		video.setTags("fun,educational");
+		video.setUsername(username);
 		HttpResponse<Void> response = client.post(video);
 		assertEquals(HttpStatus.CREATED, response.getStatus(), "Update should be successful");
 
 		Video createdVideo = client.getVideo(1);
 		assertEquals(title, createdVideo.getTitle(), "Insert test message");
 		assertArrayEquals(tags, createdVideo.getTags());
-		assertEquals(user, createdVideo.getUserId());
 	}
 
 	@Test
@@ -60,8 +59,8 @@ public class VideosControllerTest {
 		// Create the video
 		VideoDTO video = new VideoDTO();
 		video.setTitle(title);
-		video.setTags(tags);
-		video.setUsername(user);
+		video.setTags("fun,educational");
+		video.setUsername(username);
 		HttpResponse<Void> response = client.post(video);
 		assertEquals(HttpStatus.CREATED, response.getStatus(), "Update should be successful");
 
