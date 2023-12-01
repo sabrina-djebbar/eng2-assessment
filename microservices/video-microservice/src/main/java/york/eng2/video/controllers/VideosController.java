@@ -106,12 +106,14 @@ public class VideosController {
 		if (video.isEmpty()) {
 			return HttpResponse.notFound();
 		}
-
 		Video v = video.get();
+		User user = getUser(username);
 		v.setViews();
+		v.setViewers(user);
+		user.setViewedVideos(v);
 		repo.update(v);
-
-		Long userId = getUser(username).getId();
+		userRepo.update(user);
+		Long userId = user.getId();
 		producer.watchVideo(videoId, userId);
 		return HttpResponse.ok();
 	}

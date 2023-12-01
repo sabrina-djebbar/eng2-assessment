@@ -10,10 +10,12 @@ import york.eng2.video.domain.Video;
 
 @Repository
 public interface VideosRepository extends CrudRepository<Video, Long> {
+	@Join(value = "viewers", type = Join.Type.LEFT_FETCH)
 	@Join(value = "user", type = Join.Type.FETCH)
 	@Override
 	Optional<Video> findById(@NonNull Long id);
 
+	@Join(value = "viewers", type = Join.Type.LEFT_FETCH)
 	@Join(value = "user", type = Join.Type.FETCH)
 	@Override
 	Iterable<Video> findAll();
