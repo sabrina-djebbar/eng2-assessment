@@ -31,8 +31,8 @@ public class VideosController {
 	@Inject
 	VideosProducer producer;
 
-	private long getUserId(String username) {
-		long userId;
+	private Integer getUserId(String username) {
+		Integer userId;
 		Optional<User> user = userRepo.findByUsername(username);
 		if (user.isEmpty()) {
 			User newUser = new User();
@@ -55,20 +55,33 @@ public class VideosController {
 		return repo.findById(id).orElse(null);
 	}
 
+	@Get("/user/{userId}")
+	public Iterable<Video> listVideoByUser(long userId) {
+		return repo.findByUserId(userId);
+	}
+
+	@Get("/tag/{tag}")
+	public Iterable<Video> listVideoByTag(String tag) {
+		return repo.findByTag(tag);
+	}
+
 	@Post("/")
 	public HttpResponse<Void> post(@Body VideoDTO videoDetails) {
 		Video video = new Video();
 		video.setTitle(videoDetails.getTitle());
-		video.setTags(videoDetails.getTags());
-		Long userId = getUserId(videoDetails.getUsername());
+		Integer userId = getUserId(videoDetails.getUsername());
 		video.setUserId(userId);
 		video.setLikes(0);
 		video.setDislikes(0);
 		video.setViews(0);
 
+		video.setTags(videoDetails.getTags());
+
 		repo.save(video);
-		producer.postVideo(video.getId(), video);
-		return HttpResponse.created(URI.create("/videos/" + video.getId()));
+
+		Long videoId = video.getId();
+		producer.postVideo(videoId, video);
+		return HttpResponse.created(URI.create("/videos/" + videoId));
 	}
 
 	@Transactional
@@ -113,7 +126,7 @@ public class VideosController {
 		v.setViews();
 		repo.update(v);
 
-		Long userId = getUserId(username);
+		Integer userId = getUserId(username);
 		producer.watchVideo(videoId, userId);
 		return HttpResponse.ok();
 	}

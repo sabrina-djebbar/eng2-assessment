@@ -13,27 +13,16 @@ public class User {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Integer id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String username;
-	/*
-	 * @JsonIgnore
-	 * 
-	 * @ManyToMany(mappedBy = "likes") private Set<Video> likedVideos;
-	 * 
-	 * 
-	 * 
-	 * @JsonIgnore
-	 * 
-	 * @ManyToMany(mappedBy = "dislikes") private Set<Video> dislikedVideos;
-	 */
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -45,11 +34,4 @@ public class User {
 		this.username = username;
 	}
 
-	// getLike videos and setLikedVideos
-	/*
-	 * public Set<Video> getLikedVideos() { return likedVideos; }
-	 * 
-	 * public void setReadBooks(Set<Video> likedVideos) { this.likedVideos =
-	 * likedVideos; }
-	 */
 }

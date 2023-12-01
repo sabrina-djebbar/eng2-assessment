@@ -9,7 +9,7 @@ public class Video {
 
 	String title;
 
-	String[] tags;
+	String tags;
 
 	Integer likes;
 
@@ -35,11 +35,11 @@ public class Video {
 		this.title = title;
 	}
 
-	public String[] getTags() {
+	public String getTags() {
 		return tags;
 	}
 
-	public void setTags(String[] tags) {
+	public void setTags(String tags) {
 		this.tags = tags;
 	}
 
@@ -89,7 +89,7 @@ public class Video {
 
 	@Override
 	public String toString() {
-		return "Video = " + id + ", title=" + title + ", tags= [" + String.join(",", tags) + "], likes = " + likes
-				+ ", dislikes = " + dislikes + ", views = " + views + ", user=" + userId;
+		return "Video = " + id + ", title=" + title + ", tags= [" + tags + "], likes = " + likes + ", dislikes = "
+				+ dislikes + ", views = " + views + ", user=" + userId;
 	}
 }
