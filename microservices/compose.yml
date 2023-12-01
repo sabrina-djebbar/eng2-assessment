@@ -44,22 +44,22 @@ services:
       kafka-0:
         condition: service_healthy
  
- #trending:
- #   image: trending-microservice:latest
- #   ports:
- #     - 8081:8080
- #   environment:
- #     DB_HOST: db
- #     DB_USER: *dbuser
- #     DB_PASSWORD: *dbpass
- #     DB_NAME: *dbname
- #     KAFKA_BOOTSTRAP_SERVERS: kafka-0:9092,kafka-1:9092,kafka-2:9092
- #     MICRONAUT_ENVIRONMENTS: prod
- #   depends_on:
- #     db:
- #       condition: service_healthy
- #     kafka-0:
- #       condition: service_healthy
+  trending:
+    image: trending-microservice:latest
+    ports:
+      - 8081:8080
+    environment:
+      DB_HOST: db
+      DB_USER: *dbuser
+      DB_PASSWORD: *dbpass
+      DB_NAME: *dbname
+      KAFKA_BOOTSTRAP_SERVERS: kafka-0:9092,kafka-1:9092,kafka-2:9092
+      MICRONAUT_ENVIRONMENTS: prod
+    depends_on:
+      db:
+        condition: service_healthy
+      kafka-0:
+        condition: service_healthy
 
   # Web-based UI for Kafka (this time on http://localhost:9001)
   kafka-ui:
