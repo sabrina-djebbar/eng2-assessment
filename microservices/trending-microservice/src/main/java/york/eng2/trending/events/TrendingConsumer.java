@@ -18,7 +18,7 @@ public class TrendingConsumer {
 	@Topic("video-post")
 	public void postVideo(@KafkaKey Long id, Video video) {
 
-		String[] tags = video.getTags().split(",");
+		String[] tags = video.getTags();
 		for (String tag : tags) {
 			Optional<Hashtag> hashtag = repo.findByName(tag);
 			if (hashtag.isEmpty()) {

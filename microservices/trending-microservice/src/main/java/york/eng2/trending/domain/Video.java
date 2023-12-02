@@ -1,9 +1,18 @@
 package york.eng2.trending.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -13,25 +22,32 @@ public class Video {
 
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	@Column(nullable = false)
-	String title;
+	private String title;
 
 	@Column(nullable = false)
-	String tags;
+	private String[] tags;
 
-	@Column(nullable = false)
-	Integer likes;
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "VideoLikes", joinColumns = @JoinColumn(name = "likedVideos"), inverseJoinColumns = @JoinColumn(name = "likes"))
+	private Set<User> likes;
 
-	@Column(nullable = false)
-	Integer dislikes;
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "VideoDislikes", joinColumns = @JoinColumn(name = "dislikedVideos"), inverseJoinColumns = @JoinColumn(name = "dislikes"))
+	private Set<User> dislikes;
 
-	@Column(nullable = false)
-	Integer views;
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "VideoViewers", joinColumns = @JoinColumn(name = "viewedVideos"), inverseJoinColumns = @JoinColumn(name = "viewers"))
+	private Set<User> viewers;
 
-	@Column(nullable = false)
-	Long userId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(nullable = false)
+	private User user;
 
 	public Long getId() {
 		return id;
@@ -49,56 +65,44 @@ public class Video {
 		this.title = title;
 	}
 
-	public String getTags() {
+	public String[] getTags() {
 		return tags;
 	}
 
-	public void setTags(String tags) {
+	public void setTags(String[] tags) {
 		this.tags = tags;
 	}
 
-	public Integer getLikes() {
+	public Set<User> getLikes() {
 		return likes;
 	}
 
-	public void setLikes() {
-		likes++;
+	public void setLikes(User user) {
+		this.likes.add(user);
 	}
 
-	public void setLikes(Integer likes) {
-		this.likes = likes;
-	}
-
-	public Integer getDislikes() {
+	public Set<User> getDislikes() {
 		return dislikes;
 	}
 
-	public void setDislikes() {
-		dislikes++;
+	public void setDislikes(User user) {
+		this.dislikes.add(user);
 	}
 
-	public void setDislikes(Integer dislikes) {
-		this.dislikes = dislikes;
+	public User getUser() {
+		return user;
 	}
 
-	public Integer getViews() {
-		return views;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public void setViews() {
-		views++;
+	public Set<User> getViewers() {
+		return viewers;
 	}
 
-	public void setViews(Integer views) {
-		this.views = views;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setViewers(User viewer) {
+		this.viewers.add(viewer);
 	}
 
 }
