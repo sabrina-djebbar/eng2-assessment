@@ -89,20 +89,20 @@ public class Video {
 		this.dislikes.add(user);
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public Set<User> getViewers() {
 		return viewers;
 	}
 
 	public void setViewers(User viewer) {
 		this.viewers.add(viewer);
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

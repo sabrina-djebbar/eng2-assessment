@@ -21,11 +21,11 @@ public interface VideosClient {
 	@Get("/{id}")
 	public Video getVideo(long id);
 
-	@Put("/{id}/like")
-	public HttpResponse<Void> likeVideo(long id);
+	@Put("/{id}/like/{username}")
+	public HttpResponse<Void> likeVideo(long id, String username);
 
-	@Put("/{id}/dislike")
-	public HttpResponse<Void> dislikeVideo(long id);
+	@Put("/{id}/dislike/{username}")
+	public HttpResponse<Void> dislikeVideo(long id, String username);
 
 	@Put("/{videoId}/watch/{username}")
 	public HttpResponse<Void> watchVideo(long videoId, String username);
