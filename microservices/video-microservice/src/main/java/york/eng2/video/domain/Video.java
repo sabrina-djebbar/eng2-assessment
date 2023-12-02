@@ -1,12 +1,18 @@
 package york.eng2.video.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -24,14 +30,20 @@ public class Video {
 	@Column(nullable = false)
 	private String[] tags;
 
-	@Column(nullable = false)
-	private Integer likes;
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "VideoLikes", joinColumns = @JoinColumn(name = "likedVideos"), inverseJoinColumns = @JoinColumn(name = "likes"))
+	private Set<User> likes;
 
-	@Column(nullable = false)
-	private Integer dislikes;
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "VideoDislikes", joinColumns = @JoinColumn(name = "dislikedVideos"), inverseJoinColumns = @JoinColumn(name = "dislikes"))
+	private Set<User> dislikes;
 
-	@Column(nullable = false)
-	private Integer views;
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "VideoViewers", joinColumns = @JoinColumn(name = "viewedVideos"), inverseJoinColumns = @JoinColumn(name = "viewers"))
+	private Set<User> viewers;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(nullable = false)
@@ -61,40 +73,20 @@ public class Video {
 		this.tags = tags;
 	}
 
-	public Integer getLikes() {
+	public Set<User> getLikes() {
 		return likes;
 	}
 
-	public void setLikes() {
-		likes++;
+	public void setLikes(User user) {
+		this.likes.add(user);
 	}
 
-	public void setLikes(Integer likes) {
-		this.likes = likes;
-	}
-
-	public Integer getDislikes() {
+	public Set<User> getDislikes() {
 		return dislikes;
 	}
 
-	public void setDislikes() {
-		dislikes++;
-	}
-
-	public void setDislikes(Integer dislikes) {
-		this.dislikes = dislikes;
-	}
-
-	public Integer getViews() {
-		return views;
-	}
-
-	public void setViews() {
-		views++;
-	}
-
-	public void setViews(Integer views) {
-		this.views = views;
+	public void setDislikes(User user) {
+		this.dislikes.add(user);
 	}
 
 	public User getUser() {
@@ -103,6 +95,14 @@ public class Video {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Set<User> getViewers() {
+		return viewers;
+	}
+
+	public void setViewers(User viewer) {
+		this.viewers.add(viewer);
 	}
 
 }
