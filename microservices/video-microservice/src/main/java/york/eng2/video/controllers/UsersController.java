@@ -37,9 +37,9 @@ public class UsersController {
 		return HttpResponse.created(URI.create("/users/" + user.getId()));
 	}
 
-	@Get("/{id}")
-	public User getUser(long id) {
-		return repo.findById(id).orElse(null);
+	@Get("/{username}")
+	public User getUser(String username) {
+		return repo.findByUsername(username).orElse(null);
 	}
 
 	@Transactional
