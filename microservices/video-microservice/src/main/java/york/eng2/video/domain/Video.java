@@ -104,4 +104,5 @@ public class Video {
 	public void setViewers(User viewer) {
 		this.viewers.add(viewer);
 	}
+
 }

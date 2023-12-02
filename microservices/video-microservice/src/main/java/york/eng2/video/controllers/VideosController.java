@@ -124,6 +124,7 @@ public class VideosController {
 		userRepo.update(u);
 
 		Long userId = u.getId();
+
 		producer.watchVideo(videoId, userId);
 		return HttpResponse.ok();
 	}

@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.persistence.JoinTable;
 
+
 import io.micronaut.core.annotation.NonNull;
 import io.micronaut.data.annotation.Join;
 import io.micronaut.data.annotation.Repository;

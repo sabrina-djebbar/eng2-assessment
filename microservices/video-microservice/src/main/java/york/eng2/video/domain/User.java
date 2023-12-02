@@ -75,4 +75,5 @@ public class User {
 	public void setViewedVideos(Video video) {
 		this.viewedVideos.add(video);
 	}
+
 }
