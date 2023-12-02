@@ -8,5 +8,6 @@ import york.eng2.video.domain.User;
 
 @Repository
 public interface UsersRepository extends CrudRepository<User, Long> {
+
 	Optional<User> findByUsername(String username);
 }

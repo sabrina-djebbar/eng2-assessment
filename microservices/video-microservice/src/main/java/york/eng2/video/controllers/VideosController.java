@@ -60,9 +60,6 @@ public class VideosController {
 		video.setTags(tags.split(","));
 		User user = getUser(videoDetails.getUsername());
 		video.setUser(user);
-		video.setLikes(0);
-		video.setDislikes(0);
-		video.setViews(0);
 
 		repo.save(video);
 		producer.postVideo(video.getId(), video);
@@ -70,31 +67,42 @@ public class VideosController {
 	}
 
 	@Transactional
-	@Put("/{id}/like")
-	public HttpResponse<Void> likeVideo(long id) {
+	@Put("/{id}/like/{username}")
+	public HttpResponse<Void> likeVideo(long id, String username) {
 		Optional<Video> video = repo.findById(id);
 		if (video.isEmpty()) {
 			return HttpResponse.notFound();
 		}
-
 		Video v = video.get();
-		v.setLikes();
+		User u = getUser(username);
+
+		v.setLikes(u);
 		repo.update(v);
+
+		u.setLikedVideos(v);
+		userRepo.save(u);
+
 		producer.likeVideo(id, v);
 		return HttpResponse.ok();
 	}
 
 	@Transactional
-	@Put("/{id}/dislike")
-	public HttpResponse<Void> dislikeVideo(long id) {
+	@Put("/{id}/dislike/{username}")
+	public HttpResponse<Void> dislikeVideo(long id, String username) {
 		Optional<Video> video = repo.findById(id);
 		if (video.isEmpty()) {
 			return HttpResponse.notFound();
 		}
 
 		Video v = video.get();
-		v.setDislikes();
+		User u = getUser(username);
+
+		v.setDislikes(u);
 		repo.update(v);
+
+		u.setDislikedVideos(v);
+		userRepo.save(u);
+
 		producer.dislikeVideo(id, v);
 		return HttpResponse.ok();
 	}
@@ -106,12 +114,17 @@ public class VideosController {
 		if (video.isEmpty()) {
 			return HttpResponse.notFound();
 		}
-
 		Video v = video.get();
-		v.setViews();
+		User u = getUser(username);
+
+		v.setViewers(u);
 		repo.update(v);
 
-		Long userId = getUser(username).getId();
+		u.setViewedVideos(v);
+		userRepo.update(u);
+
+		Long userId = u.getId();
+
 		producer.watchVideo(videoId, userId);
 		return HttpResponse.ok();
 	}
