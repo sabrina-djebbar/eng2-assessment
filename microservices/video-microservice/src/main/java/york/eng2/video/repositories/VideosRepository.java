@@ -2,9 +2,6 @@ package york.eng2.video.repositories;
 
 import java.util.Optional;
 
-import javax.persistence.JoinTable;
-
-
 import io.micronaut.core.annotation.NonNull;
 import io.micronaut.data.annotation.Join;
 import io.micronaut.data.annotation.Repository;
@@ -15,11 +12,14 @@ import york.eng2.video.domain.Video;
 public interface VideosRepository extends CrudRepository<Video, Long> {
 	@Join(value = "likes", type = Join.Type.LEFT_FETCH)
 	@Join(value = "viewers", type = Join.Type.LEFT_FETCH)
+	@Join(value = "dislikes", type = Join.Type.LEFT_FETCH)
 	@Join(value = "user", type = Join.Type.FETCH)
 	@Override
 	Optional<Video> findById(@NonNull Long id);
 
-	@JoinTable(name = "videoDislikes")
+	@Join(value = "likes", type = Join.Type.LEFT_FETCH)
+	@Join(value = "dislikes", type = Join.Type.LEFT_FETCH)
+	@Join(value = "viewers", type = Join.Type.LEFT_FETCH)
 	@Join(value = "user", type = Join.Type.FETCH)
 	@Override
 	Iterable<Video> findAll();
