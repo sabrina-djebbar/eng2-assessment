@@ -34,3 +34,4 @@
 - [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
 
 
+https://micronaut-projects.github.io/micronaut-data/3.10.0/guide/index.html#projections
