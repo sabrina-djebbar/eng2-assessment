@@ -16,6 +16,7 @@ import york.eng2.video.client.HashtagClient;
 import york.eng2.video.domain.Hashtag;
 import york.eng2.video.domain.User;
 import york.eng2.video.domain.Video;
+import york.eng2.video.dto.HashtagDTO;
 import york.eng2.video.dto.VideoDTO;
 import york.eng2.video.events.VideosProducer;
 import york.eng2.video.repositories.UsersRepository;
@@ -48,7 +49,14 @@ public class VideosController {
 	}
 
 	private Hashtag getHashtag(String name) {
-		return hashtagCli.getByName(name);
+		Hashtag tag = hashtagCli.getByName(name);
+		if (tag == null) {
+			HashtagDTO newHashtag = new HashtagDTO();
+			newHashtag.setName(name);
+			hashtagCli.add(newHashtag);
+			return hashtagCli.getByName(name);
+		}
+		return tag;
 	}
 
 	@Get("/")

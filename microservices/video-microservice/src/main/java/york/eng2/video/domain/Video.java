@@ -28,6 +28,8 @@ public class Video {
 	@Column(nullable = false)
 	private String[] tags;
 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "VideoTags", joinColumns = @JoinColumn(name = "taggedVideos"), inverseJoinColumns = @JoinColumn(name = "hashtags"))
 	private Set<Hashtag> hashtags;
 
 	@ManyToMany(fetch = FetchType.EAGER)

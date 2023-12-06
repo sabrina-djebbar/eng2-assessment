@@ -1,5 +1,8 @@
 package york.eng2.video.dto;
 
+import io.micronaut.serde.annotation.Serdeable;
+
+@Serdeable
 public class HashtagDTO {
 	private String name;
 

@@ -8,7 +8,7 @@ import io.micronaut.http.client.annotation.Client;
 import york.eng2.video.domain.Hashtag;
 import york.eng2.video.dto.HashtagDTO;
 
-@Client("${hashtags.url:`http://localhost:8081/hashtags`}")
+@Client("http://trending:8080")
 public interface HashtagClient {
 
 	@Get("/")
