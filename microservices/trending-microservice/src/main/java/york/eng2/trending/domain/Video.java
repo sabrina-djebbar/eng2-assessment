@@ -1,4 +1,4 @@
-package york.eng2.video.domain;
+package york.eng2.trending.domain;
 
 import java.util.Set;
 
@@ -30,19 +30,22 @@ public class Video {
 	@Column(nullable = false)
 	private String[] tags;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "VideoLikes", joinColumns = @JoinColumn(name = "likedVideos"), inverseJoinColumns = @JoinColumn(name = "likes"))
 	private Set<User> likes;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "VideoDislikes", joinColumns = @JoinColumn(name = "dislikedVideos"), inverseJoinColumns = @JoinColumn(name = "dislikes"))
 	private Set<User> dislikes;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "VideoViewers", joinColumns = @JoinColumn(name = "viewedVideos"), inverseJoinColumns = @JoinColumn(name = "viewers"))
 	private Set<User> viewers;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(nullable = false)
 	private User user;
 

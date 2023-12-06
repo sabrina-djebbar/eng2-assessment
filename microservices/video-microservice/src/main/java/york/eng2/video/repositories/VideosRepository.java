@@ -2,6 +2,9 @@ package york.eng2.video.repositories;
 
 import java.util.Optional;
 
+import javax.persistence.JoinTable;
+
+
 import io.micronaut.core.annotation.NonNull;
 import io.micronaut.data.annotation.Join;
 import io.micronaut.data.annotation.Query;
@@ -26,7 +29,6 @@ public interface VideosRepository extends CrudRepository<Video, Long> {
 	@Override
 	Iterable<Video> findAll();
 
-	// if this fails make fetchtype eager in video domain :)
 	@Join(value = "likes", type = Join.Type.LEFT_FETCH)
 	@Join(value = "dislikes", type = Join.Type.LEFT_FETCH)
 	@Join(value = "viewers", type = Join.Type.LEFT_FETCH)
