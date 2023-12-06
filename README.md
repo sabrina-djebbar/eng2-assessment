@@ -2,19 +2,24 @@
 
 ```
 class Video {
-    id
-    title
+    id: Int
+    title: string
     hashtags: string[]
-    likes
-    dislikes
-    user_id    
-    views
+    likes: User[]
+    dislikes: User[]
+    user: User  
+    views: User
+}
+
+class User {
+    id: string
+    name: string
 }
 
 class HashTag {
     id
     name
-    popularity
 }
 
+User --> Video posts
 ```
