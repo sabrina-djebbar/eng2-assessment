@@ -31,7 +31,7 @@ public class HashtagsController {
 	public HttpResponse<Void> add(@Body HashtagDTO hashtagDetails) {
 		Hashtag hashtag = new Hashtag();
 		hashtag.setName(hashtagDetails.getName());
-		System.out.println(hashtag);
+
 		repo.save(hashtag);
 		return HttpResponse.created(URI.create("/hashtags/" + hashtag.getId()));
 	}
@@ -55,6 +55,11 @@ public class HashtagsController {
 		}
 		repo.save(t);
 		return HttpResponse.ok();
+	}
+
+	@Get("/{name}")
+	public Hashtag getByName(String name) {
+		return repo.findByName(name).orElse(null);
 	}
 
 }
