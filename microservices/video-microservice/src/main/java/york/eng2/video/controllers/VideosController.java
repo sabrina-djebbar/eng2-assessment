@@ -53,9 +53,9 @@ public class VideosController {
 		if (tag == null) {
 			HashtagDTO newHashtag = new HashtagDTO();
 			newHashtag.setName(name);
-			hashtagCli.add(newHashtag);
-			return hashtagCli.getByName(name);
+			tag = hashtagCli.createHashtag(newHashtag);
 		}
+		System.out.println("tag " + tag);
 		return tag;
 	}
 
@@ -78,8 +78,8 @@ public class VideosController {
 	public HttpResponse<Void> post(@Body VideoDTO videoDetails) {
 		Video video = new Video();
 		video.setTitle(videoDetails.getTitle());
+
 		String[] tags = videoDetails.getTags().split(",");
-		video.setTags(tags);
 		for (String tag : tags) {
 			Hashtag hashtag = getHashtag(tag);
 			video.setHashtags(hashtag);

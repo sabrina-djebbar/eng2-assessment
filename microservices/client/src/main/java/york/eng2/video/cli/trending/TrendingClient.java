@@ -18,6 +18,9 @@ public interface TrendingClient {
 	@Post("/")
 	public HttpResponse<Void> add(@Body HashtagDTO hashtagDetails);
 
+	@Post("/")
+	public Hashtag createHashtag(@Body HashtagDTO hashtagDetails);
+
 	@Get("/{id}")
 	public Hashtag getHashtag(long id);
 

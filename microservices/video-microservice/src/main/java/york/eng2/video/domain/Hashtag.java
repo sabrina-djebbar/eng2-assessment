@@ -44,4 +44,11 @@ public class Hashtag {
 		this.name = name;
 	}
 
+	public Set<Video> getTaggedVideos() {
+		return taggedVideos;
+	}
+
+	public void setTaggedVideos(Video video) {
+		this.taggedVideos.add(video);
+	}
 }

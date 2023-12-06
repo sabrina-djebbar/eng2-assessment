@@ -12,8 +12,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import io.micronaut.serde.annotation.Serdeable;
 
 @Entity
@@ -30,22 +28,23 @@ public class Video {
 	@Column(nullable = false)
 	private String[] tags;
 
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "VideoTags", joinColumns = @JoinColumn(name = "taggedVideos"), inverseJoinColumns = @JoinColumn(name = "hashtags"))
+	private Set<Hashtag> hashtags;
+
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "VideoLikes", joinColumns = @JoinColumn(name = "likedVideos"), inverseJoinColumns = @JoinColumn(name = "likes"))
 	private Set<User> likes;
 
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "VideoDislikes", joinColumns = @JoinColumn(name = "dislikedVideos"), inverseJoinColumns = @JoinColumn(name = "dislikes"))
 	private Set<User> dislikes;
 
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "VideoViewers", joinColumns = @JoinColumn(name = "viewedVideos"), inverseJoinColumns = @JoinColumn(name = "viewers"))
 	private Set<User> viewers;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false)
 	private User user;
 
@@ -103,6 +102,14 @@ public class Video {
 
 	public void setViewers(User viewer) {
 		this.viewers.add(viewer);
+	}
+
+	public Set<Hashtag> getHashtags() {
+		return hashtags;
+	}
+
+	public void setHashtags(Hashtag hashtag) {
+		this.hashtags.add(hashtag);
 	}
 
 }

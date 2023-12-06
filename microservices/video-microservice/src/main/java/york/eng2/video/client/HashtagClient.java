@@ -12,14 +12,17 @@ import york.eng2.video.dto.HashtagDTO;
 public interface HashtagClient {
 
 	@Get("/")
-	public Iterable<Hashtag> list();
+	Iterable<Hashtag> list();
 
 	@Post("/")
-	public HttpResponse<Void> add(@Body HashtagDTO hashtagDetails);
+	HttpResponse<Void> add(@Body HashtagDTO hashtagDetails);
 
 	@Get("/{id}")
-	public Hashtag getHashtag(long id);
+	Hashtag getHashtag(long id);
 
 	@Get("/{name}")
-	public Hashtag getByName(String name);
+	Hashtag getByName(String name);
+
+	@Post("/")
+	Hashtag createHashtag(@Body HashtagDTO hashtagDetails);
 }
