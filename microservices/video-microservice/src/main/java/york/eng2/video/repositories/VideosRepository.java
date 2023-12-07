@@ -2,9 +2,6 @@ package york.eng2.video.repositories;
 
 import java.util.Optional;
 
-import javax.persistence.JoinTable;
-
-
 import io.micronaut.core.annotation.NonNull;
 import io.micronaut.data.annotation.Join;
 import io.micronaut.data.annotation.Query;
@@ -15,6 +12,7 @@ import york.eng2.video.domain.Video;
 @Repository
 public interface VideosRepository extends CrudRepository<Video, Long> {
 
+	// @Join(value = "hashtags", type = Join.Type.LEFT_FETCH)
 	@Join(value = "likes", type = Join.Type.LEFT_FETCH)
 	@Join(value = "viewers", type = Join.Type.LEFT_FETCH)
 	@Join(value = "dislikes", type = Join.Type.LEFT_FETCH)
@@ -22,6 +20,7 @@ public interface VideosRepository extends CrudRepository<Video, Long> {
 	@Override
 	Optional<Video> findById(@NonNull Long id);
 
+	// @Join(value = "hashtags", type = Join.Type.LEFT_FETCH)
 	@Join(value = "likes", type = Join.Type.LEFT_FETCH)
 	@Join(value = "dislikes", type = Join.Type.LEFT_FETCH)
 	@Join(value = "viewers", type = Join.Type.LEFT_FETCH)
@@ -29,6 +28,7 @@ public interface VideosRepository extends CrudRepository<Video, Long> {
 	@Override
 	Iterable<Video> findAll();
 
+	// @Join(value = "hashtags", type = Join.Type.LEFT_FETCH)
 	@Join(value = "likes", type = Join.Type.LEFT_FETCH)
 	@Join(value = "dislikes", type = Join.Type.LEFT_FETCH)
 	@Join(value = "viewers", type = Join.Type.LEFT_FETCH)

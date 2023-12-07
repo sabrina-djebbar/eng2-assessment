@@ -12,10 +12,12 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
 import jakarta.inject.Inject;
+import york.eng2.video.domain.Hashtag;
 import york.eng2.video.domain.User;
 import york.eng2.video.domain.Video;
 import york.eng2.video.dto.VideoDTO;
 import york.eng2.video.events.VideosProducer;
+import york.eng2.video.repositories.HashtagsRepository;
 import york.eng2.video.repositories.UsersRepository;
 import york.eng2.video.repositories.VideosRepository;
 
@@ -27,6 +29,9 @@ public class VideosController {
 
 	@Inject
 	UsersRepository userRepo;
+
+	@Inject
+	HashtagsRepository hashtagRepo;
 
 	@Inject
 	VideosProducer producer;
@@ -57,12 +62,22 @@ public class VideosController {
 		return repo.findAllByUsername(username);
 	}
 
+	@Transactional
 	@Post("/")
 	public HttpResponse<Void> post(@Body VideoDTO videoDetails) {
 		Video video = new Video();
 		video.setTitle(videoDetails.getTitle());
-		String tags = videoDetails.getTags();
-		video.setTags(tags.split(","));
+
+		String[] hashtags = videoDetails.getTags().split(",");
+		video.setTags(hashtags);
+
+		for (String hashtag : hashtags) {
+			Hashtag tag = new Hashtag();
+			tag.setName(hashtag);
+			hashtagRepo.save(tag);
+			// video.setHashtags(tag);
+		}
+
 		User user = getUser(videoDetails.getUsername());
 		video.setUser(user);
 

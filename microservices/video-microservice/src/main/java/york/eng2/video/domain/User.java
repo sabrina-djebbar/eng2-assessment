@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -25,15 +24,15 @@ public class User {
 	private String username;
 
 	@JsonIgnore
-	@ManyToMany(mappedBy = "likes", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "likes")
 	private Set<Video> likedVideos;
 
 	@JsonIgnore
-	@ManyToMany(mappedBy = "dislikes", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "dislikes")
 	private Set<Video> dislikedVideos;
 
 	@JsonIgnore
-	@ManyToMany(mappedBy = "viewers", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "viewers")
 	private Set<Video> viewedVideos;
 
 	public Long getId() {

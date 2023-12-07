@@ -12,8 +12,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import io.micronaut.serde.annotation.Serdeable;
 
 @Entity
@@ -30,16 +28,20 @@ public class Video {
 	@Column(nullable = false)
 	private String[] tags;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "VideoLikes", joinColumns = @JoinColumn(name = "likedVideos"), inverseJoinColumns = @JoinColumn(name = "likes"))
+	@ManyToMany
+	@JoinTable(name = "video_hashtag")
+	private Set<Hashtag> hashtags;
+
+	@ManyToMany
+	@JoinTable(name = "video_user_likes")
 	private Set<User> likes;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "VideoDislikes", joinColumns = @JoinColumn(name = "dislikedVideos"), inverseJoinColumns = @JoinColumn(name = "dislikes"))
+	@ManyToMany
+	@JoinTable(name = "video_user_dislikes")
 	private Set<User> dislikes;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "VideoViewers", joinColumns = @JoinColumn(name = "viewedVideos"), inverseJoinColumns = @JoinColumn(name = "viewers"))
+	@ManyToMany
+	@JoinTable(name = "video_user_views")
 	private Set<User> viewers;
 
 	@ManyToOne(fetch = FetchType.EAGER)
