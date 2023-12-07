@@ -47,6 +47,17 @@ public class VideosController {
 		return user.get();
 	}
 
+	private Hashtag getHashtag(String hashtag) {
+		Optional<Hashtag> tag = hashtagRepo.findByName(hashtag);
+		if (tag.isEmpty()) {
+			Hashtag newTag = new Hashtag();
+			newTag.setName(hashtag);
+			hashtagRepo.save(newTag);
+			return newTag;
+		}
+		return tag.get();
+	}
+
 	@Get("/")
 	public Iterable<Video> list() {
 		return repo.findAll();
@@ -62,6 +73,11 @@ public class VideosController {
 		return repo.findAllByUsername(username);
 	}
 
+	@Get("/tag/{tag}")
+	public Iterable<Video> listByTag(String tag) {
+		return repo.findAllByTag(tag);
+	}
+
 	@Transactional
 	@Post("/")
 	public HttpResponse<Void> post(@Body VideoDTO videoDetails) {
@@ -72,10 +88,8 @@ public class VideosController {
 		video.setTags(hashtags);
 
 		for (String hashtag : hashtags) {
-			Hashtag tag = new Hashtag();
-			tag.setName(hashtag);
-			hashtagRepo.save(tag);
-			// video.setHashtags(tag);
+			Hashtag tag = getHashtag(hashtag);
+			video.setHashtags(tag);
 		}
 
 		User user = getUser(videoDetails.getUsername());

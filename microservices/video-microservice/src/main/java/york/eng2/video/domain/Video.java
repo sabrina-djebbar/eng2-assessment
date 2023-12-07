@@ -1,5 +1,6 @@
 package york.eng2.video.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -28,19 +29,19 @@ public class Video {
 	@Column(nullable = false)
 	private String[] tags;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_hashtag")
 	private Set<Hashtag> hashtags;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_user_likes")
 	private Set<User> likes;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_user_dislikes")
 	private Set<User> dislikes;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_user_views")
 	private Set<User> viewers;
 
@@ -70,6 +71,17 @@ public class Video {
 
 	public void setTags(String[] tags) {
 		this.tags = tags;
+	}
+
+	public Set<Hashtag> getHashtags() {
+		return hashtags;
+	}
+
+	public void setHashtags(Hashtag tag) {
+		if (this.hashtags == null) {
+			this.hashtags = new HashSet<>(0);
+		}
+		this.hashtags.add(tag);
 	}
 
 	public Set<User> getLikes() {
