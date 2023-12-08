@@ -18,13 +18,6 @@ public class Hashtag {
 	@Column(nullable = false)
 	private String name;
 
-	/*
-	 * @JsonIgnore
-	 * 
-	 * @ManyToMany(mappedBy = "hashtags", fetch = FetchType.LAZY) private Set<Video>
-	 * taggedVideos;
-	 */
-
 	public Long getId() {
 		return id;
 	}
@@ -41,9 +34,4 @@ public class Hashtag {
 		this.name = name;
 	}
 
-	/*
-	 * public Set<Video> getTaggedVideos() { return taggedVideos; }
-	 * 
-	 * public void setTaggedVideos(Video video) { this.taggedVideos.add(video); }
-	 */
 }
