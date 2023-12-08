@@ -15,7 +15,6 @@ import jakarta.inject.Inject;
 import york.eng2.video.domain.Hashtag;
 import york.eng2.video.domain.User;
 import york.eng2.video.domain.Video;
-import york.eng2.video.dto.HashtagDTO;
 import york.eng2.video.dto.VideoDTO;
 import york.eng2.video.events.VideosProducer;
 import york.eng2.video.repositories.HashtagsRepository;

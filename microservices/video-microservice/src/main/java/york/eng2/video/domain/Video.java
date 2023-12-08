@@ -105,12 +105,4 @@ public class Video {
 		this.viewers.add(viewer);
 	}
 
-	public Set<Hashtag> getHashtags() {
-		return hashtags;
-	}
-
-	public void setHashtags(Hashtag hashtag) {
-		this.hashtags.add(hashtag);
-	}
-
 }
