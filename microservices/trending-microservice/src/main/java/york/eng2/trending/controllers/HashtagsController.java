@@ -66,7 +66,7 @@ public class HashtagsController {
 		return HttpResponse.ok();
 	}
 
-	@Get("/{name}")
+	@Get("/tag/{name}")
 	public Hashtag getByName(String name) {
 		return repo.findByName(name).orElse(null);
 	}

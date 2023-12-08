@@ -31,8 +31,15 @@ public class TrendingConsumer {
 	}
 
 	@Topic("video-like")
-	public void likeVideo(@KafkaKey Long id, Long userId) {
-
+	public void likeVideo(@KafkaKey Long id, String hashtags) {
+		String[] tags = hashtags.split(",");
+		for (String tag : tags) {
+			Optional<Hashtag> hashtag = repo.findByName(tag);
+			if (hashtag.isEmpty()) {
+				System.out.printf("The tag " + tag + " could not be found");
+				return;
+			}
+		}
 		System.out.printf("video liked: %d%n", id);
 	}
 
