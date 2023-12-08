@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -16,7 +15,6 @@ import io.micronaut.serde.annotation.Serdeable;
 @Entity
 @Serdeable
 public class Hashtag {
-
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -25,7 +23,7 @@ public class Hashtag {
 	private String name;
 
 	@JsonIgnore
-	@ManyToMany(mappedBy = "hashtags", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "hashtags")
 	private Set<Video> taggedVideos;
 
 	public Long getId() {

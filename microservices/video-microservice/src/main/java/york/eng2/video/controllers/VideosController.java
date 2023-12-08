@@ -12,13 +12,13 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
 import jakarta.inject.Inject;
-import york.eng2.video.client.HashtagClient;
 import york.eng2.video.domain.Hashtag;
 import york.eng2.video.domain.User;
 import york.eng2.video.domain.Video;
 import york.eng2.video.dto.HashtagDTO;
 import york.eng2.video.dto.VideoDTO;
 import york.eng2.video.events.VideosProducer;
+import york.eng2.video.repositories.HashtagsRepository;
 import york.eng2.video.repositories.UsersRepository;
 import york.eng2.video.repositories.VideosRepository;
 
@@ -32,7 +32,7 @@ public class VideosController {
 	UsersRepository userRepo;
 
 	@Inject
-	HashtagClient hashtagCli;
+	HashtagsRepository hashtagRepo;
 
 	@Inject
 	VideosProducer producer;
@@ -48,15 +48,15 @@ public class VideosController {
 		return user.get();
 	}
 
-	private Hashtag getHashtag(String name) {
-		Hashtag tag = hashtagCli.getByName(name);
-		if (tag == null) {
-			HashtagDTO newHashtag = new HashtagDTO();
-			newHashtag.setName(name);
-			tag = hashtagCli.createHashtag(newHashtag);
+	private Hashtag getHashtag(String hashtag) {
+		Optional<Hashtag> tag = hashtagRepo.findByName(hashtag);
+		if (tag.isEmpty()) {
+			Hashtag newTag = new Hashtag();
+			newTag.setName(hashtag);
+			hashtagRepo.save(newTag);
+			return newTag;
 		}
-		System.out.println("tag " + tag);
-		return tag;
+		return tag.get();
 	}
 
 	@Get("/")
@@ -74,15 +74,21 @@ public class VideosController {
 		return repo.findAllByUsername(username);
 	}
 
+	@Get("/tag/{tag}")
+	public Iterable<Video> listByTag(String tag) {
+		return repo.findAllByTag(tag);
+	}
+
+	@Transactional
 	@Post("/")
 	public HttpResponse<Void> post(@Body VideoDTO videoDetails) {
 		Video video = new Video();
 		video.setTitle(videoDetails.getTitle());
 
-		String[] tags = videoDetails.getTags().split(",");
-		for (String tag : tags) {
-			Hashtag hashtag = getHashtag(tag);
-			video.setHashtags(hashtag);
+		String[] hashtags = videoDetails.getTags().split(",");
+		for (String hashtag : hashtags) {
+			Hashtag tag = getHashtag(hashtag);
+			video.setHashtags(tag);
 		}
 
 		User user = getUser(videoDetails.getUsername());

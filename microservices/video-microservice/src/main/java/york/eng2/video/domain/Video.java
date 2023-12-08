@@ -1,5 +1,6 @@
 package york.eng2.video.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -25,23 +26,20 @@ public class Video {
 	@Column(nullable = false)
 	private String title;
 
-	@Column(nullable = false)
-	private String[] tags;
-
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "VideoTags", joinColumns = @JoinColumn(name = "taggedVideos"), inverseJoinColumns = @JoinColumn(name = "hashtags"))
+	@JoinTable(name = "video_hashtag")
 	private Set<Hashtag> hashtags;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "VideoLikes", joinColumns = @JoinColumn(name = "likedVideos"), inverseJoinColumns = @JoinColumn(name = "likes"))
+	@JoinTable(name = "video_user_likes")
 	private Set<User> likes;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "VideoDislikes", joinColumns = @JoinColumn(name = "dislikedVideos"), inverseJoinColumns = @JoinColumn(name = "dislikes"))
+	@JoinTable(name = "video_user_dislikes")
 	private Set<User> dislikes;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "VideoViewers", joinColumns = @JoinColumn(name = "viewedVideos"), inverseJoinColumns = @JoinColumn(name = "viewers"))
+	@JoinTable(name = "video_user_views")
 	private Set<User> viewers;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -64,12 +62,15 @@ public class Video {
 		this.title = title;
 	}
 
-	public String[] getTags() {
-		return tags;
+	public Set<Hashtag> getHashtags() {
+		return hashtags;
 	}
 
-	public void setTags(String[] tags) {
-		this.tags = tags;
+	public void setHashtags(Hashtag tag) {
+		if (this.hashtags == null) {
+			this.hashtags = new HashSet<>(0);
+		}
+		this.hashtags.add(tag);
 	}
 
 	public Set<User> getLikes() {
