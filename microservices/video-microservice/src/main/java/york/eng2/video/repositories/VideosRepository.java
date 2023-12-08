@@ -41,5 +41,6 @@ public interface VideosRepository extends CrudRepository<Video, Long> {
 	@Join(value = "dislikes", type = Join.Type.LEFT_FETCH)
 	@Join(value = "viewers", type = Join.Type.LEFT_FETCH)
 	@Join(value = "user", type = Join.Type.FETCH)
+	@Query("from Video v where :tag = any v.hashtags.name ")
 	Iterable<Video> findAllByTag(String tag);
 }

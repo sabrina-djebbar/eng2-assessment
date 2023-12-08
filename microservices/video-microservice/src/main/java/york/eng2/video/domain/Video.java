@@ -26,9 +26,6 @@ public class Video {
 	@Column(nullable = false)
 	private String title;
 
-	@Column(nullable = false)
-	private String[] tags;
-
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_hashtag")
 	private Set<Hashtag> hashtags;
@@ -63,14 +60,6 @@ public class Video {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String[] getTags() {
-		return tags;
-	}
-
-	public void setTags(String[] tags) {
-		this.tags = tags;
 	}
 
 	public Set<Hashtag> getHashtags() {
