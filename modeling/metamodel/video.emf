@@ -1,0 +1,22 @@
+@namespace(uri="video", prefix="")
+package metamodel;
+
+class Video {
+   attr String title;
+   val User user;
+   val Hashtag[*] hashtags;
+   val User[*] likes;
+   val User[*] dislikes;
+   val User[*] views;
+}
+
+class Hashtag {
+   attr String name;
+   
+}
+
+class User {
+   attr String username;
+
+}
+
