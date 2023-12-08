@@ -1,15 +1,9 @@
 package york.eng2.trending.domain;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -24,9 +18,12 @@ public class Hashtag {
 	@Column(nullable = false)
 	private String name;
 
-	@JsonIgnore
-	@ManyToMany(mappedBy = "hashtags", fetch = FetchType.LAZY)
-	private Set<Video> taggedVideos;
+	/*
+	 * @JsonIgnore
+	 * 
+	 * @ManyToMany(mappedBy = "hashtags", fetch = FetchType.LAZY) private Set<Video>
+	 * taggedVideos;
+	 */
 
 	public Long getId() {
 		return id;
@@ -44,11 +41,9 @@ public class Hashtag {
 		this.name = name;
 	}
 
-	public Set<Video> getTaggedVideos() {
-		return taggedVideos;
-	}
-
-	public void setTaggedVideos(Video video) {
-		this.taggedVideos.add(video);
-	}
+	/*
+	 * public Set<Video> getTaggedVideos() { return taggedVideos; }
+	 * 
+	 * public void setTaggedVideos(Video video) { this.taggedVideos.add(video); }
+	 */
 }

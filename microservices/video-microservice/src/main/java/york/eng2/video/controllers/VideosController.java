@@ -94,7 +94,7 @@ public class VideosController {
 		video.setUser(user);
 
 		repo.save(video);
-		producer.postVideo(video.getId(), video);
+		producer.postVideo(video.getId(), videoDetails);
 		return HttpResponse.created(URI.create("/videos/" + video.getId()));
 	}
 
@@ -114,7 +114,7 @@ public class VideosController {
 		u.setLikedVideos(v);
 		userRepo.save(u);
 
-		producer.likeVideo(id, v);
+		producer.likeVideo(id, u.getId());
 		return HttpResponse.ok();
 	}
 
@@ -135,7 +135,7 @@ public class VideosController {
 		u.setDislikedVideos(v);
 		userRepo.save(u);
 
-		producer.dislikeVideo(id, v);
+		producer.dislikeVideo(id, u.getId());
 		return HttpResponse.ok();
 	}
 

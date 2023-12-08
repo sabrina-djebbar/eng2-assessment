@@ -16,7 +16,6 @@ import io.micronaut.configuration.kafka.streams.ConfiguredStreamBuilder;
 import io.micronaut.context.annotation.Factory;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-import york.eng2.trending.domain.Video;
 
 @Factory
 public class TrendingStreams {
@@ -32,8 +31,8 @@ public class TrendingStreams {
 
 		props.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.EXACTLY_ONCE);
 
-		KStream<Long, Video> videosStream = builder.stream("video-like",
-				Consumed.with(Serdes.Long(), serdeRegistry.getSerde(Video.class)));
+		KStream<Long, Long> videosStream = builder.stream("video-like",
+				Consumed.with(Serdes.Long(), serdeRegistry.getSerde(Long.class)));
 
 		KStream<WindowedIdentifier, Long> stream = videosStream.groupByKey()
 				.windowedBy(TimeWindows.of(Duration.ofHours(1)).advanceBy(Duration.ofHours(1)))

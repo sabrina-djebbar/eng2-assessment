@@ -3,7 +3,7 @@ package york.eng2.video.events;
 import io.micronaut.configuration.kafka.annotation.KafkaClient;
 import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.Topic;
-import york.eng2.video.domain.Video;
+import york.eng2.video.dto.VideoDTO;
 
 @KafkaClient
 public interface VideosProducer {
@@ -14,14 +14,14 @@ public interface VideosProducer {
 	String TOPIC_DISLIKE = "video-dislike";
 
 	@Topic(TOPIC_POST)
-	void postVideo(@KafkaKey Long id, Video video);
+	void postVideo(@KafkaKey Long id, VideoDTO video);
 
 	@Topic(TOPIC_WATCH)
 	void watchVideo(@KafkaKey Long id, Long userId);
 
 	@Topic(TOPIC_LIKE)
-	void likeVideo(@KafkaKey Long id, Video video);
+	void likeVideo(@KafkaKey Long id, Long userId);
 
 	@Topic(TOPIC_DISLIKE)
-	void dislikeVideo(@KafkaKey Long id, Video video);
+	void dislikeVideo(@KafkaKey Long id, Long userId);
 }

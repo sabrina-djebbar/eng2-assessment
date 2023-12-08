@@ -1,4 +1,4 @@
-package york.eng2.video.dto;
+package york.eng2.trending.dto;
 
 import io.micronaut.serde.annotation.Serdeable;
 
