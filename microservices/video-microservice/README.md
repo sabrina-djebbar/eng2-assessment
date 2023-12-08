@@ -43,6 +43,9 @@ post video `curl -s -v -X POST http://localhost:8080/videos -H "Content-Type: ap
 dislike video
 `curl -s -v -X PUT http://localhost:8080/videos/4/dislike/sdjebbar -H "Content-Type: application/json" -d '{"id":4 ,"username":"sdjebbar"}'`
 
+like video
+`curl -s -v -X PUT http://localhost:8080/videos/4/like/sdjebbar -H "Content-Type: application/json" -d '{"id":4 ,"username":"sdjebbar"}'`
+
 restart container
 `docker-compose stop video &&  docker-compose up -d --no-deps video`
 

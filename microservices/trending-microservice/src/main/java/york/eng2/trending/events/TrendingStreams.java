@@ -31,8 +31,8 @@ public class TrendingStreams {
 
 		props.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.EXACTLY_ONCE);
 
-		KStream<Long, Long> videosStream = builder.stream("video-like",
-				Consumed.with(Serdes.Long(), serdeRegistry.getSerde(Long.class)));
+		KStream<Long, String> videosStream = builder.stream("video-like",
+				Consumed.with(Serdes.Long(), serdeRegistry.getSerde(String.class)));
 
 		KStream<WindowedIdentifier, Long> stream = videosStream.groupByKey()
 				.windowedBy(TimeWindows.of(Duration.ofHours(1)).advanceBy(Duration.ofHours(1)))

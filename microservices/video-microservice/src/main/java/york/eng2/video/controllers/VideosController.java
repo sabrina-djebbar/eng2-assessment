@@ -2,6 +2,7 @@ package york.eng2.video.controllers;
 
 import java.net.URI;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -114,7 +115,9 @@ public class VideosController {
 		u.setLikedVideos(v);
 		userRepo.save(u);
 
-		producer.likeVideo(id, u.getId());
+		String hashtags = v.getHashtags().stream().map(Hashtag::getName).collect(Collectors.joining(","));
+
+		producer.likeVideo(id, hashtags);
 		return HttpResponse.ok();
 	}
 
