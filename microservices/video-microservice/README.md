@@ -41,7 +41,7 @@ https://micronaut-projects.github.io/micronaut-data/3.10.0/guide/index.html#proj
 post video `curl -s -v -X POST http://localhost:8080/videos -H "Content-Type: application/json" -d '{"title": "Python 101", "tags": "foo,bar", "username": "sdjebbar"}'`
 
 dislike video
-`curl -s -v -X PUT http://localhost:8080/videos/5/dislike/sdjebbar -H "Content-Type: application/json" -d '{"id":5 ,"username":"sdjebbar"}'`
+`curl -s -v -X PUT http://localhost:8080/videos/4/dislike/sdjebbar -H "Content-Type: application/json" -d '{"id":4 ,"username":"sdjebbar"}'`
 
 restart container
 `docker-compose stop video &&  docker-compose up -d --no-deps video`
