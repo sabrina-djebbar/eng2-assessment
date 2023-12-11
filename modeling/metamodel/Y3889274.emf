@@ -1,28 +1,34 @@
 @namespace(uri="Y3889274", prefix="")
-package metamodel;
+package Y3889274;
+
+class System {
+	val Microservice[*] microservices;
+}
 
 class Microservice {
   attr String name;
-  val EventStream[*] streams;
-  val APIResource[*] endpoint;
+  val EventStream[*] stream;
+  val APIResource[*] endpoints;
 }
 
 class EventStream {
-	attr String name;
+	attr String topic;
+	// should have at least one pub and one sub so the types are wrong
 	attr String subscriber;
 	attr String publisher;
 	val Event event;
 	
 }
 
+class Event {
+	val Field[*] fields;
+}
+
 class APIResource {
+	attr String name;
 	attr HTTPMethod method;
 	val Field[*] request;
 	val Field[*] response;
-}
-
-class Event {
-	val Field[*] fields;
 }
 
 class Field {

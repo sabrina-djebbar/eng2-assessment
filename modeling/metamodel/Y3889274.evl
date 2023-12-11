@@ -1,0 +1,11 @@
+context System {
+	constraint AtLeastOneService{
+		check: self.microservices.size() >0
+	}
+}
+
+context Microservice {
+	constraint HasAHealthEndpoint{
+		check: self.endpoints.includes(method = GET)
+	}
+}

@@ -44,6 +44,7 @@ services:
       kafka-0:
         condition: service_healthy
  
+  # built with './gradlew dockerBuild'
   trending:
     image: trending-microservice:latest
     ports:
