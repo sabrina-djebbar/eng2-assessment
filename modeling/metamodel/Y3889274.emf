@@ -1,0 +1,45 @@
+@namespace(uri="Y3889274", prefix="")
+package metamodel;
+
+class Microservice {
+  attr String name;
+  val EventStream[*] streams;
+  val APIResource[*] endpoint;
+}
+
+class EventStream {
+	attr String name;
+	attr String subscriber;
+	attr String publisher;
+	val Event event;
+	
+}
+
+class APIResource {
+	attr HTTPMethod method;
+	val Field[*] request;
+	val Field[*] response;
+}
+
+class Event {
+	val Field[*] fields;
+}
+
+class Field {
+	attr String name;
+	attr FieldType type;
+}
+
+enum FieldType {
+	String;
+	Integer;
+	long;
+	Set;
+}
+
+enum HTTPMethod{
+	GET;
+	POST;
+	DELETE;
+	PUT;
+}
