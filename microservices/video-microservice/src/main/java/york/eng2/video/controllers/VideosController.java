@@ -87,6 +87,7 @@ public class VideosController {
 		String[] hashtags = videoDetails.getTags().split(",");
 		for (String hashtag : hashtags) {
 			Hashtag tag = getHashtag(hashtag);
+			System.out.println("hashtag" + tag);
 			video.setHashtags(tag);
 		}
 

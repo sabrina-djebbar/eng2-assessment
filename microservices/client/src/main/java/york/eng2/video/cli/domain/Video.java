@@ -1,5 +1,6 @@
 package york.eng2.video.cli.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import io.micronaut.serde.annotation.Serdeable;
@@ -11,7 +12,7 @@ public class Video {
 
 	private String title;
 
-	private String[] tags;
+	private Set<Hashtag> hashtags;
 
 	private Set<User> likes;
 
@@ -37,12 +38,18 @@ public class Video {
 		this.title = title;
 	}
 
-	public String[] getTags() {
-		return tags;
+	public Set<Hashtag> getHashtags() {
+		return hashtags;
 	}
 
-	public void setTags(String[] tags) {
-		this.tags = tags;
+	public void setHashtags(Hashtag tag) {
+		System.out.println("tag" + tag.getName());
+		if (this.hashtags == null) {
+			System.out.println("no tags yet");
+			this.hashtags = new HashSet<>();
+		}
+		System.out.println(this.hashtags);
+		this.hashtags.add(tag);
 	}
 
 	public Set<User> getLikes() {
@@ -79,8 +86,9 @@ public class Video {
 
 	@Override
 	public String toString() {
-		return "Video = " + id + ", title=" + title + ", tags= [" + String.join(", ", tags) + "], likes = "
-				+ likes.size() + ", dislikes = " + dislikes.size() + ", views = " + viewers.size() + ", user = "
-				+ user.toString();
+		return "Video = " + id + ", title=" + title + ", tags= [" + (hashtags == null ? "no tags" : hashtags)
+				+ "], likes = " + (likes == null ? "0" : likes.size()) + ", dislikes = "
+				+ (dislikes == null ? "0" : dislikes.size()) + ", views = " + (viewers == null ? "0" : viewers.size())
+				+ ", user = " + user.getUsername();
 	}
 }

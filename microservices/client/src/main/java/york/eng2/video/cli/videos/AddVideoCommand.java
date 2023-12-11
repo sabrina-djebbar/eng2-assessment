@@ -15,7 +15,7 @@ public class AddVideoCommand implements Runnable {
 	String title;
 
 	@Parameters(index = "1")
-	String[] tags;
+	String tags;
 
 	@Parameters(index = "2")
 	String username;

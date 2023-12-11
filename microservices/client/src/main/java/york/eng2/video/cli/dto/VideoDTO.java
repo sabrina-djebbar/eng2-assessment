@@ -6,7 +6,7 @@ import io.micronaut.serde.annotation.Serdeable;
 public class VideoDTO {
 
 	private String title;
-	private String[] tags;
+	private String tags;
 	private String username;
 
 	public String getTitle() {
@@ -17,11 +17,11 @@ public class VideoDTO {
 		this.title = title;
 	}
 
-	public String[] getTags() {
+	public String getTags() {
 		return tags;
 	}
 
-	public void setTags(String[] tags) {
+	public void setTags(String tags) {
 		this.tags = tags;
 	}
 
@@ -35,6 +35,6 @@ public class VideoDTO {
 
 	@Override
 	public String toString() {
-		return "Video [title= " + title + ", tags= [" + String.join(",", tags) + "],  user=" + username + "]";
+		return "Video [title= " + title + ", tags= [" + tags + "],  user=" + username + "]";
 	}
 }
