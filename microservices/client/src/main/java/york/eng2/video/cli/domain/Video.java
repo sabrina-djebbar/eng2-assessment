@@ -1,5 +1,8 @@
 package york.eng2.video.cli.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import io.micronaut.serde.annotation.Serdeable;
 
 @Serdeable
@@ -9,13 +12,13 @@ public class Video {
 
 	private String title;
 
-	private String[] tags;
+	private Set<Hashtag> hashtags;
 
-	private Integer likes;
+	private Set<User> likes;
 
-	private Integer dislikes;
+	private Set<User> dislikes;
 
-	private Integer views;
+	private Set<User> viewers;
 
 	private User user;
 
@@ -35,48 +38,42 @@ public class Video {
 		this.title = title;
 	}
 
-	public String[] getTags() {
-		return tags;
+	public Set<Hashtag> getHashtags() {
+		return hashtags;
 	}
 
-	public void setTags(String[] tags) {
-		this.tags = tags;
+	public void setHashtags(Hashtag tag) {
+		System.out.println("tag" + tag.getName());
+		if (this.hashtags == null) {
+			System.out.println("no tags yet");
+			this.hashtags = new HashSet<>();
+		}
+		System.out.println(this.hashtags);
+		this.hashtags.add(tag);
 	}
 
-	public Integer getLikes() {
+	public Set<User> getLikes() {
 		return likes;
 	}
 
-	public void setLikes() {
-		likes++;
+	public void setLikes(User user) {
+		this.likes.add(user);
 	}
 
-	public void setLikes(Integer likes) {
-		this.likes = likes;
-	}
-
-	public Integer getDislikes() {
+	public Set<User> getDislikes() {
 		return dislikes;
 	}
 
-	public void setDislikes() {
-		dislikes++;
+	public void setDislikes(User user) {
+		this.dislikes.add(user);
 	}
 
-	public void setDislikes(Integer dislikes) {
-		this.dislikes = dislikes;
+	public Set<User> getViewers() {
+		return viewers;
 	}
 
-	public Integer getViews() {
-		return views;
-	}
-
-	public void setViews() {
-		views++;
-	}
-
-	public void setViews(Integer views) {
-		this.views = views;
+	public void setViewers(User viewer) {
+		this.viewers.add(viewer);
 	}
 
 	public User getUser() {
@@ -89,7 +86,9 @@ public class Video {
 
 	@Override
 	public String toString() {
-		return "Video = " + id + ", title=" + title + ", tags= [" + String.join(", ", tags) + "], likes = " + likes
-				+ ", dislikes = " + dislikes + ", views = " + views + ", user = " + user.toString();
+		return "Video = " + id + ", title=" + title + ", tags= [" + (hashtags == null ? "no tags" : hashtags)
+				+ "], likes = " + (likes == null ? "0" : likes.size()) + ", dislikes = "
+				+ (dislikes == null ? "0" : dislikes.size()) + ", views = " + (viewers == null ? "0" : viewers.size())
+				+ ", user = " + user.getUsername();
 	}
 }

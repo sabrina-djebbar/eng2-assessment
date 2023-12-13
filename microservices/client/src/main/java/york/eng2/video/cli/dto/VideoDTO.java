@@ -6,11 +6,8 @@ import io.micronaut.serde.annotation.Serdeable;
 public class VideoDTO {
 
 	private String title;
-	private String[] tags;
+	private String tags;
 	private String username;
-	private Integer likes;
-	private Integer dislikes;
-	private Integer views;
 
 	public String getTitle() {
 		return title;
@@ -20,11 +17,11 @@ public class VideoDTO {
 		this.title = title;
 	}
 
-	public String[] getTags() {
+	public String getTags() {
 		return tags;
 	}
 
-	public void setTags(String[] tags) {
+	public void setTags(String tags) {
 		this.tags = tags;
 	}
 
@@ -36,45 +33,8 @@ public class VideoDTO {
 		this.username = username;
 	}
 
-	public Integer getLikes() {
-		return likes;
-	}
-
-	public void setLikes() {
-		likes++;
-	}
-
-	public void setLikes(Integer likes) {
-		this.likes = likes;
-	}
-
-	public Integer getDislikes() {
-		return dislikes;
-	}
-
-	public void setDislikes() {
-		dislikes++;
-	}
-
-	public void setDislikes(Integer dislikes) {
-		this.dislikes = dislikes;
-	}
-
-	public Integer getViews() {
-		return views;
-	}
-
-	public void setViews() {
-		views++;
-	}
-
-	public void setViews(Integer views) {
-		this.views = views;
-	}
-
 	@Override
 	public String toString() {
-		return "Video [title= " + title + ", tags= [" + String.join(",", tags) + "], likes = " + likes + ", dislikes = "
-				+ dislikes + ", views = " + views + ", user=" + username + "]";
+		return "Video [title= " + title + ", tags= [" + tags + "],  user=" + username + "]";
 	}
 }

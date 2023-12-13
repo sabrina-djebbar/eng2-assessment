@@ -14,11 +14,11 @@ public class WatchVideoCommand implements Runnable {
 	private Long videoId;
 
 	@Parameters(index = "1")
-	private String userId;
+	private String username;
 
 	@Override
 	public void run() {
-		HttpResponse<Void> response = client.watchVideo(videoId, userId);
+		HttpResponse<Void> response = client.watchVideo(videoId, username);
 		System.out.println("Server responded with: " + response.getStatus());
 
 	}

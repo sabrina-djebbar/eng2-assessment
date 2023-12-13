@@ -13,8 +13,6 @@ public class GetVideosCommand implements Runnable {
 	@Override
 	public void run() {
 		for (Video v : client.list()) {
-			// TODO: fix issue with them not returning correct value of likes, dislikes and
-			// views
 			System.out.println(v);
 		}
 	}

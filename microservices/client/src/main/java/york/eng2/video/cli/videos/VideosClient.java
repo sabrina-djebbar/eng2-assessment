@@ -13,20 +13,27 @@ import york.eng2.video.cli.dto.VideoDTO;
 public interface VideosClient {
 
 	@Get("/")
-	Iterable<Video> list();
-
-	@Post("/")
-	HttpResponse<Void> post(@Body VideoDTO videoDetails);
+	public Iterable<Video> list();
 
 	@Get("/{id}")
 	public Video getVideo(long id);
 
-	@Put("/{id}/like")
-	public HttpResponse<Void> likeVideo(long id);
+	@Get("/user/{username}")
+	public Iterable<Video> listByUsername(String username);
 
-	@Put("/{id}/dislike")
-	public HttpResponse<Void> dislikeVideo(long id);
+	@Get("/tag/{tag}")
+	public Iterable<Video> listByTag(String tag);
+
+	@Post("/")
+	public HttpResponse<Void> post(@Body VideoDTO videoDetails);
+
+	@Put("/{id}/like/{username}")
+	public HttpResponse<Void> likeVideo(long id, String username);
+
+	@Put("/{id}/dislike/{username}")
+	public HttpResponse<Void> dislikeVideo(long id, String username);
 
 	@Put("/{videoId}/watch/{username}")
 	public HttpResponse<Void> watchVideo(long videoId, String username);
+
 }

@@ -13,9 +13,12 @@ public class LikeVideoCommand implements Runnable {
 	@Parameters(index = "0")
 	Long id;
 
+	@Parameters(index = "1")
+	private String username;
+
 	@Override
 	public void run() {
-		HttpResponse<Void> response = client.likeVideo(id);
+		HttpResponse<Void> response = client.likeVideo(id, username);
 		System.out.println("Server responded with: " + response.getStatus());
 	}
 }

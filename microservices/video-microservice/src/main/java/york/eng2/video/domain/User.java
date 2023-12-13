@@ -1,5 +1,6 @@
 package york.eng2.video.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -25,15 +26,15 @@ public class User {
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "likes")
-	private Set<Video> likedVideos;
+	private Set<Video> likedVideos = new HashSet<>();;
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "dislikes")
-	private Set<Video> dislikedVideos;
+	private Set<Video> dislikedVideos = new HashSet<>();;
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "viewers")
-	private Set<Video> viewedVideos;
+	private Set<Video> viewedVideos = new HashSet<>();;
 
 	public Long getId() {
 		return id;
