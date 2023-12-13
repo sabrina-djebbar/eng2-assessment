@@ -87,6 +87,7 @@ public class VideosController {
 		String[] hashtags = videoDetails.getTags().split(",");
 		for (String hashtag : hashtags) {
 			Hashtag tag = getHashtag(hashtag);
+			System.out.println("hashtag" + tag);
 			video.setHashtags(tag);
 		}
 
@@ -111,9 +112,6 @@ public class VideosController {
 		v.setLikes(u);
 		repo.update(v);
 
-		u.setLikedVideos(v);
-		userRepo.save(u);
-
 		producer.likeVideo(id, v);
 		return HttpResponse.ok();
 	}
@@ -132,9 +130,6 @@ public class VideosController {
 		v.setDislikes(u);
 		repo.update(v);
 
-		u.setDislikedVideos(v);
-		userRepo.save(u);
-
 		producer.dislikeVideo(id, v);
 		return HttpResponse.ok();
 	}
@@ -151,9 +146,6 @@ public class VideosController {
 
 		v.setViewers(u);
 		repo.update(v);
-
-		u.setViewedVideos(v);
-		userRepo.update(u);
 
 		Long userId = u.getId();
 
