@@ -49,6 +49,11 @@ public class TrendingConsumer {
 		System.out.printf("video disliked: %d%n", id);
 	}
 
+	@Topic(TrendingStreams.TOPIC_MOST_LIKED_BY_HOUR)
+	public void videoLikedMetric(@KafkaKey WindowedIdentifier window, Long count) {
+		System.out.printf("New value for key %s: %d%n", window, count);
+	}
+
 	@Topic("video-watch")
 	public void watchVideo(@KafkaKey Long id, Long userId) {
 
