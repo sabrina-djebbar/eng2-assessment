@@ -2,7 +2,6 @@ package york.eng2.video.controllers;
 
 import java.net.URI;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -113,7 +112,7 @@ public class VideosController {
 		v.setLikes(u);
 		repo.update(v);
 
-		producer.likeVideo(id, v);
+		producer.likeVideo(id, v.getStringTags());
 		return HttpResponse.ok();
 	}
 
@@ -131,7 +130,7 @@ public class VideosController {
 		v.setDislikes(u);
 		repo.update(v);
 
-		producer.dislikeVideo(id, v);
+		producer.dislikeVideo(id, u.getId());
 		return HttpResponse.ok();
 	}
 
