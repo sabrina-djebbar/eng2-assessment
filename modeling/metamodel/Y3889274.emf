@@ -2,25 +2,26 @@
 package Y3889274;
 
 class System {
-	val Microservice[*] microservices;
+attr String name;
+	ref Microservice[+] microservice;
 }
 
 class Microservice {
   attr String name;
-  val EventStream[*] stream;
-  val APIResource[*] endpoints;
+  val EventStream[+] stream;
+  val APIResource[+] endpoints;
 }
 
 class EventStream {
 	attr String topic;
-	// should have at least one pub and one sub so the types are wrong
-	attr String subscriber;
-	attr String publisher;
-	val Event event;
+	ref Microservice[+] subscriber;
+	ref Microservice[+] publisher;
+	ref Event event;
 	
 }
 
 class Event {
+	attr String name;
 	val Field[*] fields;
 }
 
@@ -33,14 +34,7 @@ class APIResource {
 
 class Field {
 	attr String name;
-	attr FieldType type;
-}
-
-enum FieldType {
-	String;
-	Integer;
-	long;
-	Set;
+	attr String fieldType;
 }
 
 enum HTTPMethod{

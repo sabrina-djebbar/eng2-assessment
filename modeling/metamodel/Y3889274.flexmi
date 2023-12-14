@@ -1,0 +1,12 @@
+<?nsuri Y3889274?>
+<system name="video-sharing-system">
+	<microservice name="video-microservice">
+		<endpoint name="list-videos" method="GET"></endpoint>
+	</microservice>
+	<microservice name="trending-microservice">
+		<endpoint name="" method="GET"></endpoint>
+	</microservice>
+	<microservice name="subscription-microservice">
+		<endpoint name="" method="GET"></endpoint>
+	</microservice>
+</system>

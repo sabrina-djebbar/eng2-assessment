@@ -1,6 +1,6 @@
 context System {
 	constraint AtLeastOneService{
-		check: self.microservices.size() >0
+		check: self.microservices.size() > 0
 	}
 }
 
