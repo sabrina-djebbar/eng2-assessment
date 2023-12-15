@@ -1,12 +1,32 @@
 <?nsuri Y3889274?>
-<system name="video-sharing-system">
-	<microservice name="video-microservice">
-		<endpoint name="list-videos" method="GET"></endpoint>
-	</microservice>
-	<microservice name="trending-microservice">
-		<endpoint name="" method="GET"></endpoint>
-	</microservice>
-	<microservice name="subscription-microservice">
-		<endpoint name="" method="GET"></endpoint>
-	</microservice>
-</system>
+<_>
+   <system name="video-sharing-system">
+      <microservice name="video-microservice">   
+         <endpoint method="GET">
+            <response name="videos" type="list"/>
+         </endpoint>
+         <eventstream topic="video-posted" event="video-post" publisher="video-microservice" subscriber="trending-microservice"/>
+      </microservice>      
+      <microservice name="trending-microservice">   
+         <endpoint method="GET">
+            <response name="videos" type="list"/>
+         </endpoint>
+         <eventstream topic="video-posted" event="video-post" publisher="video-microservice" subscriber="video-microservice"/>
+      </microservice>
+   </system>
+   <event name="video-post">
+      <field name="videoId" type="long"/>
+      <field name="hashtags" type="string"/>
+   </event>
+   <event name="video-like">
+      <field name="videoId" type="long"/>
+      <field name="hashtags" type="string"/>
+   </event>
+   <event name="video-dislike">
+      <field name="videoId" type="long"/>
+   </event>
+   <event name="video-watch">
+      <field name="videoId" type="long"/>
+      <field name="userId" type="long"/>
+   </event>
+</_>
