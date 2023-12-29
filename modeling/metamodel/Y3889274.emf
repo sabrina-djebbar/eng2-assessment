@@ -12,11 +12,11 @@ class Microservice {
   attr String name;
   ref EventStream[*] subscribesTo;
   ref EventStream[*] publishesTo;
-  val APIResource[+] endpoints;
+  val Endpoint[+] endpoints;
 }
 
 class EventStream {
-	attr String topic;
+	attr String name;
 	ref Event event;
 }
 
@@ -28,21 +28,24 @@ class Event {
 class Endpoint {
 	attr String name;
 	attr HTTPMethod method;
-	val Request[*] request;
-	val String response;
+	ref Request request;
+	ref Response response;
 }
 
 class Request {
 	attr String name;
 	val Field[*] body;
 }
+class Response {
+    attr String name;
+    attr String statusCode;
+    val Field[*] body;
+}
 
 class Field {
 	attr String name;
 	attr String type;
 }
-
-
 
 enum HTTPMethod{
 	GET;
