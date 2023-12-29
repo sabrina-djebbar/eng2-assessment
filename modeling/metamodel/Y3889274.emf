@@ -18,15 +18,14 @@ class Microservice {
 class EventStream {
 	attr String topic;
 	ref Event event;
-	
 }
 
 class Event {
 	attr String name;
-	val Field[*] fields;
+	val Field[+] fields;
 }
 
-class APIResource {
+class Endpoint {
 	attr String name;
 	attr HTTPMethod method;
 	val Request[*] request;
