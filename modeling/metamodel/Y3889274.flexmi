@@ -1,10 +1,15 @@
 <?nsuri Y3889274?>
 <system name="video-sharing-system">
-	<microservice name="video-microservice">
-		<endpoint name="list-videos" method="GET"></endpoint>
+    <microservice name="video-microservice">
+    <endpoint name="list-videos" method="GET" request="">
+     
+    </endpoint>
+	<endpoint name="post-videos" method="POST" request="" response=""/>
+	<eventstream topic="video-liked" subscriber="trending-service"/>
+		
 	</microservice>
 	<microservice name="trending-microservice">
-		<endpoint name="" method="GET"></endpoint>
+		<endpoint name="list-top-ten-tags" method="GET"></endpoint>
 	</microservice>
 	<microservice name="subscription-microservice">
 		<endpoint name="" method="GET"></endpoint>

@@ -1,11 +1,16 @@
 context System {
-	constraint AtLeastOneService{
-		check: self.microservices.size() > 0
-	}
+    //check that the system has at least one microservice
+    constraint AtLeastOneService{
+        check: self.microservices.size() > 0
+    }
 }
 
 context Microservice {
-	constraint HasAHealthEndpoint{
-		check: self.endpoints.includes(method = GET)
-	}
+    //check that each microservice has a health endpoint with the get method and no request
+    constraint HasAHealthEndpoint{
+        check: self.endpoints.collect(e|e.method = "GET").size > 0
+        message: "each microservice needs a health endpoint with no request"
+        
+    }
 }
+
