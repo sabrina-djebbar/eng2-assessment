@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ASCII"?>
+<System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="Y3889274" xmi:id="_eTH00KpAEe6qPJzCgZmstg">
+  <microservices xmi:id="_vIaW8KpAEe6qPJzCgZmstg" name="video-microservice">
+    <endpoints xmi:id="_woBIgKpAEe6qPJzCgZmstg" name="list-videos">
+      <response xmi:id="_hi5HAKpBEe6qPJzCgZmstg" name="list-video-response" statusCode="200">
+        <body xmi:id="_kH0h4KpBEe6qPJzCgZmstg" name="videos" type="List" objectType="_ID6LMKpBEe6qPJzCgZmstg"/>
+      </response>
+    </endpoints>
+    <endpoints xmi:id="_OsIVAKpEEe6qPJzCgZmstg" name="post-video" method="POST">
+      <request xmi:id="_QEAt8KpEEe6qPJzCgZmstg" name="post-video-request">
+        <body xmi:id="_RjYO8KpEEe6qPJzCgZmstg" name="title" type="String"/>
+        <body xmi:id="_Ta6YUKpEEe6qPJzCgZmstg" name="username" type="String"/>
+        <body xmi:id="_VE3YsKpEEe6qPJzCgZmstg" name="hashtags" type="List&lt;String>"/>
+      </request>
+      <response xmi:id="_Xnl0IKpEEe6qPJzCgZmstg" name="post-video-response" statusCode="200">
+        <body xmi:id="_hCx8MKpEEe6qPJzCgZmstg" name="Video" objectType="_ID6LMKpBEe6qPJzCgZmstg"/>
+      </response>
+    </endpoints>
+  </microservices>
+  <microservices xmi:id="_xUVb8KpAEe6qPJzCgZmstg" name="trending-microservice">
+    <endpoints xmi:id="_nTRxQKpBEe6qPJzCgZmstg" name="list-hashtags">
+      <response xmi:id="_nTRxQapBEe6qPJzCgZmstg" name="list-hashtags-response" statusCode="200">
+        <body xmi:id="_nTRxQqpBEe6qPJzCgZmstg" name="hashtags" type="List" objectType="_LUH-wKpBEe6qPJzCgZmstg"/>
+      </response>
+    </endpoints>
+  </microservices>
+  <events xmi:id="_DsxL0KpBEe6qPJzCgZmstg" name="video-like">
+    <fields xmi:id="_ZOlugKpBEe6qPJzCgZmstg" name="videoId" type="Long"/>
+    <fields xmi:id="_bLMlIKpBEe6qPJzCgZmstg" name="hashtags" type="Set" objectType="_LUH-wKpBEe6qPJzCgZmstg"/>
+  </events>
+  <eventStreams xmi:id="_fg6doKpAEe6qPJzCgZmstg" name="most-liked-by-hour" event="_DsxL0KpBEe6qPJzCgZmstg" subscriber="_xUVb8KpAEe6qPJzCgZmstg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
+  <domains xmi:id="_ID6LMKpBEe6qPJzCgZmstg" name="Video">
+    <fields xmi:id="_JiSNsKpBEe6qPJzCgZmstg" name="id" type="Long"/>
+    <fields xmi:id="_S575kKpBEe6qPJzCgZmstg" name="title" type="String"/>
+    <fields xmi:id="_Ue33EKpBEe6qPJzCgZmstg" name="hashtags" type="Set" objectType="_LUH-wKpBEe6qPJzCgZmstg"/>
+    <fields xmi:id="_F_6y0KpEEe6qPJzCgZmstg" name="likes" type="Set" objectType="__WwGcKpDEe6qPJzCgZmstg"/>
+    <fields xmi:id="_HmwNwKpEEe6qPJzCgZmstg" name="dislikes" type="Set" objectType="__WwGcKpDEe6qPJzCgZmstg"/>
+    <fields xmi:id="_KkVZMKpEEe6qPJzCgZmstg" name="views" type="Set" objectType="__WwGcKpDEe6qPJzCgZmstg"/>
+  </domains>
+  <domains xmi:id="_LUH-wKpBEe6qPJzCgZmstg" name="Hashtag">
+    <fields xmi:id="_MfzHsKpBEe6qPJzCgZmstg" name="id" type="Long"/>
+    <fields xmi:id="_OJdNIKpBEe6qPJzCgZmstg" name="name" type="String"/>
+  </domains>
+  <domains xmi:id="__WwGcKpDEe6qPJzCgZmstg" name="User">
+    <fields xmi:id="_AlpigKpEEe6qPJzCgZmstg" name="id" type="Long"/>
+    <fields xmi:id="_CSEBAKpEEe6qPJzCgZmstg" name="username" type="String"/>
+  </domains>
+</System>

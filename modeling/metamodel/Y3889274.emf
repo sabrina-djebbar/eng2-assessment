@@ -6,30 +6,30 @@ class System {
 	val Microservice[+] microservices;
 	val Event[*] events;
 	val EventStream[*] eventStreams;
+	val Domain[*] domains;
 }
 
 class Microservice {
   attr String name;
-  ref EventStream[*] subscribesTo;
-  ref EventStream[*] publishesTo;
   val Endpoint[+] endpoints;
 }
 
 class EventStream {
 	attr String name;
 	ref Event event;
+	ref Microservice[*] subscriber;
+	ref Microservice[*] publisher;
 }
 
 class Event {
 	attr String name;
 	val Field[+] fields;
 }
-
 class Endpoint {
 	attr String name;
 	attr HTTPMethod method;
-	ref Request request;
-	ref Response response;
+	val Request request;
+	val Response response;
 }
 
 class Request {
@@ -42,9 +42,18 @@ class Response {
     val Field[*] body;
 }
 
+// to be used to define any objects that we send through requests and reponses e.g. the video object
+class Domain {
+	attr String name;
+	val Field[*] fields;
+	
+}
+
 class Field {
 	attr String name;
 	attr String type;
+	ref Domain objectType;
+	
 }
 
 enum HTTPMethod{
@@ -53,3 +62,4 @@ enum HTTPMethod{
 	DELETE;
 	PUT;
 }
+
