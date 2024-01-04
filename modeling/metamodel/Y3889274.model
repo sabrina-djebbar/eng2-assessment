@@ -12,13 +12,34 @@
         <body xmi:id="_Ta6YUKpEEe6qPJzCgZmstg" name="username" type="String"/>
         <body xmi:id="_VE3YsKpEEe6qPJzCgZmstg" name="hashtags" type="List&lt;String>"/>
       </request>
-      <response xmi:id="_Xnl0IKpEEe6qPJzCgZmstg" name="post-video-response" statusCode="200">
+      <response xmi:id="_Xnl0IKpEEe6qPJzCgZmstg" name="post-video-response" statusCode="201">
         <body xmi:id="_hCx8MKpEEe6qPJzCgZmstg" name="Video" objectType="_ID6LMKpBEe6qPJzCgZmstg"/>
       </response>
     </endpoints>
+    <endpoints xmi:id="_Hpz30Kr_Ee6Bw8mjGtotfg" name="watch-video" method="PUT">
+      <request xmi:id="_MRktIKr_Ee6Bw8mjGtotfg" name="watch-video-request">
+        <body xmi:id="_UIBE8Kr_Ee6Bw8mjGtotfg" name="userId" type="Long"/>
+        <body xmi:id="_Xbp_8Kr_Ee6Bw8mjGtotfg" name="videoId" type="Long"/>
+      </request>
+      <response xmi:id="_ZmkYUKr_Ee6Bw8mjGtotfg" name="watch-video-response" statusCode="200"/>
+    </endpoints>
+    <endpoints xmi:id="_dXPYIKsAEe6Bw8mjGtotfg" name="like-video" method="PUT">
+      <request xmi:id="_dXPYIasAEe6Bw8mjGtotfg" name="like-video-request">
+        <body xmi:id="_dXPYIqsAEe6Bw8mjGtotfg" name="userId" type="Long"/>
+        <body xmi:id="_dXPYI6sAEe6Bw8mjGtotfg" name="videoId" type="Long"/>
+      </request>
+      <response xmi:id="_dXPYJKsAEe6Bw8mjGtotfg" name="like-video-response" statusCode="200"/>
+    </endpoints>
+    <endpoints xmi:id="_fcX4oKsAEe6Bw8mjGtotfg" name="dislike-video" method="PUT">
+      <request xmi:id="_fcX4oasAEe6Bw8mjGtotfg" name="dislike-video-request">
+        <body xmi:id="_fcX4oqsAEe6Bw8mjGtotfg" name="userId" type="Long"/>
+        <body xmi:id="_fcX4o6sAEe6Bw8mjGtotfg" name="videoId" type="Long"/>
+      </request>
+      <response xmi:id="_fcX4pKsAEe6Bw8mjGtotfg" name="dislike-video-response" statusCode="200"/>
+    </endpoints>
   </microservices>
   <microservices xmi:id="_xUVb8KpAEe6qPJzCgZmstg" name="trending-microservice">
-    <endpoints xmi:id="_nTRxQKpBEe6qPJzCgZmstg" name="list-hashtags">
+    <endpoints xmi:id="_nTRxQKpBEe6qPJzCgZmstg" name="list-trending-hashtags">
       <response xmi:id="_nTRxQapBEe6qPJzCgZmstg" name="list-hashtags-response" statusCode="200">
         <body xmi:id="_nTRxQqpBEe6qPJzCgZmstg" name="hashtags" type="List" objectType="_LUH-wKpBEe6qPJzCgZmstg"/>
       </response>
@@ -29,6 +50,20 @@
       <response xmi:id="_1ooZEKr4Ee6Bw8mjGtotfg" name="list-users-response" statusCode="200">
         <body xmi:id="_6B7UkKr4Ee6Bw8mjGtotfg" name="users" type="List" objectType="__WwGcKpDEe6qPJzCgZmstg"/>
       </response>
+    </endpoints>
+    <endpoints xmi:id="_w2EIUKsAEe6Bw8mjGtotfg" name="subscribe-to-hashtag" method="PUT">
+      <request xmi:id="_w2EIUasAEe6Bw8mjGtotfg" name="subscribe-to-hashtag-request">
+        <body xmi:id="_w2EIUqsAEe6Bw8mjGtotfg" name="userId" type="Long"/>
+        <body xmi:id="_w2EIU6sAEe6Bw8mjGtotfg" name="hashtag" type="" objectType="_LUH-wKpBEe6qPJzCgZmstg"/>
+      </request>
+      <response xmi:id="_w2EIVKsAEe6Bw8mjGtotfg" name="subscribe-to-hashtag-response" statusCode="200"/>
+    </endpoints>
+    <endpoints xmi:id="_7BDVoKsAEe6Bw8mjGtotfg" name="unsubscribe-to-hashtag" method="PUT">
+      <request xmi:id="_7BDVoasAEe6Bw8mjGtotfg" name="unsubscribe-to-hashtag-request">
+        <body xmi:id="_7BDVoqsAEe6Bw8mjGtotfg" name="userId" type="Long"/>
+        <body xmi:id="_7BDVo6sAEe6Bw8mjGtotfg" name="hashtag" type="" objectType="_LUH-wKpBEe6qPJzCgZmstg"/>
+      </request>
+      <response xmi:id="_7BDVpKsAEe6Bw8mjGtotfg" name="unsubscribe-to-hashtag-response" statusCode="200"/>
     </endpoints>
   </microservices>
   <events xmi:id="_DsxL0KpBEe6qPJzCgZmstg" name="video-like">
@@ -55,10 +90,12 @@
     <fields xmi:id="_IP718Kr6Ee6Bw8mjGtotfg" name="userId" type="Long"/>
     <fields xmi:id="_IP718ar6Ee6Bw8mjGtotfg" name="hashtag" objectType="_LUH-wKpBEe6qPJzCgZmstg"/>
   </events>
-  <eventStreams xmi:id="_fOkU4Kr6Ee6Bw8mjGtotfg" name="videos-posted" event="_08BVQKr5Ee6Bw8mjGtotfg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
+  <eventStreams xmi:id="_fOkU4Kr6Ee6Bw8mjGtotfg" name="videos-posted" event="_08BVQKr5Ee6Bw8mjGtotfg" subscriber="_ofTLUKr4Ee6Bw8mjGtotfg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
+  <eventStreams xmi:id="_imAN8Kr-Ee6Bw8mjGtotfg" name="user-subscribed-hashtags" event="__1ojIKr5Ee6Bw8mjGtotfg" publisher="_ofTLUKr4Ee6Bw8mjGtotfg"/>
+  <eventStreams xmi:id="_s4z6gKr-Ee6Bw8mjGtotfg" name="user-unsubscribed-hashtags" event="_F6oygKr6Ee6Bw8mjGtotfg" publisher="_ofTLUKr4Ee6Bw8mjGtotfg"/>
   <eventStreams xmi:id="_fg6doKpAEe6qPJzCgZmstg" name="most-liked-by-hour" event="_DsxL0KpBEe6qPJzCgZmstg" subscriber="_xUVb8KpAEe6qPJzCgZmstg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
-  <eventStreams xmi:id="_k6UMMKr5Ee6Bw8mjGtotfg" name="video-disliked" event="_Yk680Kr5Ee6Bw8mjGtotfg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
-  <eventStreams xmi:id="_SCr-4Kr5Ee6Bw8mjGtotfg" name="videos-watched" event="_CcAk8Kr5Ee6Bw8mjGtotfg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
+  <eventStreams xmi:id="_k6UMMKr5Ee6Bw8mjGtotfg" name="video-disliked" event="_Yk680Kr5Ee6Bw8mjGtotfg" subscriber="_ofTLUKr4Ee6Bw8mjGtotfg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
+  <eventStreams xmi:id="_SCr-4Kr5Ee6Bw8mjGtotfg" name="videos-watched" event="_CcAk8Kr5Ee6Bw8mjGtotfg" subscriber="_ofTLUKr4Ee6Bw8mjGtotfg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
   <domains xmi:id="_ID6LMKpBEe6qPJzCgZmstg" name="Video">
     <fields xmi:id="_JiSNsKpBEe6qPJzCgZmstg" name="id" type="Long"/>
     <fields xmi:id="_S575kKpBEe6qPJzCgZmstg" name="title" type="String"/>
