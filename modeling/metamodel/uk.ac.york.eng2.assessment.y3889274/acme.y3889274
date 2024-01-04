@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="Y3889274">
+  <microservices name="video-microservice">
+    <endpoints name="list-video">
+      <response name="list-video-response" statusCode="200">
+        <body name="videos" type="Set" objectType="//@domains.0"/>
+      </response>
+    </endpoints>
+  </microservices>
+  <domains name="Video">
+    <fields name="id" type="Long"/>
+  </domains>
+</System>
