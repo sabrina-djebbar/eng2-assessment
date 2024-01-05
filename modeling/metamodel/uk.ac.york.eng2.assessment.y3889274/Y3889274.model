@@ -65,6 +65,15 @@
       </request>
       <response xmi:id="_7BDVpKsAEe6Bw8mjGtotfg" name="unsubscribe-to-hashtag-response" statusCode="200"/>
     </endpoints>
+    <endpoints xmi:id="_DB_D8Ku2Ee6ond15M1ejXg" name="list-videos-to-watch">
+      <request xmi:id="_FVxEcKu2Ee6ond15M1ejXg" name="list-videos-to-watch-request">
+        <body xmi:id="_JkIiUKu2Ee6ond15M1ejXg" name="userId" type="Long"/>
+        <body xmi:id="_JkIiUau2Ee6ond15M1ejXg" name="hashtag" type="" objectType="_LUH-wKpBEe6qPJzCgZmstg"/>
+      </request>
+      <response xmi:id="_KR184Ku2Ee6ond15M1ejXg" name="list-videos-to-watch" statusCode="200">
+        <body xmi:id="_MEbU0Ku2Ee6ond15M1ejXg" name="videos" type="List" objectType="_ID6LMKpBEe6qPJzCgZmstg"/>
+      </response>
+    </endpoints>
   </microservices>
   <events xmi:id="_DsxL0KpBEe6qPJzCgZmstg" name="video-like">
     <fields xmi:id="_ZOlugKpBEe6qPJzCgZmstg" name="videoId" type="Long"/>
