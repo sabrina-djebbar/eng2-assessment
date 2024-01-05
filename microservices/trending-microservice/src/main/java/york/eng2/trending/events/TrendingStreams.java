@@ -16,7 +16,7 @@ import io.micronaut.configuration.kafka.streams.ConfiguredStreamBuilder;
 import io.micronaut.context.annotation.Factory;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-import york.eng2.trending.domain.Video;
+import york.eng2.trending.domain.Hashtag;
 
 @Factory
 public class TrendingStreams {
@@ -28,14 +28,14 @@ public class TrendingStreams {
 	@Singleton
 	public KStream<WindowedIdentifier, Long> likedByDay(ConfiguredStreamBuilder builder) {
 		Properties props = builder.getConfiguration();
-		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "videos-metrics");
+		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "trending-metrics");
 
 		props.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.EXACTLY_ONCE);
 
-		KStream<Long, Video> videosStream = builder.stream("video-like",
-				Consumed.with(Serdes.Long(), serdeRegistry.getSerde(Video.class)));
+		KStream<Long, Hashtag> trendingStream = builder.stream("video-like",
+				Consumed.with(Serdes.Long(), serdeRegistry.getSerde(Hashtag.class)));
 
-		KStream<WindowedIdentifier, Long> stream = videosStream.groupByKey()
+		KStream<WindowedIdentifier, Long> stream = trendingStream.groupByKey()
 				.windowedBy(TimeWindows.of(Duration.ofHours(1)).advanceBy(Duration.ofHours(1)))
 				.count(Materialized.as("liked-by-hour")).toStream()
 				.selectKey((k, v) -> new WindowedIdentifier(k.key(), k.window().start(), k.window().end()));

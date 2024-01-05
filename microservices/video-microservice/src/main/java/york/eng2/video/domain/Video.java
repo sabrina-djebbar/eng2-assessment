@@ -2,6 +2,7 @@ package york.eng2.video.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -64,6 +65,11 @@ public class Video {
 
 	public Set<Hashtag> getHashtags() {
 		return hashtags;
+	}
+
+	public String getStringTags() {
+		return hashtags.stream().map(Hashtag::getName).collect(Collectors.joining(","));
+
 	}
 
 	public void setHashtags(Hashtag tag) {

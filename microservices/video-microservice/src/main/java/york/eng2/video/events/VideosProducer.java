@@ -6,6 +6,7 @@ import io.micronaut.configuration.kafka.annotation.Topic;
 import york.eng2.video.domain.Hashtag;
 import york.eng2.video.domain.Video;
 
+
 @KafkaClient
 public interface VideosProducer {
 
@@ -16,7 +17,7 @@ public interface VideosProducer {
 	String TOPIC_DISLIKE = "video-dislike";
 
 	@Topic(TOPIC_POST)
-	void postVideo(@KafkaKey Long id, Video video);
+	void postVideo(@KafkaKey Long id, String hashtags);
 
 	@Topic(TOPIC_POST_V2)
 	void postVideoV2(@KafkaKey Long id, Video video);
@@ -25,8 +26,8 @@ public interface VideosProducer {
 	void watchVideo(@KafkaKey Long id, Long userId);
 
 	@Topic(TOPIC_LIKE)
-	void likeVideo(@KafkaKey Long id, Video video);
+	void likeVideo(@KafkaKey Long id, Hashtag hashtag);
 
 	@Topic(TOPIC_DISLIKE)
-	void dislikeVideo(@KafkaKey Long id, Video video);
+	void dislikeVideo(@KafkaKey Long id, Long userId);
 }

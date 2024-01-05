@@ -97,6 +97,7 @@ public class VideosController {
 		repo.save(video);
 		producer.postVideo(video.getId(), videoDetails.getTags());
 		producer.postVideoV2(video.getId(), video);
+
 		return HttpResponse.created(URI.create("/videos/" + video.getId()));
 	}
 
@@ -113,7 +114,10 @@ public class VideosController {
 		v.setLikes(u);
 		repo.update(v);
 
-		producer.likeVideo(id, v);
+		for (Hashtag tag : v.getHashtags()) {
+			producer.likeVideo(id, tag);
+		}
+
 		return HttpResponse.ok();
 	}
 
@@ -131,7 +135,7 @@ public class VideosController {
 		v.setDislikes(u);
 		repo.update(v);
 
-		producer.dislikeVideo(id, v);
+		producer.dislikeVideo(id, u.getId());
 		return HttpResponse.ok();
 	}
 

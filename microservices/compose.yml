@@ -12,6 +12,7 @@ services:
       MARIADB_DATABASE: &dbname video
     volumes:
       - mariadb_data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
     healthcheck:
@@ -52,7 +53,7 @@ services:
       DB_HOST: db
       DB_USER: *dbuser
       DB_PASSWORD: *dbpass
-      DB_NAME: *dbname
+      DB_NAME: trending
       KAFKA_BOOTSTRAP_SERVERS: kafka-0:9092,kafka-1:9092,kafka-2:9092
       MICRONAUT_ENVIRONMENTS: prod
     depends_on:
