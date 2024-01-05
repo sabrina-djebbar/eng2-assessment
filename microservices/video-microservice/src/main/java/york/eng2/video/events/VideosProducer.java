@@ -3,6 +3,7 @@ package york.eng2.video.events;
 import io.micronaut.configuration.kafka.annotation.KafkaClient;
 import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.Topic;
+import york.eng2.video.domain.Hashtag;
 
 @KafkaClient
 public interface VideosProducer {
@@ -19,7 +20,7 @@ public interface VideosProducer {
 	void watchVideo(@KafkaKey Long id, Long userId);
 
 	@Topic(TOPIC_LIKE)
-	void likeVideo(@KafkaKey Long id, String hashtags);
+	void likeVideo(@KafkaKey Long id, Hashtag hashtag);
 
 	@Topic(TOPIC_DISLIKE)
 	void dislikeVideo(@KafkaKey Long id, Long userId);

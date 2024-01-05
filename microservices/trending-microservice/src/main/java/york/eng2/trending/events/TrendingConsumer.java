@@ -9,7 +9,7 @@ import jakarta.inject.Inject;
 import york.eng2.trending.domain.Hashtag;
 import york.eng2.trending.repositories.HashtagsRepository;
 
-@KafkaListener
+@KafkaListener(groupId = "trending-debug")
 public class TrendingConsumer {
 	@Inject
 	HashtagsRepository repo;
@@ -19,7 +19,7 @@ public class TrendingConsumer {
 		String[] tags = hashtags.split(",");
 		for (String tag : tags) {
 			Optional<Hashtag> hashtag = repo.findByName(tag);
-			System.out.printf("tag", tag);
+
 			if (hashtag.isEmpty()) {
 				Hashtag newTag = new Hashtag();
 				newTag.setName(tag);
@@ -31,32 +31,29 @@ public class TrendingConsumer {
 	}
 
 	@Topic("video-like")
-	public void likeVideo(@KafkaKey Long id, String hashtags) {
-		String[] tags = hashtags.split(",");
-		for (String tag : tags) {
-			Optional<Hashtag> hashtag = repo.findByName(tag);
-			if (hashtag.isEmpty()) {
-				System.out.printf("The tag " + tag + " could not be found");
-				return;
-			}
+	public void likeVideo(@KafkaKey Long id, Hashtag tag) {
+		Optional<Hashtag> hashtag = repo.findByName(tag.getName());
+		if (hashtag.isEmpty()) {
+			System.out.printf("The tag " + tag.getName() + " could not be found");
+			return;
 		}
-		System.out.printf("video liked: %d%n", id);
+
+		// System.out.printf("video liked: %d %s%n", id, tag.getName());
+
 	}
 
 	@Topic("video-dislike")
 	public void dislikeVideo(@KafkaKey Long id, Long userId) {
-
 		System.out.printf("video disliked: %d%n", id);
 	}
 
 	@Topic(TrendingStreams.TOPIC_MOST_LIKED_BY_HOUR)
 	public void videoLikedMetric(@KafkaKey WindowedIdentifier window, Long count) {
-		System.out.printf("New value for key %s: %d%n", window, count);
+		System.out.printf("New value for key %s%n", window);
 	}
 
 	@Topic("video-watch")
 	public void watchVideo(@KafkaKey Long id, Long userId) {
-
 		System.out.printf("video watched: %d%n", id);
 	}
 

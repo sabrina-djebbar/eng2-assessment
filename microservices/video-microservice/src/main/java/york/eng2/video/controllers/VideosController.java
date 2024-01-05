@@ -112,7 +112,10 @@ public class VideosController {
 		v.setLikes(u);
 		repo.update(v);
 
-		producer.likeVideo(id, v.getStringTags());
+		for (Hashtag tag : v.getHashtags()) {
+			producer.likeVideo(id, tag);
+		}
+
 		return HttpResponse.ok();
 	}
 
