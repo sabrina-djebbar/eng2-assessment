@@ -31,7 +31,7 @@ public class HashtagsController {
 	public HttpResponse<Void> add(@Body HashtagDTO hashtagDetails) {
 		Hashtag hashtag = new Hashtag();
 		hashtag.setName(hashtagDetails.getName());
-		System.out.println(hashtag);
+
 		repo.save(hashtag);
 		return HttpResponse.created(URI.create("/hashtags/" + hashtag.getId()));
 	}
@@ -40,6 +40,15 @@ public class HashtagsController {
 	public Hashtag getHashtag(long id) {
 		return repo.findById(id).orElse(null);
 	}
+
+	@Post("/")
+	public Hashtag createHashtag(@Body HashtagDTO hashtagDetails) {
+		Hashtag hashtag = new Hashtag();
+		hashtag.setName(hashtagDetails.getName());
+
+		repo.save(hashtag);
+		return hashtag;
+	};
 
 	@Transactional
 	@Put("/{id}")
@@ -55,6 +64,11 @@ public class HashtagsController {
 		}
 		repo.save(t);
 		return HttpResponse.ok();
+	}
+
+	@Get("/tag/{name}")
+	public Hashtag getByName(String name) {
+		return repo.findByName(name).orElse(null);
 	}
 
 }

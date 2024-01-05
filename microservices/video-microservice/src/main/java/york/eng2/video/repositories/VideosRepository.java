@@ -36,6 +36,7 @@ public interface VideosRepository extends CrudRepository<Video, Long> {
 	@Query("from Video v where v.user.username= :username")
 	Iterable<Video> findAllByUsername(String username);
 
+	// THIS DOES NOT WORK
 	@Join(value = "hashtags", type = Join.Type.LEFT_FETCH)
 	@Join(value = "likes", type = Join.Type.LEFT_FETCH)
 	@Join(value = "dislikes", type = Join.Type.LEFT_FETCH)
@@ -43,4 +44,5 @@ public interface VideosRepository extends CrudRepository<Video, Long> {
 	@Join(value = "user", type = Join.Type.FETCH)
 	@Query("from Video v where :tag = any v.hashtags.name ")
 	Iterable<Video> findAllByTag(String tag);
+
 }
