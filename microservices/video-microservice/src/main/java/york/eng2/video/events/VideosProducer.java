@@ -10,16 +10,12 @@ import york.eng2.video.dto.VideoDTO;
 public interface VideosProducer {
 
 	String TOPIC_POST = "video-post";
-	String TOPIC_POST_V2 = "video-post-v2";
 	String TOPIC_WATCH = "video-watch";
 	String TOPIC_LIKE = "video-like";
 	String TOPIC_DISLIKE = "video-dislike";
 
 	@Topic(TOPIC_POST)
-	void postVideo(@KafkaKey Long id, String hashtags);
-
-	@Topic(TOPIC_POST_V2)
-	void postVideoV2(@KafkaKey Long id, VideoDTO video);
+	void postVideo(@KafkaKey Long id, VideoDTO video);
 
 	@Topic(TOPIC_WATCH)
 	void watchVideo(@KafkaKey Long id, Long userId);

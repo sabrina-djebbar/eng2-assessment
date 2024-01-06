@@ -95,8 +95,7 @@ public class VideosController {
 		video.setUser(user);
 
 		repo.save(video);
-		producer.postVideo(video.getId(), videoDetails.getTags());
-		producer.postVideoV2(video.getId(), videoDetails);
+		producer.postVideo(video.getId(), videoDetails);
 
 		return HttpResponse.created(URI.create("/videos/" + video.getId()));
 	}

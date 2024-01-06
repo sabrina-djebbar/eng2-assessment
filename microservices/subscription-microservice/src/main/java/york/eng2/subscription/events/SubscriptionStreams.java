@@ -37,10 +37,10 @@ public class SubscriptionStreams {
 		 */
 		props.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.EXACTLY_ONCE);
 
-		KStream<Long, Hashtag> booksStream = builder.stream(SubscriptionProducer.TOPIC_USER_SUBSCRIBE,
+		KStream<Long, Hashtag> subscriptionStream = builder.stream(SubscriptionProducer.TOPIC_USER_SUBSCRIBE,
 				Consumed.with(Serdes.Long(), serdeRegistry.getSerde(Hashtag.class)));
 
-		KStream<WindowedIdentifier, Long> stream = booksStream.groupByKey()
+		KStream<WindowedIdentifier, Long> stream = subscriptionStream.groupByKey()
 				.windowedBy(TimeWindows.of(Duration.ofDays(1)).advanceBy(Duration.ofDays(1)))
 				.count(Materialized.as("hashtags-per-hour")).toStream()
 				.selectKey((k, v) -> new WindowedIdentifier(k.key(), k.window().start(), k.window().end()));

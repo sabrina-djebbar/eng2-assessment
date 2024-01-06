@@ -50,7 +50,7 @@ public class SubscriptionConsumer {
 		return tag.get();
 	}
 
-	@Topic("video-post-v2")
+	@Topic("video-post")
 	public void postVideo(@KafkaKey Long id, VideoDTO videoDetails) {
 		Video video = new Video();
 		video.setTitle(videoDetails.getTitle());
