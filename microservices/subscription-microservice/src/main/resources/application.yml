@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: subscriptionMicroservice
+    name: subcriptionMicroservice
 datasources:
   default:
     driver-class-name: org.mariadb.jdbc.Driver
@@ -11,13 +11,14 @@ datasources:
     password: ${DB_PASSWORD:todosecret}   
 jpa:
   default:
-      entity-scan:
+    entity-scan:
         packages:
             - york.eng2.subscription.domain
     properties:
       hibernate:
         hbm2ddl:
           auto: update
+        show_sql: true
 netty:
   default:
     allocator:
@@ -25,4 +26,3 @@ netty:
 kafka:
   bootstrap:
     servers: ${KAFKA_BOOTSTRAP_SERVERS:`localhost:9094`}
-      

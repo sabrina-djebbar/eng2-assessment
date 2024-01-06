@@ -39,3 +39,8 @@
 - [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
 
 
+restart container
+`docker-compose stop subscription &&  docker-compose up -d --no-deps subscription`
+
+subscribe
+`curl -s -v -X PUT http://localhost:8082/users/sabrina/subscribe/foo -H "Content-Type: application/json"`

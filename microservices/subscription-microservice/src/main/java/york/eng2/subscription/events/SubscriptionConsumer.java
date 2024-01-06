@@ -12,7 +12,7 @@ import york.eng2.subscription.domain.Video;
 import york.eng2.subscription.dto.VideoDTO;
 import york.eng2.subscription.repositories.HashtagsRepository;
 import york.eng2.subscription.repositories.UsersRepository;
-import york.eng2.subscription.repositories.VideosRepositories.VideosRepository;
+import york.eng2.subscription.repositories.VideosRepository;
 
 @KafkaListener(groupId = "subscription-debug")
 public class SubscriptionConsumer {
@@ -92,5 +92,10 @@ public class SubscriptionConsumer {
 
 		System.out.printf("user %d unsubscribed to hashtag %s%n", userId, tagName);
 
+	}
+
+	@Topic(SubscriptionStreams.TOPIC_HASHTAGS_BY_DAY)
+	public void hashtagsSubscribedMetric(@KafkaKey WindowedIdentifier window, Long count) {
+		System.out.printf("New value for key %s: %d%n", window, count);
 	}
 }

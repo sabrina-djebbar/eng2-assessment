@@ -4,8 +4,7 @@ import io.micronaut.configuration.kafka.annotation.KafkaClient;
 import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.Topic;
 import york.eng2.video.domain.Hashtag;
-import york.eng2.video.domain.Video;
-
+import york.eng2.video.dto.VideoDTO;
 
 @KafkaClient
 public interface VideosProducer {
@@ -20,7 +19,7 @@ public interface VideosProducer {
 	void postVideo(@KafkaKey Long id, String hashtags);
 
 	@Topic(TOPIC_POST_V2)
-	void postVideoV2(@KafkaKey Long id, Video video);
+	void postVideoV2(@KafkaKey Long id, VideoDTO video);
 
 	@Topic(TOPIC_WATCH)
 	void watchVideo(@KafkaKey Long id, Long userId);
