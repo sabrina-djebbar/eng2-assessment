@@ -40,15 +40,15 @@
   </microservices>
   <microservices name="trending-microservice">
     <endpoints name="list-trending-hashtags">
-      <response name="list-video-response" statusCode="200">
-        <body name="videos" type="Set" objectType="//@domains.0"/>
+      <response name="list-trending-hashtags-response" statusCode="200">
+        <body name="trending-hashtags" type="Set" objectType="//@domains.1"/>
       </response>
     </endpoints>
   </microservices>
   <microservices name="subscription-microservice">
     <endpoints name="list-users">
       <response name="list-users-response" statusCode="200">
-        <body name="videos" type="Set" objectType="//@domains.0"/>
+        <body name="users" type="Set" objectType="//@domains.2"/>
       </response>
     </endpoints>
     <endpoints name="subscribe-to-hashtag" method="PUT">
