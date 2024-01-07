@@ -11,9 +11,11 @@ import io.micronaut.http.annotation.Put;
 import jakarta.inject.Inject;
 import york.eng2.subscription.domain.Hashtag;
 import york.eng2.subscription.domain.User;
+import york.eng2.subscription.domain.Video;
 import york.eng2.subscription.events.SubscriptionProducer;
 import york.eng2.subscription.repositories.HashtagsRepository;
 import york.eng2.subscription.repositories.UsersRepository;
+import york.eng2.subscription.repositories.VideosRepository;
 
 @Controller("/users")
 public class UsersController {
@@ -22,6 +24,9 @@ public class UsersController {
 
 	@Inject
 	HashtagsRepository hashtagRepo;
+
+	@Inject
+	VideosRepository videoRepo;
 
 	@Inject
 	SubscriptionProducer producer;
@@ -40,6 +45,11 @@ public class UsersController {
 	@Get("/")
 	public Iterable<User> list() {
 		return repo.findAll();
+	}
+
+	@Get("/{username}/tag/{tag}")
+	public Iterable<Video> getNextVideosToWatch() {
+		return videoRepo.findAll();
 	}
 
 	@Transactional
@@ -77,4 +87,5 @@ public class UsersController {
 
 		return HttpResponse.ok();
 	}
+
 }

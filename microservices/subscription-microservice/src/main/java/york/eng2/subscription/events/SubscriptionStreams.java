@@ -26,22 +26,17 @@ public class SubscriptionStreams {
 	private SerdeRegistry serdeRegistry;
 
 	@Singleton
-	public KStream<WindowedIdentifier, Long> readByDay(ConfiguredStreamBuilder builder) {
+	public KStream<WindowedIdentifier, Long> videosPerHour(ConfiguredStreamBuilder builder) {
 		Properties props = builder.getConfiguration();
 		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "subscription-metrics");
 
-		/*
-		 * This makes the stream more predictable, and also has the side effect of
-		 * reducing Kafka Streams' commit interval to 100ms (rather than the default of
-		 * 30s, which would significantly slow down our tests).
-		 */
 		props.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.EXACTLY_ONCE);
 
 		KStream<Long, Hashtag> subscriptionStream = builder.stream(SubscriptionProducer.TOPIC_USER_SUBSCRIBE,
 				Consumed.with(Serdes.Long(), serdeRegistry.getSerde(Hashtag.class)));
 
 		KStream<WindowedIdentifier, Long> stream = subscriptionStream.groupByKey()
-				.windowedBy(TimeWindows.of(Duration.ofDays(1)).advanceBy(Duration.ofDays(1)))
+				.windowedBy(TimeWindows.of(Duration.ofHours(1)).advanceBy(Duration.ofHours(1)))
 				.count(Materialized.as("hashtags-per-hour")).toStream()
 				.selectKey((k, v) -> new WindowedIdentifier(k.key(), k.window().start(), k.window().end()));
 

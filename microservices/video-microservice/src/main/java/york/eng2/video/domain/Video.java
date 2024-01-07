@@ -69,7 +69,6 @@ public class Video {
 
 	public String getStringTags() {
 		return hashtags.stream().map(Hashtag::getName).collect(Collectors.joining(","));
-
 	}
 
 	public void setHashtags(Hashtag tag) {
