@@ -60,6 +60,16 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
           </style>
         </nodeMappings>
+      </defaultLayer>
+      <additionalLayers name="transition layers" label="Transition layer" activeByDefault="true">
+        <edgeMappings name="eventFieldEdge" label="Event Field Edge" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@nodeMappings[name='eventNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@nodeMappings[name='fieldNode']" targetFinderExpression="feature:fields">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+            <centerLabelStyleDescription labelSize="12">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
         <edgeMappings name="eventStreamRelation" label="Event Streams to" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@nodeMappings[name='eventStreamNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@nodeMappings[name='eventNode']" targetFinderExpression="feature:event">
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
@@ -132,7 +142,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="domainFieldEdge" label="Domain Fields" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@nodeMappings[name='domainNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@nodeMappings[name='fieldNode']" targetFinderExpression="feature:fields">
+        <edgeMappings name="domainFieldEdge" label="Domain Fields Edge" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@nodeMappings[name='domainNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@nodeMappings[name='fieldNode']" targetFinderExpression="feature:fields">
           <style sourceArrow="InputArrow" targetArrow="NoDecoration" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription labelSize="12">
@@ -140,15 +150,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="eventFieldEdge" label="Event Field Edge" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@nodeMappings[name='eventNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@nodeMappings[name='fieldNode']" targetFinderExpression="feature:fields">
-          <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-      </defaultLayer>
+      </additionalLayers>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="uk.ac.york.eng2.assessment.y3889274.design.Services"/>
   </ownedViewpoints>
