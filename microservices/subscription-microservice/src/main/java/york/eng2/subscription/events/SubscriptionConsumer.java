@@ -69,7 +69,7 @@ public class SubscriptionConsumer {
 	}
 
 	@Topic(SubscriptionProducer.TOPIC_USER_SUBSCRIBE)
-	public void userSubscribe(@KafkaKey Long userId, Hashtag tag) {
+	public void userSubscribe(@KafkaKey Long id, Hashtag tag) {
 		String tagName = tag.getName();
 		Optional<Hashtag> hashtag = hashtagRepo.findByName(tagName);
 		if (hashtag.isEmpty()) {
@@ -77,12 +77,12 @@ public class SubscriptionConsumer {
 			return;
 		}
 
-		System.out.printf("user %d subscribed to hashtag %s%n", userId, tagName);
+		System.out.printf("user %d subscribed to hashtag %s%n", id, tagName);
 
 	}
 
 	@Topic(SubscriptionProducer.TOPIC_USER_UNSUBSCRIBE)
-	public void userUnsubscribe(@KafkaKey Long userId, Hashtag tag) {
+	public void userUnsubscribe(@KafkaKey Long id, Hashtag tag) {
 		String tagName = tag.getName();
 		Optional<Hashtag> hashtag = hashtagRepo.findByName(tagName);
 		if (hashtag.isEmpty()) {
@@ -90,7 +90,7 @@ public class SubscriptionConsumer {
 			return;
 		}
 
-		System.out.printf("user %d unsubscribed to hashtag %s%n", userId, tagName);
+		System.out.printf("user %d unsubscribed to hashtag %s%n", id, tagName);
 
 	}
 

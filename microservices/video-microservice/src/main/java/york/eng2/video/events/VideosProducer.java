@@ -21,7 +21,7 @@ public interface VideosProducer {
 	void watchVideo(@KafkaKey Long id, Long userId);
 
 	@Topic(TOPIC_LIKE)
-	void likeVideo(@KafkaKey Long id, Hashtag hashtag);
+	void likeVideo(@KafkaKey Long id, Hashtag tag);
 
 	@Topic(TOPIC_DISLIKE)
 	void dislikeVideo(@KafkaKey Long id, Long userId);

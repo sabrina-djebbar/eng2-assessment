@@ -46,5 +46,7 @@ micronaut {
     }
 }
 
-
-
+tasks.named("dockerfile") {
+  baseImage = "eclipse-temurin:11-alpine"
+  instruction "RUN apk add --no-cache libstdc++ gcompat"
+}

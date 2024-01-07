@@ -11,8 +11,8 @@ public interface SubscriptionProducer {
 	String TOPIC_USER_UNSUBSCRIBE = "user-unsubscribe";
 
 	@Topic(TOPIC_USER_SUBSCRIBE)
-	void subscribeToHashtag(@KafkaKey Long userId, Hashtag hashtag);
+	void subscribeToHashtag(@KafkaKey Long id, Hashtag hashtag);
 
 	@Topic(TOPIC_USER_UNSUBSCRIBE)
-	void unsubscribeToHashtag(@KafkaKey Long userId, Hashtag hashtag);
+	void unsubscribeToHashtag(@KafkaKey Long id, Hashtag hashtag);
 }
