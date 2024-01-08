@@ -6,16 +6,6 @@
         <body name="videos" type="Set" objectType="//@domains.0"/>
       </response>
     </endpoints>
-    <endpoints name="post-video" method="POST">
-      <request name="post-video-request">
-        <body name="title" type="string"/>
-        <body name="hashtags" type="List&lt;String>"/>
-        <body name="username" type="String"/>
-      </request>
-      <response name="post-video-response" statusCode="201">
-        <body name="Video" objectType="//@domains.0"/>
-      </response>
-    </endpoints>
     <endpoints name="watch-video" method="PUT">
       <request name="watch-video-request">
         <body name="videoId" type="Long"/>

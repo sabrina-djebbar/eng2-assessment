@@ -1,15 +1,15 @@
 pre {
-    var streamedEvents = EventStream.event.all;
+    var streamedEvents = Y3889274!EventStream.all;
 }
 
-context System {
+context Y3889274!System {
     //check that the system has at least one microservice
     constraint AtLeastOneService{
         check: self.microservices.size() > 0
     }
 }
 
-context Microservice {
+context Y3889274!Microservice {
     //check that each microservice has a health endpoint with the get method and no request
     constraint HasAHealthEndpoint{
         check: self.endpoints.collect(e|e.method = "GET" and e.request.body.size() = 0).size() > 0
@@ -17,15 +17,15 @@ context Microservice {
     }
 }
 
-context Event {
+context Y3889274!Event {
     // every event should be used in at least one stream
   constraint EventIsUsedInAStream{ 
-    check: streamedEvents.includes(self)
+    check: streamedEvents.event.includes(self)
     message: "every event should be used in a stream"
   }
 }
 
-context EventStream {
+context Y3889274!EventStream {
     // every eventStream should have at least one subscriber
     constraint HasASubscriber {
         check: self.subscriber.size() > 0
