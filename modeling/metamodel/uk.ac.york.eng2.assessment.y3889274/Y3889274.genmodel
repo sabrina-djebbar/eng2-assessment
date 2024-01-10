@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/uk.ac.york.eng2.assessment.y3889274/src" modelPluginID="uk.ac.york.eng2.assessment.y3889274"
-    modelName="Y3889274" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    operationReflection="true" importOrganizing="true">
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/metamodel/src" modelPluginID="metamodel" modelName="Y3889274"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>Y3889274.ecore</foreignModel>
   <genPackages prefix="Y3889274" disposableProviderFactory="true" ecorePackage="Y3889274.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Y3889274.ecore#//HTTPMethod">

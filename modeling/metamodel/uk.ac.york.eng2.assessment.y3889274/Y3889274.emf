@@ -48,14 +48,12 @@ class Response {
 class Domain {
 	attr String name;
 	val Field[*] fields;
-	
 }
 
 class Field {
 	attr String name;
 	attr String type;
-	ref Domain objectType;
-	
+	ref Domain objectType;	
 }
 
 enum HTTPMethod{

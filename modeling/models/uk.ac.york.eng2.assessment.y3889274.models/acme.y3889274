@@ -6,16 +6,6 @@
         <body name="videos" type="Set" objectType="//@domains.0"/>
       </response>
     </endpoints>
-    <endpoints name="post-video" method="POST">
-      <request name="post-video-request">
-        <body name="title" type="string"/>
-        <body name="hashtags" type="List&lt;String>"/>
-        <body name="username" type="String"/>
-      </request>
-      <response name="post-video-response" statusCode="201">
-        <body name="Video" objectType="//@domains.0"/>
-      </response>
-    </endpoints>
     <endpoints name="watch-video" method="PUT">
       <request name="watch-video-request">
         <body name="videoId" type="Long"/>
@@ -40,15 +30,15 @@
   </microservices>
   <microservices name="trending-microservice">
     <endpoints name="list-trending-hashtags">
-      <response name="list-video-response" statusCode="200">
-        <body name="videos" type="Set" objectType="//@domains.0"/>
+      <response name="list-trending-hashtags-response" statusCode="200">
+        <body name="trending-hashtags" type="Set" objectType="//@domains.1"/>
       </response>
     </endpoints>
   </microservices>
   <microservices name="subscription-microservice">
     <endpoints name="list-users">
       <response name="list-users-response" statusCode="200">
-        <body name="videos" type="Set" objectType="//@domains.0"/>
+        <body name="users" type="Set" objectType="//@domains.2"/>
       </response>
     </endpoints>
     <endpoints name="subscribe-to-hashtag" method="PUT">
@@ -58,12 +48,12 @@
       </request>
       <response name="subscribe-to-hashtag-response" statusCode="200"/>
     </endpoints>
-    <endpoints name="subscribe-to-hashtag" method="PUT">
-      <request name="subscribe-to-hashtag">
+    <endpoints name="unsubscribe-to-hashtag" method="PUT">
+      <request name="unsubscribe-to-hashtag">
         <body name="hashtag" type="" objectType="//@domains.1"/>
         <body name="userId" type="Long"/>
       </request>
-      <response name="subscribe-to-hashtag-response" statusCode="200"/>
+      <response name="unsubscribe-to-hashtag-response" statusCode="200"/>
     </endpoints>
     <endpoints name="list-videos-to-watch">
       <request name="list-videos-to-watch-request">
