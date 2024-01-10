@@ -36,14 +36,14 @@ services:
 	[%}%]
 
 [%
-	operation String getMicroserviceName(){
-		return self.name.strip("-microservice");
+	operation Microservice getMicroserviceName(): String{
+		return self.name;
 	}
 %]
 
 [%
-	operation String getPortNumber(){
+	operation getPortNumber(): String{
 		portNumber ++;
-		return portNumber;
+		return portNumber.toString();
 	}
 %]
