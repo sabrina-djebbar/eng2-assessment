@@ -3,111 +3,20 @@
   <ownedViewpoints name="VideoSharingViewpoint" modelFileExtension="y3889274">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Video Sharing Diagram" domainClass="Y3889274::System" enablePopupBars="true">
       <metamodel href="Y3889274#/"/>
-      <defaultLayer name="Default"/>
-      <additionalLayers name="transition layers" label="Transition layer" activeByDefault="true">
-        <edgeMappings name="eventFieldEdge" label="Event Field Edge" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='eventNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='fieldNode']" targetFinderExpression="feature:fields">
-          <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="eventStreamRelation" label="Event Streams to" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='eventStreamNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='eventNode']" targetFinderExpression="feature:event">
-          <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="eventStreamsTo" label="Event Stream Subscribes To" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='eventStreamNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='microserviceNode']" targetFinderExpression="feature:subscriber">
+      <defaultLayer name="Default">
+        <edgeMappings name="subscriberTransition" label="Subscribes to" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@containerMappings[name='eventStreamContainer']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@containerMappings[name='microserviceContainer']" targetFinderExpression="feature:subscriber">
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <centerLabelStyleDescription labelSize="12">
+            <centerLabelStyleDescription labelSize="12" showIcon="false">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="eventStreamsFrom" label="Event Stream Publishes From" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='eventStreamNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='microserviceNode']" targetFinderExpression="feature:publisher">
+        <edgeMappings name="publisherTransition" label="Publishes to" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@containerMappings[name='eventStreamContainer']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@defaultLayer/@containerMappings[name='microserviceContainer']" targetFinderExpression="feature:publisher">
           <style sourceArrow="InputArrow" targetArrow="NoDecoration" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_red']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="endpointTransition" label="Endpoint Edge" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='microserviceNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='endpointNode']" targetFinderExpression="feature:endpoints">
-          <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_green']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="responseEdge" label="Response Edge" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='endpointNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='responseNode']" targetFinderExpression="feature:response">
-          <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="requestEdge" label="Request Edge" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='endpointNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='requestNode']" targetFinderExpression="feature:request">
-          <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="requestFieldTransiton" label="Request sends" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='requestNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='fieldNode']" targetFinderExpression="feature:body">
-          <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="responseFieldEdge" label="ResponseSends" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='responseNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='fieldNode']" targetFinderExpression="feature:body">
-          <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_orange']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="fieldDomainEdge" label="Field Domain Edge" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='fieldNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='domainNode']" targetFinderExpression="feature:objectType">
-          <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="domainFieldEdge" label="Domain Fields Edge" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='domainNode']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='old_layer']/@nodeMappings[name='fieldNode']" targetFinderExpression="feature:fields">
-          <style sourceArrow="InputArrow" targetArrow="NoDecoration" sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-      </additionalLayers>
-      <additionalLayers name="containers" label="Containers layers">
-        <edgeMappings name="subscriberTransition" label="Subscribes to" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='containers']/@containerMappings[name='microserviceContainer']" targetFinderExpression="feature:subscriber">
-          <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="publisherTransition" label="Publishes to" sourceMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='containers']/@containerMappings[name='eventStreamContainer']" targetMapping="//@ownedViewpoints[name='VideoSharingViewpoint']/@ownedRepresentations[name='Video%20Sharing%20Diagram']/@additionalLayers[name='containers']/@containerMappings[name='microserviceContainer']" targetFinderExpression="feature:publisher">
-          <style sourceArrow="InputArrow" targetArrow="NoDecoration" sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_red']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription labelSize="12" showIcon="false">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_red']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
@@ -116,13 +25,13 @@
             <subContainerMappings name="fieldContainer" label="Endpoint" semanticCandidatesExpression="aql:self.endpoints" domainClass="Y3889274::Endpoint">
               <subContainerMappings name="requestContainer" label="RequestContainer" semanticCandidatesExpression="feature:eAllContents" domainClass="Y3889274::Request">
                 <subNodeMappings name="requestFieldsNode" label="Request Fields" semanticCandidatesExpression="feature:body" domainClass="Y3889274::Field">
-                  <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW">
+                  <style xsi:type="style:SquareDescription" labelSize="16" showIcon="false" labelPosition="node" resizeKind="NSEW">
                     <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                     <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                     <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
                   </style>
                 </subNodeMappings>
-                <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="request">
+                <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="15" showIcon="false" labelExpression="request">
                   <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -131,34 +40,34 @@
               </subContainerMappings>
               <subContainerMappings name="responseContainer" label="Response Container" semanticCandidatesExpression="feature:eAllContents" domainClass="Y3889274::Response">
                 <subNodeMappings name="responseFieldsNode" label="Response Fields" semanticCandidatesExpression="feature:body" domainClass="Y3889274::Field">
-                  <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW">
+                  <style xsi:type="style:SquareDescription" labelSize="16" showIcon="false" labelPosition="node" resizeKind="NSEW">
                     <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                     <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                     <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
                   </style>
                 </subNodeMappings>
-                <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="Response">
+                <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="15" showIcon="false" labelExpression="Response">
                   <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
                   <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
                 </style>
               </subContainerMappings>
-              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" backgroundStyle="GradientTopToBottom">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="15" showIcon="false" backgroundStyle="GradientTopToBottom">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
                 <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
               </style>
             </subContainerMappings>
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="Endpoints">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="15" showIcon="false" labelExpression="Endpoints">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
             </style>
           </subContainerMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" widthComputationExpression="3" heightComputationExpression="3" backgroundStyle="GradientTopToBottom">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="17" widthComputationExpression="3" heightComputationExpression="3" backgroundStyle="GradientTopToBottom">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -169,92 +78,34 @@
           <subContainerMappings name="eventContainer" label="Event Container" semanticCandidatesExpression="feature:event" domainClass="Y3889274::Event">
             <subContainerMappings name="eventFieldContainer" semanticCandidatesExpression="var:self" domainClass="Y3889274::Event">
               <subNodeMappings name="eventFields" label="Event Fields" semanticCandidatesExpression="aql:self.fields" domainClass="Y3889274::Field">
-                <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW">
+                <style xsi:type="style:SquareDescription" labelSize="16" showIcon="false" labelPosition="node" resizeKind="NSEW">
                   <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
                   <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_green']"/>
                 </style>
               </subNodeMappings>
-              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="Fields">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="15" showIcon="false" labelExpression="Fields">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
                 <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
               </style>
             </subContainerMappings>
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" backgroundStyle="GradientTopToBottom">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="15" showIcon="false" backgroundStyle="GradientTopToBottom">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
             </style>
           </subContainerMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" backgroundStyle="GradientTopToBottom">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="17" backgroundStyle="GradientTopToBottom">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
           </style>
         </containerMappings>
-      </additionalLayers>
-      <additionalLayers name="old_layer" label="Oldstuff">
-        <nodeMappings name="microserviceNode" label="Microservice Node" semanticCandidatesExpression="feature:microservices" domainClass="Y3889274::Microservice">
-          <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
-            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_red']"/>
-          </style>
-        </nodeMappings>
-        <nodeMappings name="eventNode" label=" Event Node" semanticCandidatesExpression="feature:events" domainClass="Y3889274::Event">
-          <style xsi:type="style:EllipseNodeDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
-          </style>
-        </nodeMappings>
-        <nodeMappings name="domainNode" label="Domain Node" semanticCandidatesExpression="feature:domains" domainClass="Y3889274::Domain">
-          <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
-            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
-          </style>
-        </nodeMappings>
-        <nodeMappings name="eventStreamNode" label="Event Stream Node" semanticCandidatesExpression="feature:eventStreams" domainClass="Y3889274::EventStream">
-          <style xsi:type="style:EllipseNodeDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
-            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_purple']"/>
-          </style>
-        </nodeMappings>
-        <nodeMappings name="endpointNode" label="Endpoint Node" domainClass="Y3889274::Endpoint">
-          <style xsi:type="style:LozengeNodeDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
-          </style>
-        </nodeMappings>
-        <nodeMappings name="requestNode" label="Request Node" domainClass="Y3889274::Request">
-          <style xsi:type="style:DotDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
-          </style>
-        </nodeMappings>
-        <nodeMappings name="responseNode" label="Response Node" domainClass="Y3889274::Response">
-          <style xsi:type="style:DotDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
-          </style>
-        </nodeMappings>
-        <nodeMappings name="fieldNode" label="FieldNodes" domainClass="Y3889274::Field">
-          <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelPosition="node" resizeKind="NSEW">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_red']"/>
-            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
-          </style>
-        </nodeMappings>
-      </additionalLayers>
+      </defaultLayer>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="uk.ac.york.eng2.assessment.y3889274.design.Services"/>
   </ownedViewpoints>

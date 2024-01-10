@@ -91,8 +91,8 @@
     <fields xmi:id="_IP718ar6Ee6Bw8mjGtotfg" name="hashtag" objectType="_LUH-wKpBEe6qPJzCgZmstg"/>
   </events>
   <eventStreams xmi:id="_fOkU4Kr6Ee6Bw8mjGtotfg" name="videos-posted" event="_08BVQKr5Ee6Bw8mjGtotfg" subscriber="_ofTLUKr4Ee6Bw8mjGtotfg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
-  <eventStreams xmi:id="_imAN8Kr-Ee6Bw8mjGtotfg" name="user-subscribed-hashtags" event="__1ojIKr5Ee6Bw8mjGtotfg" publisher="_ofTLUKr4Ee6Bw8mjGtotfg"/>
-  <eventStreams xmi:id="_s4z6gKr-Ee6Bw8mjGtotfg" name="user-unsubscribed-hashtags" event="_F6oygKr6Ee6Bw8mjGtotfg" publisher="_ofTLUKr4Ee6Bw8mjGtotfg"/>
+  <eventStreams xmi:id="_imAN8Kr-Ee6Bw8mjGtotfg" name="user-subscribed-hashtags" event="__1ojIKr5Ee6Bw8mjGtotfg" subscriber="_ofTLUKr4Ee6Bw8mjGtotfg" publisher="_ofTLUKr4Ee6Bw8mjGtotfg"/>
+  <eventStreams xmi:id="_s4z6gKr-Ee6Bw8mjGtotfg" name="user-unsubscribed-hashtags" event="_F6oygKr6Ee6Bw8mjGtotfg" subscriber="_ofTLUKr4Ee6Bw8mjGtotfg" publisher="_ofTLUKr4Ee6Bw8mjGtotfg"/>
   <eventStreams xmi:id="_fg6doKpAEe6qPJzCgZmstg" name="most-liked-by-hour" event="_DsxL0KpBEe6qPJzCgZmstg" subscriber="_xUVb8KpAEe6qPJzCgZmstg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
   <eventStreams xmi:id="_k6UMMKr5Ee6Bw8mjGtotfg" name="video-disliked" event="_Yk680Kr5Ee6Bw8mjGtotfg" subscriber="_ofTLUKr4Ee6Bw8mjGtotfg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
   <eventStreams xmi:id="_SCr-4Kr5Ee6Bw8mjGtotfg" name="videos-watched" event="_CcAk8Kr5Ee6Bw8mjGtotfg" subscriber="_ofTLUKr4Ee6Bw8mjGtotfg" publisher="_vIaW8KpAEe6qPJzCgZmstg"/>
