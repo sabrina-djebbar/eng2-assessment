@@ -1,0 +1,49 @@
+services:
+	db:
+    image: mariadb:11
+    environment:
+      MARIADB_USER: &dbuser todo
+      MARIADB_PASSWORD: &dbpass todosecret
+      MARIADB_ROOT_PASSWORD: iamroot
+      MARIADB_DATABASE: &dbname video
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    healthcheck:
+      # https://github.com/docker-library/healthcheck/blob/master/mysql/Dockerfile.mariadb
+      test: ['CMD', 'healthcheck.sh', '--su=mysql', '--connect', '--innodb_initialized']
+      timeout: 10s
+      retries: 3
+	
+	[%for (microservice in Microservice.all){%]
+	[%=microservice.getMicroserviceName()%]:
+		image: [%=microservice.name%]:latest
+		ports:
+			[%=s.getPortNumber()%]:8080
+		environment:
+			DB_HOST: db
+			DB_USER: *dbuser
+			DB_PASSWORD: *dbpass
+     		DB_NAME: [%=microservice.getMicroserviceName()%]
+			KAFKA_BOOTSTRAP_SERVERS: kafka-0:9092,kafka-1:9092,kafka-2:9092
+      		MICRONAUT_ENVIRONMENTS: prod
+    	depends_on:
+      		db:
+       			condition: service_healthy
+      		kafka-0:
+        		condition: service_healthy
+	[%}%]
+
+[%
+	operation String getMicroserviceName(){
+		return self.name.strip("-microservice");
+	}
+%]
+
+[%
+	operation String getPortNumber(){
+		portNumber ++;
+		return portNumber;
+	}
+%]
