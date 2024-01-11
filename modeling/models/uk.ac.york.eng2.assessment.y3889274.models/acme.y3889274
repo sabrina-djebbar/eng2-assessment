@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="Y3889274" name="video-sharing-system">
+  <microservices name="video-microservice">
+    <endpoints name="list-video">
+      <response name="list-video-response" statusCode="200">
+        <body name="videos" type="Set" objectType="//@domains.0"/>
+      </response>
+    </endpoints>
+    <endpoints name="watch-video" method="PUT">
+      <request name="watch-video-request">
+        <body name="videoId" type="Long"/>
+        <body name="userId" type="Long"/>
+      </request>
+      <response name="watch-video-response" statusCode="200"/>
+    </endpoints>
+    <endpoints name="like-video" method="PUT">
+      <request name="like-video-request">
+        <body name="videoId" type="Long"/>
+        <body name="userId" type="Long"/>
+      </request>
+      <response name="like-video-response" statusCode="200"/>
+    </endpoints>
+    <endpoints name="dislike-video" method="PUT">
+      <request name="dislike-video-request">
+        <body name="videoId" type="Long"/>
+        <body name="userId" type="Long"/>
+      </request>
+      <response name="dislike-video-response" statusCode="200"/>
+    </endpoints>
+  </microservices>
+  <microservices name="trending-microservice">
+    <endpoints name="list-trending-hashtags">
+      <response name="list-trending-hashtags-response" statusCode="200">
+        <body name="trending-hashtags" type="Set" objectType="//@domains.1"/>
+      </response>
+    </endpoints>
+  </microservices>
+  <microservices name="subscription-microservice">
+    <endpoints name="list-users">
+      <response name="list-users-response" statusCode="200">
+        <body name="users" type="Set" objectType="//@domains.2"/>
+      </response>
+    </endpoints>
+    <endpoints name="subscribe-to-hashtag" method="PUT">
+      <request name="subscribe-to-hashtag">
+        <body name="hashtag" type="" objectType="//@domains.1"/>
+        <body name="userId" type="Long"/>
+      </request>
+      <response name="subscribe-to-hashtag-response" statusCode="200"/>
+    </endpoints>
+    <endpoints name="unsubscribe-to-hashtag" method="PUT">
+      <request name="unsubscribe-to-hashtag">
+        <body name="hashtag" type="" objectType="//@domains.1"/>
+        <body name="userId" type="Long"/>
+      </request>
+      <response name="unsubscribe-to-hashtag-response" statusCode="200"/>
+    </endpoints>
+    <endpoints name="list-videos-to-watch">
+      <request name="list-videos-to-watch-request">
+        <body name="hashtag" type="" objectType="//@domains.1"/>
+        <body name="userId" type="Long"/>
+      </request>
+      <response name="list-videos-to-watch-response">
+        <body name="videos" type="Set" objectType="//@domains.0"/>
+      </response>
+    </endpoints>
+  </microservices>
+  <events name="video-post">
+    <fields name="videoId" type="Long"/>
+    <fields name="video" objectType="//@domains.0"/>
+  </events>
+  <events name="video-watch">
+    <fields name="Video" type="" objectType="//@domains.0"/>
+    <fields name="User" objectType="//@domains.2"/>
+  </events>
+  <events name="video-like">
+    <fields name="videoId" type="Long"/>
+    <fields name="hashtags"/>
+  </events>
+  <events name="video-dislike">
+    <fields name="videoId" type="Long"/>
+    <fields name="hashtags"/>
+  </events>
+  <events name="user-subscribe">
+    <fields name="userId" type="Long"/>
+    <fields name="hashtag" objectType="//@domains.1"/>
+  </events>
+  <events name="user-unsubscribe">
+    <fields name="userId" type="Long"/>
+    <fields name="hashtag" objectType="//@domains.1"/>
+  </events>
+  <eventStreams name="video-posted" event="//@events.0" subscriber="//@microservices.2" publisher="//@microservices.0"/>
+  <eventStreams name="video-liked" event="//@events.2" subscriber="//@microservices.1" publisher="//@microservices.0"/>
+  <eventStreams name="video-disliked" event="//@events.3" subscriber="//@microservices.1" publisher="//@microservices.0"/>
+  <eventStreams name="video-watched" event="//@events.1" subscriber="//@microservices.2" publisher="//@microservices.0"/>
+  <eventStreams name="user-subscribed" event="//@events.4" subscriber="//@microservices.2" publisher="//@microservices.2"/>
+  <eventStreams name="user-unsubscribed" event="//@events.5" subscriber="//@microservices.2" publisher="//@microservices.2"/>
+  <domains name="Video">
+    <fields name="id" type="Long"/>
+    <fields name="title" type="String"/>
+    <fields name="hashtags" type="set" objectType="//@domains.1"/>
+    <fields name="likes" type="Set" objectType="//@domains.2"/>
+    <fields name="dislikes" type="Set" objectType="//@domains.2"/>
+    <fields name="views" type="Set" objectType="//@domains.2"/>
+  </domains>
+  <domains name="Hashtag">
+    <fields name="id" type="Long"/>
+    <fields name="name" type="string"/>
+  </domains>
+  <domains name="User">
+    <fields name="id" type="Long"/>
+    <fields name="username" type="String"/>
+  </domains>
+</System>
