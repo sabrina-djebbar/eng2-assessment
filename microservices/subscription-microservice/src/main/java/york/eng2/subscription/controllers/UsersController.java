@@ -48,7 +48,8 @@ public class UsersController {
 	}
 
 	@Get("/{username}/tag/{tag}")
-	public Iterable<Video> getNextVideosToWatch() {
+	public Iterable<Video> getNextVideosToWatch(String username, String tag) {
+		System.out.printf("user" + username + "tag" + tag);
 		return videoRepo.findAll();
 	}
 

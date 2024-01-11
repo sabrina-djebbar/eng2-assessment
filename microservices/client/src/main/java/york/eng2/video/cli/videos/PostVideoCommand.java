@@ -7,7 +7,7 @@ import picocli.CommandLine.Parameters;
 import york.eng2.video.cli.dto.VideoDTO;
 
 @Command(name = "post-video", description = "post a new video", mixinStandardHelpOptions = true)
-public class AddVideoCommand implements Runnable {
+public class PostVideoCommand implements Runnable {
 	@Inject
 	VideosClient client;
 
@@ -27,6 +27,7 @@ public class AddVideoCommand implements Runnable {
 		dto.setTags(tags);
 		dto.setUsername(username);
 		HttpResponse<Void> response = client.post(dto);
+		System.out.println("Tags " + tags);
 		System.out.println("Server responded with: " + response.getStatus());
 	}
 }

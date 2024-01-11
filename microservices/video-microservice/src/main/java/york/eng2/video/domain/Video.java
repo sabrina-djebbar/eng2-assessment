@@ -2,7 +2,6 @@ package york.eng2.video.domain;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -27,19 +29,19 @@ public class Video {
 	@Column(nullable = false)
 	private String title;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_hashtag")
 	private Set<Hashtag> hashtags;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_user_likes")
 	private Set<User> likes;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_user_dislikes")
 	private Set<User> dislikes;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_user_views")
 	private Set<User> viewers;
 
@@ -65,10 +67,6 @@ public class Video {
 
 	public Set<Hashtag> getHashtags() {
 		return hashtags;
-	}
-
-	public String getStringTags() {
-		return hashtags.stream().map(Hashtag::getName).collect(Collectors.joining(","));
 	}
 
 	public void setHashtags(Hashtag tag) {

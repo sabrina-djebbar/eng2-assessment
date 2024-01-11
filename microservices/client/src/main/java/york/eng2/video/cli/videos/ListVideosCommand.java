@@ -4,8 +4,8 @@ import jakarta.inject.Inject;
 import picocli.CommandLine.Command;
 import york.eng2.video.cli.domain.Video;
 
-@Command(name = "get-videos", description = "list next videos to watch", mixinStandardHelpOptions = true)
-public class GetVideosCommand implements Runnable {
+@Command(name = "list-videos", description = "lists all videos posted", mixinStandardHelpOptions = true)
+public class ListVideosCommand implements Runnable {
 
 	@Inject
 	VideosClient client;
@@ -14,6 +14,7 @@ public class GetVideosCommand implements Runnable {
 	public void run() {
 		for (Video v : client.list()) {
 			System.out.println(v);
+
 		}
 	}
 

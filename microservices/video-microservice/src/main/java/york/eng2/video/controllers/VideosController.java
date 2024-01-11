@@ -61,6 +61,7 @@ public class VideosController {
 	@Get("/")
 	public Iterable<Video> list() {
 		return repo.findAll();
+
 	}
 
 	@Get("/{id}")
