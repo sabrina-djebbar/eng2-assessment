@@ -1,0 +1,20 @@
+rule System2Docker transform s : System {
+	template: "system2docker.egl"
+	parameters: Map {
+		"portNumber" = 8080
+	}
+	target: "src-gen/docker-compose.yml"
+}
+
+rule Microservice2SQL 
+	transform m : Microservice {
+
+	template : "microservice2database.egl"
+
+	parameters : Map{
+		"m" = m.eContainer()
+	}
+
+	target : "src-gen/init/001.sql"
+}
+
