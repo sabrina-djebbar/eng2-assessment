@@ -1,5 +1,6 @@
 package york.eng2.video.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -66,6 +67,9 @@ public class Video {
 	}
 
 	public void setHashtags(Hashtag tag) {
+		if (this.hashtags == null) {
+			this.hashtags = new HashSet<>();
+		}
 		this.hashtags.add(tag);
 	}
 
