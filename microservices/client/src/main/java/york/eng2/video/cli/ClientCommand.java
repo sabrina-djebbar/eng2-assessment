@@ -4,6 +4,7 @@ import io.micronaut.configuration.picocli.PicocliRunner;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import york.eng2.video.cli.trending.GetHashtagsCommand;
+import york.eng2.video.cli.trending.ListTrendingHashtagsCommand;
 import york.eng2.video.cli.users.AddUserCommand;
 import york.eng2.video.cli.users.DeleteUserCommand;
 import york.eng2.video.cli.users.GetUserCommand;
@@ -20,7 +21,8 @@ import york.eng2.video.cli.videos.WatchVideoCommand;
 @Command(name = "client", description = "...", mixinStandardHelpOptions = true, subcommands = { ListVideosCommand.class,
 		PostVideoCommand.class, GetVideoCommand.class, WatchVideoCommand.class, LikeVideoCommand.class,
 		DislikeVideoCommand.class, ListVideosByUserCommand.class, AddUserCommand.class, GetUserCommand.class,
-		GetUsersCommand.class, DeleteUserCommand.class, UpdateUserCommand.class, GetHashtagsCommand.class })
+		GetUsersCommand.class, DeleteUserCommand.class, UpdateUserCommand.class, GetHashtagsCommand.class,
+		ListTrendingHashtagsCommand.class })
 public class ClientCommand implements Runnable {
 
 	@Option(names = { "-v", "--verbose" }, description = "...")

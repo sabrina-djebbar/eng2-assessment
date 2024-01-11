@@ -1,6 +1,5 @@
 package york.eng2.video.domain;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,9 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -70,9 +66,6 @@ public class Video {
 	}
 
 	public void setHashtags(Hashtag tag) {
-		if (this.hashtags == null) {
-			this.hashtags = new HashSet<>();
-		}
 		this.hashtags.add(tag);
 	}
 
@@ -81,9 +74,6 @@ public class Video {
 	}
 
 	public void setLikes(User user) {
-		if (this.likes == null) {
-			this.likes = new HashSet<User>();
-		}
 		this.likes.add(user);
 	}
 

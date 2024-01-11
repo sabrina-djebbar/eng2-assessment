@@ -35,6 +35,13 @@
     "allPublicMethods" : true
   },
   {
+    "name" : "york.eng2.video.cli.trending.ListTrendingHashtagsCommand",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true
+  },
+  {
     "name" : "york.eng2.video.cli.users.AddUserCommand",
     "allDeclaredConstructors" : true,
     "allPublicConstructors" : true,
