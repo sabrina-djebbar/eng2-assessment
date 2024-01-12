@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.micronaut.serde.annotation.Serdeable;
 
 @Entity
@@ -22,6 +24,11 @@ public class User {
 	@Column(nullable = false)
 	private String username;
 
+	@JsonIgnore
+	@ManyToMany(mappedBy = "views")
+	private Set<Video> viewedVideos = new HashSet<>();
+
+	@JsonIgnore
 	@ManyToMany(mappedBy = "subscribers")
 	private Set<Hashtag> subscribedTo = new HashSet<>();;
 
@@ -53,4 +60,11 @@ public class User {
 		this.subscribedTo.remove(tag);
 	}
 
+	public Set<Video> getViewedVideos() {
+		return viewedVideos;
+	}
+
+	public void setViewedVideos(Video video) {
+		this.viewedVideos.add(video);
+	}
 }

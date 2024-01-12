@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.micronaut.serde.annotation.Serdeable;
 
 @Entity
@@ -20,6 +22,7 @@ public class Hashtag {
 	@Column(nullable = false)
 	private String name;
 
+	@JsonIgnore
 	@ManyToMany
 	private Set<User> subscribers;
 

@@ -1,6 +1,9 @@
 package york.eng2.subscription.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -47,10 +50,37 @@ public class UsersController {
 		return repo.findAll();
 	}
 
-	@Get("/{username}/tag/{tag}")
-	public Iterable<Video> getNextVideosToWatch(String username, String tag) {
-		System.out.printf("user" + username + "tag" + tag);
+	@Get("/videos")
+	public Iterable<Video> listVideos() {
 		return videoRepo.findAll();
+	}
+
+	@Get("/{username}/tag/{tag}")
+	public List<Video> getNextVideosToWatch(String username, String tag) {
+		ArrayList<Video> vList = new ArrayList<Video>();
+
+		Optional<Hashtag> hashtag = hashtagRepo.findByName(tag);
+		if (hashtag.isEmpty()) {
+			System.out.printf("Hashtag not found");
+			return null;
+		}
+
+		// would be good if you could find it through an sql query
+		Iterable<Video> videos = videoRepo.findAll();
+
+		// add videos
+		for (Video video : videos) {
+			System.out.printf("videos found " + video.getViews().size() + "%n");
+			Set<Hashtag> hashtags = video.getHashtags();
+			for (Hashtag videoTag : hashtags) {
+				if (tag.matches(videoTag.getName())) {
+					vList.add(video);
+				}
+			}
+		}
+		vList.sort((v1, v2) -> v2.getViews().size() - v1.getViews().size());
+
+		return vList.subList(0, vList.size() > 9 ? 9 : vList.size());
 	}
 
 	@Transactional

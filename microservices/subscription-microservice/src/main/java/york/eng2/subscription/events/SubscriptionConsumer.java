@@ -68,6 +68,20 @@ public class SubscriptionConsumer {
 		videoRepo.save(video);
 	}
 
+	@Topic("video-watch")
+	public void watchVideo(@KafkaKey Long id, String username) {
+		Optional<Video> v = videoRepo.findById(id);
+		if (v.isEmpty()) {
+			System.out.printf("Video not found");
+			return;
+		}
+		Video video = v.get();
+		User user = getUser(username);
+		video.setViews(user);
+		videoRepo.save(video);
+		System.out.printf("video %d watched by user %s%n", id, username);
+	}
+
 	@Topic(SubscriptionProducer.TOPIC_USER_SUBSCRIBE)
 	public void userSubscribe(@KafkaKey Long id, Hashtag tag) {
 		String tagName = tag.getName();
@@ -94,7 +108,7 @@ public class SubscriptionConsumer {
 
 	}
 
-	@Topic(SubscriptionStreams.TOPIC_HASHTAGS_BY_DAY)
+	@Topic(SubscriptionStreams.TOPIC_VIEWS_BY_HOUR)
 	public void hashtagsSubscribedMetric(@KafkaKey WindowedIdentifier window, Long count) {
 		System.out.printf("New value for key %s: %d%n", window, count);
 	}

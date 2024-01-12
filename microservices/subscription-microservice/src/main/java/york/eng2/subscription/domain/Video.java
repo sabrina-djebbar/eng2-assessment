@@ -27,9 +27,13 @@ public class Video {
 	@Column(nullable = false)
 	private String title;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_hashtag")
 	private Set<Hashtag> hashtags;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "video_user_views")
+	private Set<User> views;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(nullable = false)
@@ -55,7 +59,7 @@ public class Video {
 		return hashtags;
 	}
 
-	public String getStringTags() {
+	public String formatStringTags() {
 		return hashtags.stream().map(Hashtag::getName).collect(Collectors.joining(","));
 
 	}
@@ -65,6 +69,17 @@ public class Video {
 			this.hashtags = new HashSet<>();
 		}
 		this.hashtags.add(tag);
+	}
+
+	public Set<User> getViews() {
+		return views;
+	}
+
+	public void setViews(User viewer) {
+		if (this.views == null) {
+			this.views = new HashSet<>();
+		}
+		this.views.add(viewer);
 	}
 
 	public User getUser() {

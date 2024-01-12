@@ -16,32 +16,31 @@ import io.micronaut.configuration.kafka.streams.ConfiguredStreamBuilder;
 import io.micronaut.context.annotation.Factory;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-import york.eng2.subscription.domain.Hashtag;
+import york.eng2.subscription.domain.User;
 
 @Factory
 public class SubscriptionStreams {
-	public static final String TOPIC_HASHTAGS_BY_DAY = "subscription-hashtags-per-hour";
+	public static final String TOPIC_VIEWS_BY_HOUR = "subscription-views-per-hour";
 
 	@Inject
 	private SerdeRegistry serdeRegistry;
 
 	@Singleton
-	public KStream<WindowedIdentifier, Long> videosPerHour(ConfiguredStreamBuilder builder) {
+	public KStream<WindowedIdentifier, Long> viewsPerHour(ConfiguredStreamBuilder builder) {
 		Properties props = builder.getConfiguration();
 		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "subscription-metrics");
 
 		props.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.EXACTLY_ONCE);
 
-		KStream<Long, Hashtag> subscriptionStream = builder.stream(SubscriptionProducer.TOPIC_USER_SUBSCRIBE,
-				Consumed.with(Serdes.Long(), serdeRegistry.getSerde(Hashtag.class)));
+		KStream<Long, User> subscriptionStream = builder.stream("video-watch",
+				Consumed.with(Serdes.Long(), serdeRegistry.getSerde(User.class)));
 
 		KStream<WindowedIdentifier, Long> stream = subscriptionStream.groupByKey()
 				.windowedBy(TimeWindows.of(Duration.ofHours(1)).advanceBy(Duration.ofHours(1)))
-				.count(Materialized.as("hashtags-per-hour")).toStream()
+				.count(Materialized.as("views-per-hour")).toStream()
 				.selectKey((k, v) -> new WindowedIdentifier(k.key(), k.window().start(), k.window().end()));
 
-		stream.to(TOPIC_HASHTAGS_BY_DAY,
-				Produced.with(serdeRegistry.getSerde(WindowedIdentifier.class), Serdes.Long()));
+		stream.to(TOPIC_VIEWS_BY_HOUR, Produced.with(serdeRegistry.getSerde(WindowedIdentifier.class), Serdes.Long()));
 
 		return stream;
 	}

@@ -152,9 +152,7 @@ public class VideosController {
 		v.setViewers(u);
 		repo.update(v);
 
-		Long userId = u.getId();
-
-		producer.watchVideo(videoId, userId);
+		producer.watchVideo(videoId, username);
 		return HttpResponse.ok();
 	}
 
