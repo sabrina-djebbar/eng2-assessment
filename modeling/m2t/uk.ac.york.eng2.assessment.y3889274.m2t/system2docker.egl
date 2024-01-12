@@ -42,7 +42,7 @@ services:
 %]
 
 [%
-	operation getPortNumber(): String{
+	operation Integer getPortNumber(): String{
 		portNumber ++;
 		return portNumber.toString();
 	}
