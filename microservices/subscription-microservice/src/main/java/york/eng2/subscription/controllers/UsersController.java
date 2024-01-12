@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -70,12 +71,12 @@ public class UsersController {
 
 		// add videos
 		for (Video video : videos) {
-			System.out.printf("videos found " + video.getViews().size() + "%n");
-			Set<Hashtag> hashtags = video.getHashtags();
-			for (Hashtag videoTag : hashtags) {
-				if (tag.matches(videoTag.getName())) {
-					vList.add(video);
-				}
+
+			Set<String> viewers = video.getViews().stream().map(User::getUsername).collect(Collectors.toSet());
+			Set<String> tags = video.getHashtags().stream().map(Hashtag::getName).collect(Collectors.toSet());
+
+			if (tags.contains(tag) && !viewers.contains(username)) {
+				vList.add(video);
 			}
 		}
 		vList.sort((v1, v2) -> v2.getViews().size() - v1.getViews().size());

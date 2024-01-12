@@ -78,7 +78,7 @@ public class SubscriptionConsumer {
 		Video video = v.get();
 		User user = getUser(username);
 		video.setViews(user);
-		videoRepo.save(video);
+		videoRepo.update(video);
 		System.out.printf("video %d watched by user %s%n", id, username);
 	}
 
