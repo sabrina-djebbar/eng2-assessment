@@ -1,5 +1,5 @@
 pre{
-var outputDirectory:String = "../../configs/microservices/src-gen";
+var outputDirectory:String = "/src-gen";
 var startingPort: Integer = 8080;
 }
 
@@ -10,6 +10,8 @@ rule System2Docker transform s : System {
 	}
 	target: outputDirectory + "/docker-compose.yml"
 }
+
+
 /*
 rule Microservice2SQL 
 	transform m : Microservice {
