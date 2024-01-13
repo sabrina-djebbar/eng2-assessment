@@ -1,5 +1,5 @@
 pre{
-var outputDirectory:String = "/src-gen";
+var outputDirectory:String = "../../configs/microservices/src-gen";
 var startingPort: Integer = 8080;
 }
 
