@@ -1,11 +1,16 @@
+pre{
+var outputDirectory:String = "../../configs/microservices/src-gen";
+var startingPort: Integer = 8080;
+}
+
 rule System2Docker transform s : System {
 	template: "system2docker.egl"
 	parameters: Map {
-		"portNumber" = 8080
+		"portNumber" = startingPort
 	}
-	target: "src-gen/docker-compose.yml"
+	target: outputDirectory + "/docker-compose.yml"
 }
-
+/*
 rule Microservice2SQL 
 	transform m : Microservice {
 
@@ -15,6 +20,6 @@ rule Microservice2SQL
 		"m" = m.eContainer()
 	}
 
-	target : "src-gen/init/001.sql"
-}
+	target : outputDirectory+"/init/001.sql"
+}*/
 

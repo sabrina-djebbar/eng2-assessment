@@ -1,4 +1,4 @@
-@namespace(uri="Y3889274", prefix="")
+@namespace(uri="Y3889274", prefix="Y3889274")
 package Y3889274;
 
 class System {

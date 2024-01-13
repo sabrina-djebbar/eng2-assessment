@@ -8,8 +8,6 @@ services:
       MARIADB_DATABASE: &dbname video
     volumes:
       - mariadb_data:/var/lib/mysql
-    ports:
-      - 3306:3306
     healthcheck:
       # https://github.com/docker-library/healthcheck/blob/master/mysql/Dockerfile.mariadb
       test: ['CMD', 'healthcheck.sh', '--su=mysql', '--connect', '--innodb_initialized']
@@ -37,7 +35,7 @@ services:
 
 [%
 	operation Microservice getMicroserviceName(): String{
-		return self.name;
+		return self.name.strip("-microservice");
 	}
 %]
 
