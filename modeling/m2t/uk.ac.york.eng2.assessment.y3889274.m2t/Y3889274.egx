@@ -24,4 +24,4 @@ rule Microservice2SQL
 
 	target : outputDirectory+"/init/001.sql"
 }*/
-
+ 
