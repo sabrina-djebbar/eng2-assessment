@@ -1,0 +1,28 @@
+micronaut:
+  application:
+    name: subcriptionMicroservice
+datasources:
+  default:
+    driver-class-name: org.mariadb.jdbc.Driver
+    db-type: mariadb
+    dialect: MYSQL
+    url: jdbc:mariadb://${DB_HOST:db}/${DB_NAME:subscription}
+    username: ${DB_USER:todo}
+    password: ${DB_PASSWORD:todosecret}   
+jpa:
+  default:
+    entity-scan:
+        packages:
+            - york.eng2.subscription.domain
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true
+netty:
+  default:
+    allocator:
+      max-order: 3
+kafka:
+  bootstrap:
+    servers: ${KAFKA_BOOTSTRAP_SERVERS:`localhost:9094`}

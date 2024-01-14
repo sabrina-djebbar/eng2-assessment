@@ -2,7 +2,6 @@ package york.eng2.video.domain;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,19 +26,15 @@ public class Video {
 	@Column(nullable = false)
 	private String title;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_hashtag")
 	private Set<Hashtag> hashtags;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_user_likes")
 	private Set<User> likes;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "video_user_dislikes")
-	private Set<User> dislikes;
-
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_user_views")
 	private Set<User> viewers;
 
@@ -67,11 +62,6 @@ public class Video {
 		return hashtags;
 	}
 
-	public String getStringTags() {
-		return hashtags.stream().map(Hashtag::getName).collect(Collectors.joining(","));
-
-	}
-
 	public void setHashtags(Hashtag tag) {
 		if (this.hashtags == null) {
 			this.hashtags = new HashSet<>();
@@ -84,18 +74,11 @@ public class Video {
 	}
 
 	public void setLikes(User user) {
-		if (this.likes == null) {
-			this.likes = new HashSet<User>();
-		}
 		this.likes.add(user);
 	}
 
-	public Set<User> getDislikes() {
-		return dislikes;
-	}
-
 	public void setDislikes(User user) {
-		this.dislikes.add(user);
+		this.likes.remove(user);
 	}
 
 	public Set<User> getViewers() {

@@ -3,23 +3,30 @@ package york.eng2.video.cli;
 import io.micronaut.configuration.picocli.PicocliRunner;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
+import york.eng2.video.cli.subscription.GetRecommendedVideosCommand;
+import york.eng2.video.cli.subscription.SubscribeHashtagCommand;
+import york.eng2.video.cli.subscription.UnsubscribeHashtagCommand;
 import york.eng2.video.cli.trending.GetHashtagsCommand;
+import york.eng2.video.cli.trending.ListTrendingHashtagsCommand;
 import york.eng2.video.cli.users.AddUserCommand;
 import york.eng2.video.cli.users.DeleteUserCommand;
 import york.eng2.video.cli.users.GetUserCommand;
 import york.eng2.video.cli.users.GetUsersCommand;
 import york.eng2.video.cli.users.UpdateUserCommand;
-import york.eng2.video.cli.videos.AddVideoCommand;
 import york.eng2.video.cli.videos.DislikeVideoCommand;
 import york.eng2.video.cli.videos.GetVideoCommand;
-import york.eng2.video.cli.videos.GetVideosCommand;
 import york.eng2.video.cli.videos.LikeVideoCommand;
+import york.eng2.video.cli.videos.ListVideosByUserCommand;
+import york.eng2.video.cli.videos.ListVideosCommand;
+import york.eng2.video.cli.videos.PostVideoCommand;
 import york.eng2.video.cli.videos.WatchVideoCommand;
 
-@Command(name = "client", description = "...", mixinStandardHelpOptions = true, subcommands = { GetVideosCommand.class,
-		AddVideoCommand.class, GetVideoCommand.class, WatchVideoCommand.class, LikeVideoCommand.class,
-		DislikeVideoCommand.class, AddUserCommand.class, GetUserCommand.class, GetUsersCommand.class,
-		DeleteUserCommand.class, UpdateUserCommand.class, GetHashtagsCommand.class })
+@Command(name = "client", description = "...", mixinStandardHelpOptions = true, subcommands = { ListVideosCommand.class,
+		PostVideoCommand.class, GetVideoCommand.class, WatchVideoCommand.class, LikeVideoCommand.class,
+		DislikeVideoCommand.class, ListVideosByUserCommand.class, AddUserCommand.class, GetUserCommand.class,
+		GetUsersCommand.class, DeleteUserCommand.class, UpdateUserCommand.class, GetHashtagsCommand.class,
+		ListTrendingHashtagsCommand.class, SubscribeHashtagCommand.class, UnsubscribeHashtagCommand.class,
+		GetRecommendedVideosCommand.class })
 public class ClientCommand implements Runnable {
 
 	@Option(names = { "-v", "--verbose" }, description = "...")

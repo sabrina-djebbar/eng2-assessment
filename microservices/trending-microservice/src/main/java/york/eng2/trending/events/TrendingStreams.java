@@ -20,13 +20,14 @@ import york.eng2.trending.domain.Hashtag;
 
 @Factory
 public class TrendingStreams {
-	public static final String TOPIC_MOST_LIKED_BY_HOUR = "most-liked-by-hour";
+
+	public static final String TOPIC_MOST_LIKED_BY_HOUR = "tags-liked-by-hour";
 
 	@Inject
 	private SerdeRegistry serdeRegistry;
 
 	@Singleton
-	public KStream<WindowedIdentifier, Long> likedByDay(ConfiguredStreamBuilder builder) {
+	public KStream<WindowedIdentifier, Long> likedByHour(ConfiguredStreamBuilder builder) {
 		Properties props = builder.getConfiguration();
 		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "trending-metrics");
 

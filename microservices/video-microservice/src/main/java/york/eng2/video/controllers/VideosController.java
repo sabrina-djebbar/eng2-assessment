@@ -61,6 +61,7 @@ public class VideosController {
 	@Get("/")
 	public Iterable<Video> list() {
 		return repo.findAll();
+
 	}
 
 	@Get("/{id}")
@@ -95,7 +96,8 @@ public class VideosController {
 		video.setUser(user);
 
 		repo.save(video);
-		producer.postVideo(video.getId(), videoDetails.getTags());
+		producer.postVideo(video.getId(), videoDetails);
+
 		return HttpResponse.created(URI.create("/videos/" + video.getId()));
 	}
 
@@ -150,9 +152,7 @@ public class VideosController {
 		v.setViewers(u);
 		repo.update(v);
 
-		Long userId = u.getId();
-
-		producer.watchVideo(videoId, userId);
+		producer.watchVideo(videoId, username);
 		return HttpResponse.ok();
 	}
 

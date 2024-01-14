@@ -1,7 +1,7 @@
 package york.eng2.video.cli.domain;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -43,13 +43,12 @@ public class Video {
 	}
 
 	public void setHashtags(Hashtag tag) {
-		System.out.println("tag" + tag.getName());
-		if (this.hashtags == null) {
-			System.out.println("no tags yet");
-			this.hashtags = new HashSet<>();
-		}
-		System.out.println(this.hashtags);
+		System.out.printf("set tags ", tag);
 		this.hashtags.add(tag);
+	}
+
+	public String formatStringTags() {
+		return hashtags.stream().map(Hashtag::getName).collect(Collectors.joining(","));
 	}
 
 	public Set<User> getLikes() {
@@ -86,7 +85,7 @@ public class Video {
 
 	@Override
 	public String toString() {
-		return "Video = " + id + ", title=" + title + ", tags= [" + (hashtags == null ? "no tags" : hashtags)
+		return "Video = " + id + ", title=" + title + ", tags= [" + (hashtags == null ? "no tags" : formatStringTags())
 				+ "], likes = " + (likes == null ? "0" : likes.size()) + ", dislikes = "
 				+ (dislikes == null ? "0" : dislikes.size()) + ", views = " + (viewers == null ? "0" : viewers.size())
 				+ ", user = " + user.getUsername();

@@ -15,11 +15,11 @@ public interface TrendingClient {
 	@Get("/")
 	public Iterable<Hashtag> list();
 
-	@Post("/")
-	public HttpResponse<Void> add(@Body HashtagDTO hashtagDetails);
+	@Get("/trending")
+	public Iterable<Hashtag> listTrendingHashtags();
 
 	@Post("/")
-	public Hashtag createHashtag(@Body HashtagDTO hashtagDetails);
+	public HttpResponse<Void> add(@Body HashtagDTO hashtagDetails);
 
 	@Get("/{id}")
 	public Hashtag getHashtag(long id);

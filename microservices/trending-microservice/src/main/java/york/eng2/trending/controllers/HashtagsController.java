@@ -41,15 +41,6 @@ public class HashtagsController {
 		return repo.findById(id).orElse(null);
 	}
 
-	@Post("/")
-	public Hashtag createHashtag(@Body HashtagDTO hashtagDetails) {
-		Hashtag hashtag = new Hashtag();
-		hashtag.setName(hashtagDetails.getName());
-
-		repo.save(hashtag);
-		return hashtag;
-	};
-
 	@Transactional
 	@Put("/{id}")
 	public HttpResponse<Void> updateHashtag(long id, @Body HashtagDTO hashtagDetails) {
@@ -71,4 +62,8 @@ public class HashtagsController {
 		return repo.findByName(name).orElse(null);
 	}
 
+	@Get("/trending")
+	public Iterable<Hashtag> listTrendingHashtags() {
+		return repo.findAll();
+	}
 }

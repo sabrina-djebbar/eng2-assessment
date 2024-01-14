@@ -26,15 +26,11 @@ public class User {
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "likes")
-	private Set<Video> likedVideos = new HashSet<>();;
-
-	@JsonIgnore
-	@ManyToMany(mappedBy = "dislikes")
-	private Set<Video> dislikedVideos = new HashSet<>();;
+	private Set<Video> likedVideos = new HashSet<>();
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "viewers")
-	private Set<Video> viewedVideos = new HashSet<>();;
+	private Set<Video> viewedVideos = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -60,12 +56,8 @@ public class User {
 		this.likedVideos.add(video);
 	}
 
-	public Set<Video> getDislikedVideos() {
-		return dislikedVideos;
-	}
-
 	public void setDislikedVideos(Video video) {
-		this.dislikedVideos.add(video);
+		this.likedVideos.remove(video);
 	}
 
 	public Set<Video> getViewedVideos() {
