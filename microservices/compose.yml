@@ -62,7 +62,7 @@ services:
       kafka-0:
         condition: service_healthy
 
-  # built with './gradlew dockerBuild'
+  # built with  './gradlew dockerBuild'
   subscription:
     image: subscription-microservice:latest
     ports:
