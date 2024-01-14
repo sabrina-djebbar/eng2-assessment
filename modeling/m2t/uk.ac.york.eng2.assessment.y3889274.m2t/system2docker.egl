@@ -21,7 +21,7 @@ services:
   [%=microservice.getMicroserviceName()%]:
     image: [%=microservice.name%]:latest
     ports:
-      [%=portNumber.getPortNumber(Microservice.all.indexOf(microservice))%]:8080
+      - [%=portNumber.getPortNumber(Microservice.all.indexOf(microservice))%]:8080
     environment:
       DB_HOST: db
       DB_USER: *dbuser

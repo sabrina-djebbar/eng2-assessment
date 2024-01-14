@@ -20,7 +20,7 @@ services:
   video:
     image: video-microservice:latest
     ports:
-      8080:8080
+      - 8080:8080
     environment:
       DB_HOST: db
       DB_USER: *dbuser
@@ -37,7 +37,7 @@ services:
   trending:
     image: trending-microservice:latest
     ports:
-      8081:8080
+      - 8081:8080
     environment:
       DB_HOST: db
       DB_USER: *dbuser
@@ -54,7 +54,7 @@ services:
   subscription:
     image: subscription-microservice:latest
     ports:
-      8082:8080
+      - 8082:8080
     environment:
       DB_HOST: db
       DB_USER: *dbuser
