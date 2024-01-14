@@ -1,8 +1,4 @@
-# Docker Compose file for integration testing of the
-# video-microservices Docker image.
-
 services:
-  # Our database management system
   db:
     image: mariadb:11
     restart: unless-stopped
@@ -20,16 +16,16 @@ services:
       timeout: 10s
       retries: 3
 
-  # built with './gradlew dockerBuild'
+
   video:
     image: video-microservice:latest
     ports:
-      - 8080:8080
+      8080:8080
     environment:
       DB_HOST: db
       DB_USER: *dbuser
       DB_PASSWORD: *dbpass
-      DB_NAME: *dbname
+      DB_NAME: video
       KAFKA_BOOTSTRAP_SERVERS: kafka-0:9092,kafka-1:9092,kafka-2:9092
       MICRONAUT_ENVIRONMENTS: prod
     depends_on:
@@ -37,12 +33,11 @@ services:
         condition: service_healthy
       kafka-0:
         condition: service_healthy
- 
-  # built with './gradlew dockerBuild'
+
   trending:
     image: trending-microservice:latest
     ports:
-      - 8081:8080
+      8081:8080
     environment:
       DB_HOST: db
       DB_USER: *dbuser
@@ -56,11 +51,10 @@ services:
       kafka-0:
         condition: service_healthy
 
-  # built with  './gradlew dockerBuild'
   subscription:
     image: subscription-microservice:latest
     ports:
-      - 8082:8080
+      8082:8080
     environment:
       DB_HOST: db
       DB_USER: *dbuser
@@ -101,7 +95,7 @@ services:
       test: ['CMD-SHELL', 'unset KAFKA_JMX_OPTS; export JMX_PORT=9999; kafka-topics.sh --bootstrap-server localhost:9092 --topic hc --create --if-not-exists && kafka-topics.sh --bootstrap-server localhost:9092 --topic hc --describe']
       timeout: 10s
       retries: 3
-    
+
   kafka-1:
     image: docker.io/bitnami/kafka:3.5
     environment:
@@ -121,14 +115,18 @@ services:
       - KAFKA_CFG_DEFAULT_REPLICATION_FACTOR=3
       # JMX port for metrics
       - JMX_PORT=9997
-      - KAFKA_JMX_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka-1 -Dcom.sun.management.jmxremote.rmi.port=9997
+      - KAFKA_JMX_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka-0 -Dcom.sun.management.jmxremote.rmi.port=9997
     volumes:
       - kafka_1_data:/bitnami/kafka
-  
+    healthcheck:
+      test: ['CMD-SHELL', 'unset KAFKA_JMX_OPTS; export JMX_PORT=9999; kafka-topics.sh --bootstrap-server localhost:9092 --topic hc --create --if-not-exists && kafka-topics.sh --bootstrap-server localhost:9092 --topic hc --describe']
+      timeout: 10s
+      retries: 3
+
   kafka-2:
     image: docker.io/bitnami/kafka:3.5
     environment:
-      # KRaft settings
+      # Kraft settings
       - KAFKA_CFG_NODE_ID=2
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093,2@kafka-2:9093
@@ -144,9 +142,13 @@ services:
       - KAFKA_CFG_DEFAULT_REPLICATION_FACTOR=3
       # JMX port for metrics
       - JMX_PORT=9997
-      - KAFKA_JMX_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka-2 -Dcom.sun.management.jmxremote.rmi.port=9997
+      - KAFKA_JMX_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka-0 -Dcom.sun.management.jmxremote.rmi.port=9997
     volumes:
       - kafka_2_data:/bitnami/kafka
+    healthcheck:
+      test: ['CMD-SHELL', 'unset KAFKA_JMX_OPTS; export JMX_PORT=9999; kafka-topics.sh --bootstrap-server localhost:9092 --topic hc --create --if-not-exists && kafka-topics.sh --bootstrap-server localhost:9092 --topic hc --describe']
+      timeout: 10s
+      retries: 3
 
 volumes:
   mariadb_data:

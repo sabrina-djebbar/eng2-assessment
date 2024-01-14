@@ -6,22 +6,14 @@ var startingPort: Integer = 8080;
 rule System2Docker transform s : System {
 	template: "system2docker.egl"
 	parameters: Map {
-		"portNumber" = startingPort
+		"portNumber" = startingPort,
+		"kafkaNodes" = 3
 	}
-	target: outputDirectory + "/docker-compose.yml"
+	target: outputDirectory + "/compose.yml"
 }
 
-
-/*
-rule Microservice2SQL 
-	transform m : Microservice {
-
-	template : "microservice2database.egl"
-
-	parameters : Map{
-		"m" = m.eContainer()
-	}
-
-	target : outputDirectory+"/init/001.sql"
-}*/
- 
+rule System2Database transform s : System {
+	template: "system2database.egl"
+	
+	target: outputDirectory + "/init/01.sql"
+}
