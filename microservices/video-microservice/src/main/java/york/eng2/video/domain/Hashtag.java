@@ -49,5 +49,4 @@ public class Hashtag {
 	public void setTaggedVideos(Video video) {
 		this.taggedVideos.add(video);
 	}
-
 }

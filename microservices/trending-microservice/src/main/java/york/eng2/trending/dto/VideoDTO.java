@@ -1,10 +1,9 @@
-package york.eng2.video.cli.dto;
+package york.eng2.trending.dto;
 
 import io.micronaut.serde.annotation.Serdeable;
 
 @Serdeable
 public class VideoDTO {
-
 	private String title;
 	private String tags;
 	private String username;
@@ -33,8 +32,4 @@ public class VideoDTO {
 		this.username = username;
 	}
 
-	@Override
-	public String toString() {
-		return "Video [title= " + title + ", tags= [" + tags + "],  user=" + username + "]";
-	}
 }

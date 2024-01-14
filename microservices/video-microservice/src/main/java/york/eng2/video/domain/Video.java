@@ -2,6 +2,7 @@ package york.eng2.video.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,23 +27,23 @@ public class Video {
 	@Column(nullable = false)
 	private String title;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "video_hashtag")
 	private Set<Hashtag> hashtags;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "video_user_likes")
 	private Set<User> likes;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "video_user_dislikes")
 	private Set<User> dislikes;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "video_user_views")
 	private Set<User> viewers;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(nullable = false)
 	private User user;
 
@@ -66,9 +67,14 @@ public class Video {
 		return hashtags;
 	}
 
+	public String getStringTags() {
+		return hashtags.stream().map(Hashtag::getName).collect(Collectors.joining(","));
+
+	}
+
 	public void setHashtags(Hashtag tag) {
 		if (this.hashtags == null) {
-			this.hashtags = new HashSet<>(0);
+			this.hashtags = new HashSet<>();
 		}
 		this.hashtags.add(tag);
 	}
@@ -78,6 +84,9 @@ public class Video {
 	}
 
 	public void setLikes(User user) {
+		if (this.likes == null) {
+			this.likes = new HashSet<User>();
+		}
 		this.likes.add(user);
 	}
 
@@ -89,20 +98,20 @@ public class Video {
 		this.dislikes.add(user);
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public Set<User> getViewers() {
 		return viewers;
 	}
 
 	public void setViewers(User viewer) {
 		this.viewers.add(viewer);
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }
