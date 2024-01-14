@@ -9,7 +9,7 @@ rule System2Docker transform s : System {
 		"portNumber" = startingPort,
 		"kafkaNodes" = 3
 	}
-	target: outputDirectory + "/compose.yml"
+	target: outputDirectory + "/docker-compose.yml"
 }
 
 rule System2Database transform s : System {
