@@ -1,5 +1,7 @@
 package york.eng2.video.cli.domain;
 
+import java.util.Set;
+
 import io.micronaut.serde.annotation.Serdeable;
 
 @Serdeable
@@ -8,6 +10,8 @@ public class Hashtag {
 	private Long id;
 
 	private String name;
+
+	private Set<Video> taggedVideos;
 
 	public Long getId() {
 		return id;
@@ -23,6 +27,14 @@ public class Hashtag {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set<Video> getTaggedVideos() {
+		return taggedVideos;
+	}
+
+	public void setTaggedVideos(Video video) {
+		this.taggedVideos.add(video);
 	}
 
 	@Override

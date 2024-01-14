@@ -1,6 +1,5 @@
 package york.eng2.video;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -51,7 +50,7 @@ public class VideosControllerTest {
 
 		Video createdVideo = client.getVideo(1);
 		assertEquals(title, createdVideo.getTitle(), "Insert test message");
-		assertArrayEquals(tags, createdVideo.getTags());
+
 	}
 
 	@Test

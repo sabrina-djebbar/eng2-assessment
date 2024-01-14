@@ -35,6 +35,13 @@
     "allPublicMethods" : true
   },
   {
+    "name" : "york.eng2.video.cli.trending.ListTrendingHashtagsCommand",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true
+  },
+  {
     "name" : "york.eng2.video.cli.users.AddUserCommand",
     "allDeclaredConstructors" : true,
     "allPublicConstructors" : true,
@@ -83,25 +90,14 @@
     ]
   },
   {
-    "name" : "york.eng2.video.cli.videos.AddVideoCommand",
-    "allDeclaredConstructors" : true,
-    "allPublicConstructors" : true,
-    "allDeclaredMethods" : true,
-    "allPublicMethods" : true,
-    "fields" : [
-      { "name" : "tags" },
-      { "name" : "title" },
-      { "name" : "username" }
-    ]
-  },
-  {
     "name" : "york.eng2.video.cli.videos.DislikeVideoCommand",
     "allDeclaredConstructors" : true,
     "allPublicConstructors" : true,
     "allDeclaredMethods" : true,
     "allPublicMethods" : true,
     "fields" : [
-      { "name" : "id" }
+      { "name" : "id" },
+      { "name" : "username" }
     ]
   },
   {
@@ -115,20 +111,43 @@
     ]
   },
   {
-    "name" : "york.eng2.video.cli.videos.GetVideosCommand",
-    "allDeclaredConstructors" : true,
-    "allPublicConstructors" : true,
-    "allDeclaredMethods" : true,
-    "allPublicMethods" : true
-  },
-  {
     "name" : "york.eng2.video.cli.videos.LikeVideoCommand",
     "allDeclaredConstructors" : true,
     "allPublicConstructors" : true,
     "allDeclaredMethods" : true,
     "allPublicMethods" : true,
     "fields" : [
-      { "name" : "id" }
+      { "name" : "id" },
+      { "name" : "username" }
+    ]
+  },
+  {
+    "name" : "york.eng2.video.cli.videos.ListVideosByUserCommand",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true,
+    "fields" : [
+      { "name" : "username" }
+    ]
+  },
+  {
+    "name" : "york.eng2.video.cli.videos.ListVideosCommand",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true
+  },
+  {
+    "name" : "york.eng2.video.cli.videos.PostVideoCommand",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true,
+    "fields" : [
+      { "name" : "tags" },
+      { "name" : "title" },
+      { "name" : "username" }
     ]
   },
   {
@@ -138,7 +157,7 @@
     "allDeclaredMethods" : true,
     "allPublicMethods" : true,
     "fields" : [
-      { "name" : "userId" },
+      { "name" : "username" },
       { "name" : "videoId" }
     ]
   }
