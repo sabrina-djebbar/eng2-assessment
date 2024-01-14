@@ -35,10 +35,6 @@ public class Video {
 	private Set<User> likes;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "video_user_dislikes")
-	private Set<User> dislikes;
-
-	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "video_user_views")
 	private Set<User> viewers;
 
@@ -81,12 +77,8 @@ public class Video {
 		this.likes.add(user);
 	}
 
-	public Set<User> getDislikes() {
-		return dislikes;
-	}
-
 	public void setDislikes(User user) {
-		this.dislikes.add(user);
+		this.likes.remove(user);
 	}
 
 	public Set<User> getViewers() {
