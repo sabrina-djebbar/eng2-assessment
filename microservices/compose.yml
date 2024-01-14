@@ -20,12 +20,6 @@ services:
       timeout: 10s
       retries: 3
 
-  # Web-based UI for MariaDB, available from http://localhost:9000
-  adminer:
-    image: adminer:4-standalone
-    ports:
-      - 9000:8080
-
   # built with './gradlew dockerBuild'
   video:
     image: video-microservice:latest
