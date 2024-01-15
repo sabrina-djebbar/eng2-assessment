@@ -38,9 +38,11 @@ public class VideosControllerTest {
 	VideosProducer testProducer() {
 		return (key, value) -> {
 			postVideo.put(key, value);
-
+			likeVideo.put(key, value);
+			watchVideo.put(key, value);
+			dislikeVideo.put(key, value);
 		};
-	};
+	}
 
 	@BeforeEach
 	public void clean() {
@@ -70,8 +72,8 @@ public class VideosControllerTest {
 		HttpResponse<Void> response = client.post(video);
 		assertEquals(HttpStatus.CREATED, response.getStatus(), "Update should be successful");
 
-		// Video createdVideo = client.getVideo(1);
-		// assertEquals(title, createdVideo.getTitle(), "Insert test message");
+		Video createdVideo = client.getVideo(1);
+		assertEquals(title, createdVideo.getTitle(), "Insert test message");
 
 	}
 

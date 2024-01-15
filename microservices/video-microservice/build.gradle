@@ -24,6 +24,8 @@ dependencies {
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("jakarta.annotation:jakarta.annotation-api")
     
+    testImplementation("org.awaitility:awaitility:4.2.0")
+        
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 }
