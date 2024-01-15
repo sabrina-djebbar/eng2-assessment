@@ -1,6 +1,8 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.micronaut.application") version "3.7.10"
+    
+    id("jacoco")
 }
 
 version = "0.1"
@@ -43,6 +45,16 @@ micronaut {
         incremental(true)
         annotations("york.eng2.video.*")
     }
+}
+
+test {
+    // report is always generated after tests run
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    // tests are required to run before generating the report
+    dependsOn test
 }
 
 tasks.named("dockerfile") {
