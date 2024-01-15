@@ -6,8 +6,14 @@ cd "./video-microservice" || exit
 # Run './gradlew dockerBuild'
 ./gradlew dockerBuild
 
-# Change directory to video-microservice
+# Change directory to trending-microservice
 cd "../trending-microservice" || exit
+
+# Run './gradlew dockerBuild'
+./gradlew dockerBuild
+
+# Change directory to subscription-microservice
+cd "../subscription-microservice" || exit
 
 # Run './gradlew dockerBuild'
 ./gradlew dockerBuild
