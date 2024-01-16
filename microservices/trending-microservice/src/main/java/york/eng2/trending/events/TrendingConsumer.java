@@ -49,8 +49,8 @@ public class TrendingConsumer {
 	}
 
 	@Topic("video-dislike")
-	public void dislikeVideo(@KafkaKey Long id, Long userId) {
-		System.out.printf("video disliked: %d%n", id);
+	public void dislikeVideo(@KafkaKey Long id, Hashtag tag) {
+		System.out.printf("video disliked: %d %s%n", id, tag.getName());
 	}
 
 	@Topic("video-watch")

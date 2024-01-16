@@ -135,7 +135,9 @@ public class VideosController {
 		v.setDislikes(u);
 		repo.update(v);
 
-		producer.dislikeVideo(id, u.getId());
+		for (Hashtag tag : v.getHashtags()) {
+			producer.dislikeVideo(id, tag);
+		}
 		return HttpResponse.ok();
 	}
 
