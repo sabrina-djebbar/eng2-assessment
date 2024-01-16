@@ -1,5 +1,7 @@
 <project default="main">
 	<target name="main">
+		<delete dir="../microservices/src-gen" />
+		
 		<epsilon.emf.loadModel name="M" 
 			modelfile="../../models/uk.ac.york.eng2.assessment.y3889274.models/acme.y3889274" metamodelfile="../../metamodel/uk.ac.york.eng2.assessment.y3889274/Y3889274.emf" read="true" store="false"/>
 		
