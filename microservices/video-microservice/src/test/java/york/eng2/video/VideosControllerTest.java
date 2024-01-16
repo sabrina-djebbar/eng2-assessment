@@ -8,11 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
+import io.micronaut.test.annotation.MockBean;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import york.eng2.video.clients.VideosClient;
 import york.eng2.video.domain.Video;
 import york.eng2.video.dto.VideoDTO;
+import york.eng2.video.events.MockVideosProducer;
+import york.eng2.video.events.VideosProducer;
 import york.eng2.video.repositories.VideosRepository;
 
 @MicronautTest(transactional = false)
@@ -23,9 +26,19 @@ public class VideosControllerTest {
 	@Inject
 	VideosRepository repo;
 
+	@Inject
+	MockVideosProducer mockVideosProducer;
+
+	@MockBean(VideosProducer.class)
+	public VideosProducer testProducer() {
+		return new MockVideosProducer() {
+		};
+	}
+
 	@BeforeEach
 	public void clean() {
 		repo.deleteAll();
+
 	}
 
 	final String title = "Python in 30 seconds";
@@ -40,7 +53,6 @@ public class VideosControllerTest {
 
 	@Test
 	public void postBook() {
-
 		VideoDTO video = new VideoDTO();
 		video.setTitle(title);
 		video.setTags("fun,educational");
@@ -68,8 +80,8 @@ public class VideosControllerTest {
 		assertEquals(0, createdVideo.getLikes());
 
 		// like the video
-		client.likeVideo(1);
+		client.likeVideo(1, username);
 		Video likedVideo = client.getVideo(1);
-		assertEquals(1, likedVideo.getLikes());
+		assertEquals(1, likedVideo.getLikes().size());
 	}
 }

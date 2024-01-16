@@ -1,0 +1,11 @@
+[%for (microservice in Microservice.all){%]
+
+CREATE DATABASE IF NOT EXISTS `[%=microservice.getMicroserviceName()%]`;
+GRANT ALL ON `[%=microservice.getMicroserviceName()%]`.* TO 'todo'@'%';
+[%}%]
+
+[%
+	operation Microservice getMicroserviceName(): String{
+		return self.name.toString().split("-microservice")[0];
+	}
+%]

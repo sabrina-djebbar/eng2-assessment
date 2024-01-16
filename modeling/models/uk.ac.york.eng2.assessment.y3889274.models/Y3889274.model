@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="Y3889274" xmi:id="_eTH00KpAEe6qPJzCgZmstg">
+<System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="Y3889274" xmi:id="_eTH00KpAEe6qPJzCgZmstg" name="video-sharing-system">
   <microservices xmi:id="_vIaW8KpAEe6qPJzCgZmstg" name="video-microservice">
     <endpoints xmi:id="_woBIgKpAEe6qPJzCgZmstg" name="list-videos">
       <response xmi:id="_hi5HAKpBEe6qPJzCgZmstg" name="list-video-response" statusCode="200">

@@ -1,20 +1,19 @@
+pre{
+var outputDirectory:String = "../../configs/microservices/src-gen";
+var startingPort: Integer = 8080;
+}
+
 rule System2Docker transform s : System {
 	template: "system2docker.egl"
 	parameters: Map {
-		"portNumber" = 8080
+		"portNumber" = startingPort,
+		"kafkaNodes" = 3
 	}
-	target: "src-gen/docker-compose.yml"
+	target: outputDirectory + "/docker-compose.yml"
 }
 
-rule Microservice2SQL 
-	transform m : Microservice {
-
-	template : "microservice2database.egl"
-
-	parameters : Map{
-		"m" = m.eContainer()
-	}
-
-	target : "src-gen/init/001.sql"
+rule System2Database transform s : System {
+	template: "system2database.egl"
+	
+	target: outputDirectory + "/init/01.sql"
 }
-
