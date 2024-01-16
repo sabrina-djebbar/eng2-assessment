@@ -24,11 +24,13 @@ public interface MockVideosProducer extends VideosProducer {
 
 	@Override
 	default void dislikeVideo(Long id, Long userId) {
+		
 		dislikeVideo.put(id, userId);
 	}
 
 	@Override
 	default void watchVideo(Long id, String username) {
+		
 		watchVideo.put(id, username);
 	}
 }
