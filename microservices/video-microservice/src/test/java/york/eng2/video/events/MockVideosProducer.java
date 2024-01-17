@@ -10,7 +10,7 @@ public interface MockVideosProducer extends VideosProducer {
 	Map<Long, VideoDTO> postVideo = new HashMap<>();
 	Map<Long, Hashtag> likeVideo = new HashMap<>();
 	Map<Long, String> watchVideo = new HashMap<>();
-	Map<Long, Long> dislikeVideo = new HashMap<>();
+	Map<Long, Hashtag> dislikeVideo = new HashMap<>();
 
 	@Override
 	default void postVideo(Long id, VideoDTO video) {
@@ -23,14 +23,12 @@ public interface MockVideosProducer extends VideosProducer {
 	}
 
 	@Override
-	default void dislikeVideo(Long id, Long userId) {
-		
-		dislikeVideo.put(id, userId);
+	default void dislikeVideo(Long id, Hashtag tag) {
+		dislikeVideo.put(id, tag);
 	}
 
 	@Override
 	default void watchVideo(Long id, String username) {
-		
 		watchVideo.put(id, username);
 	}
 }

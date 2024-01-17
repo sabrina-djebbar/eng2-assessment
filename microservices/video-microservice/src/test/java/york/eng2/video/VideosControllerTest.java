@@ -26,19 +26,16 @@ public class VideosControllerTest {
 	@Inject
 	VideosRepository repo;
 
-	@Inject
-	MockVideosProducer mockVideosProducer;
-
 	@MockBean(VideosProducer.class)
 	public VideosProducer testProducer() {
 		return new MockVideosProducer() {
+			
 		};
-	}
+	};
 
 	@BeforeEach
 	public void clean() {
 		repo.deleteAll();
-
 	}
 
 	final String title = "Python in 30 seconds";
@@ -83,5 +80,50 @@ public class VideosControllerTest {
 		client.likeVideo(1, username);
 		Video likedVideo = client.getVideo(1);
 		assertEquals(1, likedVideo.getLikes().size());
+	}
+
+	@Test
+	public void dislikeVideo() {
+		// Create the video
+		VideoDTO video = new VideoDTO();
+		video.setTitle(title);
+		video.setTags("fun,educational");
+		video.setUsername(username);
+		HttpResponse<Void> response = client.post(video);
+		assertEquals(HttpStatus.CREATED, response.getStatus(), "Update should be successful");
+
+		// when a video is posted, the number of likes should be 0
+		Video createdVideo = client.getVideo(1);
+		assertEquals(0, createdVideo.getLikes());
+
+		// like the video
+		client.likeVideo(1, username);
+		Video likedVideo = client.getVideo(1);
+		assertEquals(1, likedVideo.getLikes().size());
+
+		//dislike the video
+		client.dislikeVideo(1, username);
+		Video dislikedVideo = client.getVideo(1);
+		assertEquals(0, dislikedVideo.getLikes().size());
+	}
+
+	@Test
+	public void watchVideo() {
+		// Create the video
+		VideoDTO video = new VideoDTO();
+		video.setTitle(title);
+		video.setTags("fun,educational");
+		video.setUsername(username);
+		HttpResponse<Void> response = client.post(video);
+		assertEquals(HttpStatus.CREATED, response.getStatus(), "Update should be successful");
+
+		// when a video is posted, the number of views should be 0
+		Video createdVideo = client.getVideo(1);
+		assertEquals(0, createdVideo.getViewers());
+
+		// watch the video
+		client.watchVideo(1, username);
+		Video watchedVideo = client.getVideo(1);
+		assertEquals(1, watchedVideo.getViewers().size());
 	}
 }
